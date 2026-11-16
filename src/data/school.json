@@ -1,0 +1,53 @@
+{
+  "name": "SHFMU “Mitrush Kuteli”",
+  "expandedName": "Shkolla Fillore dhe e Mesme e Ulët “Mitrush Kuteli”",
+  "tagline": "Mëso. Krijo. Shkëlqe.",
+  "location": "Matiçan, Prishtinë, Kosovë",
+  "street": "Rr. Sokol Sopi, Prishtinë",
+  "email": "shfmu.mitrush.kuteli@rks-gov.net",
+  "telephoneDisplay": "038 226 671",
+  "telephoneE164": "+38338226671",
+  "facebook": "https://www.facebook.com/profile.php?id=100057725970264",
+  "directoryUrl": "https://shfmu.com/shkolla/mitrush-kuteli",
+  "currentSchoolYear": "2026/2027",
+  "schoolDay": "13 maj",
+  "stages": [
+    {
+      "title": "Klasat I–V",
+      "text": "Shkalla fillore, hapi i parë në rrugën e nxënësit."
+    },
+    {
+      "title": "Klasat VI–IX",
+      "text": "Shkalla e mesme e ulët, me mësimdhënës lëndorë."
+    },
+    {
+      "title": "Parafillori",
+      "text": "Dy grupe parafillore, sipas orarit të ziles për vitin 2026/2027."
+    }
+  ],
+  "values": [
+    {
+      "title": "Mëso",
+      "text": "Kuriozitet, përpjekje dhe respekt për dijen."
+    },
+    {
+      "title": "Krijo",
+      "text": "Muzikë, art, lëvizje dhe projekte ku nxënësit shprehen vetë."
+    },
+    {
+      "title": "Shkëlqe",
+      "text": "Secili nxënës shkëlqen në mënyrën e vet, me mbështetjen e shkollës dhe të familjes."
+    }
+  ],
+  "seasonalBanner": {
+    "id": "28-nentori",
+    "from": "2026-11-14",
+    "to": "2026-11-29",
+    "text": "28 Nëntori, Dita e Flamurit",
+    "href": "/festat/28-nentori"
+  },
+  "mission": {
+    "text": "Të ofrojmë arsim cilësor në një mjedis gjithëpërfshirës dhe inovativ, duke edukuar gjenerata të suksesshme, kreative dhe të përgjegjshme.",
+    "source": "Teksti i dhënë nga pronari i faqes (2026-11-16); përdoret fjalë për fjalë si mision, jo si citat i drejtorit."
+  }
+}

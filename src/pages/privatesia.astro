@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { school } from '../lib/data';
+---
+<Layout title="Privatësia" description="Si e trajton kjo faqe të dhënat: pa cookies, pa analitikë dhe pa formularë dërgimi." crumbs={[{ label: 'Privatësia' }]}>
+  <div class="page-head"><div class="container"><span class="eyebrow">Privatësia</span><h1>Privatësia në këtë faqe</h1></div></div>
+  <section class="section">
+    <div class="container prose stack">
+      <h2>Çfarë mbledh kjo faqe</h2>
+      <p>Kjo faqe nuk ka llogari përdoruesish, formularë dërgimi, komente, analitikë ose cookies reklamuese. Shfletimi nuk i dërgon shkollës asnjë të dhënë personale nga vetë faqja.</p>
+      <p>Kërkimi, filtrat dhe galeria funksionojnë tërësisht në shfletuesin tuaj. Fjalët që shkruani në kërkim ruhen vetëm në adresën e faqes (në shiritin e adresave) dhe nuk dërgohen në ndonjë shërbim tjetër.</p>
+      <h2>Shërbimet e jashtme</h2>
+      <p>Faqja nuk ngarkon harta, fonte ose skripta nga shërbime të jashtme. Lidhjet drejt Facebook-ut, hartave dhe burimeve të lajmeve hapin faqe të jashtme; ato kanë rregullat e tyre të privatësisë.</p>
+      <p>Serveri që e shërben faqen mund të mbajë regjistra teknikë standardë (si adresa IP dhe koha e kërkesës). Kjo varet nga ofruesi i hostimit dhe do të përshkruhet këtu kur të zgjidhet ofruesi përfundimtar.</p>
+      <h2>Fotografitë dhe të dhënat për nxënës</h2>
+      <p>Fotografitë e nxënësve publikohen me kontekst të përgjithshëm dhe pa emra, klasa ose detaje personale. Nëse dëshironi që një fotografi ose informacion të hiqet, shkruani te <a href={`mailto:${school.email}`}>{school.email}</a> ose telefononi në <a href={`tel:${school.telephoneE164}`}>{school.telephoneDisplay}</a>.</p>
+      <p class="small muted">Ky është një përshkrim i shkurtër i zbatimit aktual të faqes, jo një dokument ligjor. Ai duhet rishikuar nga shkolla para publikimit.</p>
+    </div>
+  </section>
+</Layout>

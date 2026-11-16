@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import { school } from '../lib/data';
+import { images } from '../lib/photos';
+import { mapsUrl } from '../lib/site';
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand">
+        <Image src={images['stema']} alt="" width={56} height={56} densities={[1, 2]} />
+        <strong>{school.expandedName}</strong>
+      </div>
+      <p>{school.tagline}</p>
+      <p class="small">{school.street}<br />{school.location}</p>
+    </div>
+    <nav aria-label="Faqet kryesore">
+      <h2>Faqet</h2>
+      <ul>
+        <li><a href="/">Ballina</a></li>
+        <li><a href="/shkolla">Shkolla</a></li>
+        <li><a href="/stafi">Stafi</a></li>
+        <li><a href="/aktivitete">Jeta shkollore</a></li>
+        <li><a href="/per-prinder">Për prindërit</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lidhje të shpejta">
+      <h2>Të shpejta</h2>
+      <ul>
+        <li><a href="/oraret">Orari i ziles</a></li>
+        <li><a href="/konsultimet">Konsultimet me prindër</a></li>
+        <li><a href="/dokumente">Dokumentet</a></li>
+        <li><a href="/lajme">Lajme</a></li>
+        <li><a href="/galeria">Galeria</a></li>
+      </ul>
+    </nav>
+    <div id="kontakti-footer">
+      <h2>Kontakti</h2>
+      <ul>
+        <li><a href={`mailto:${school.email}`}>{school.email}</a></li>
+        <li><a href={`tel:${school.telephoneE164}`}>{school.telephoneDisplay}</a></li>
+        <li><a href={school.facebook} rel="noopener noreferrer" target="_blank">Facebook (hapet në skedë të re)</a></li>
+        <li>{school.street}, {school.location}</li>
+        <li><a href={mapsUrl} rel="noopener noreferrer" target="_blank">Udhëzime për ardhje</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container legal">
+    <span>© {school.currentSchoolYear.split('/')[0]} {school.name}. </span>
+    <a href="/privatesia">Privatësia</a> · <a href="/kerko">Kërko</a> · <a href="/kontakti">Kontakti</a>
+  </div>
+</footer>

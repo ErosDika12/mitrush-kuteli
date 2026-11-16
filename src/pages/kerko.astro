@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Kërko" description="Kërko te faqet, stafi, lajmet dhe dokumentet e SHFMU “Mitrush Kuteli”." crumbs={[{ label: 'Kërko' }]} noindex>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Kërko</span>
+      <h1>Kërko në faqe</h1>
+    </div>
+  </div>
+  <section class="section tight">
+    <div class="container">
+      <form class="filters" id="s-form" action="/kerko" method="get" role="search" style="grid-template-columns:1fr auto">
+        <div><label for="s-q">Kërko staf, lajme, dokumente ose faqe</label><input id="s-q" type="search" name="q" autocomplete="off" /></div>
+        <div><button class="btn" type="submit">Kërko</button></div>
+      </form>
+      <p class="count" id="s-count" aria-live="polite"></p>
+      <ul id="s-results" style="list-style:none;padding:0;display:grid;gap:12px"></ul>
+      <noscript><p>Kërkimi kërkon JavaScript. Përdorni menunë ose <a href="/stafi">stafin</a>, <a href="/lajme">lajmet</a> dhe <a href="/dokumente">dokumentet</a> drejtpërdrejt.</p></noscript>
+    </div>
+  </section>
+  <script>
+    import { normalize } from '../lib/format';
+    import { readParams, writeParams } from '../scripts/url-state';
+    type Entry = { type: string; title: string; text: string; url: string; keys: string };
+    const input = document.getElementById('s-q') as HTMLInputElement;
+    const out = document.getElementById('s-results')!;
+    const count = document.getElementById('s-count')!;
+    let index: Entry[] = [];
+    let loaded = false;
+
+    function render() {
+      const terms = normalize(input.value).split(/\s+/).filter(Boolean);
+      out.replaceChildren();
+      if (!terms.length) { count.textContent = 'Shkruani një fjalë për të kërkuar.'; return; }
+      if (!loaded) { count.textContent = 'Po ngarkohet indeksi…'; return; }
+      const hits = index.filter((e) => terms.every((t) => e.keys.includes(t)));
+      count.textContent = hits.length ? `${hits.length} rezultate.` : 'Asnjë rezultat. Provoni një shkrim tjetër.';
+      for (const h of hits) {
+        const li = document.createElement('li');
+        li.className = 'card';
+        const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = h.type;
+        const a = document.createElement('a'); a.href = h.url; a.textContent = h.title; a.style.display = 'block'; a.style.fontWeight = '700'; a.style.margin = '6px 0 2px';
+        const p = document.createElement('p'); p.className = 'muted small'; p.style.margin = '0'; p.textContent = h.text;
+        li.append(tag, a, p); out.append(li);
+      }
+    }
+    input.value = readParams().get('q') ?? '';
+    input.addEventListener('input', () => { render(); writeParams({ q: input.value.trim() }); });
+    document.getElementById('s-form')!.addEventListener('submit', (e) => { e.preventDefault(); render(); writeParams({ q: input.value.trim() }, true); });
+    window.addEventListener('popstate', () => { input.value = readParams().get('q') ?? ''; render(); });
+    render();
+    fetch('/search-index.json').then((r) => r.json()).then((d: Entry[]) => { index = d; loaded = true; render(); }).catch(() => { count.textContent = 'Kërkimi nuk u ngarkua. Provoni përsëri më vonë.'; });
+  </script>
+</Layout>

@@ -1,0 +1,69 @@
+{
+  "photos": [
+    {
+      "id": "foto-1",
+      "alt": "Nxënëse me fanella blu-gjelbër dhe një e rritur pozojnë së bashku në një fushë futbolli me bari sintetik.",
+      "caption": "Nxënëse në një turne futbolli",
+      "album": "sport"
+    },
+    {
+      "id": "foto-2",
+      "alt": "Nxënës dhe mësimdhënëse pozojnë në një klasë muzike me tabelë, piano elektrike dhe bankat prej druri.",
+      "caption": "Grup nxënësish në klasën e muzikës",
+      "album": "muzike"
+    },
+    {
+      "id": "foto-3",
+      "alt": "Nxënës të radhitur në një livadh të gjelbër përpara pyllit gjatë një aktiviteti në natyrë.",
+      "caption": "Aktivitet në natyrë me nxënës",
+      "album": "natyre"
+    },
+    {
+      "id": "foto-4",
+      "alt": "Dy të rinj dhe një mësimdhënëse me çertifikata përpara një banderole të ArsKosova 2026 dhe pranë një pianoje me bisht.",
+      "caption": "Në sfond: banderola e garave ArsKosova 2026, edicioni i 21-të",
+      "album": "muzike"
+    },
+    {
+      "id": "foto-5",
+      "alt": "Kori i shkollës në skenë me veshje të bardha e të zeza, ndërsa një dirigjente drejton nga para.",
+      "caption": "Kori i shkollës gjatë një paraqitjeje",
+      "album": "muzike"
+    },
+    {
+      "id": "basketboll-djemte",
+      "alt": "Shtatë nxënës në fanella të bardha me një mësimdhënëse me xhaketë të errët, të radhitur në një sallë sportive me ulëse blu.",
+      "caption": "Klubi i basketbollit — djemtë",
+      "album": "sport"
+    },
+    {
+      "id": "futboll-djemte",
+      "alt": "Ekip nxënësish në fanella të kuqe, disa në këmbë e disa të gjunjëzuar, bashkë me një mësimdhënëse në një sallë sporti.",
+      "caption": "Klubi i futbollit — djemtë",
+      "album": "sport"
+    },
+    {
+      "id": "futboll-vajzat-existing",
+      "alt": "Nxënëse me fanella blu-gjelbër dhe një e rritur pozojnë në një fushë futbolli me bari sintetik.",
+      "caption": "Klubi i futbollit — vajzat",
+      "album": "sport"
+    }
+  ],
+  "albums": [
+    {
+      "id": "muzike",
+      "title": "Muzikë dhe kor",
+      "text": "Klasa e muzikës, kori dhe garat muzikore."
+    },
+    {
+      "id": "sport",
+      "title": "Sport",
+      "text": "Futboll, basketboll dhe veprimtari të tjera sportive."
+    },
+    {
+      "id": "natyre",
+      "title": "Në natyrë",
+      "text": "Aktivitete jashtë klasës."
+    }
+  ]
+}

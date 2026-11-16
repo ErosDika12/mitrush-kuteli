@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import StaffEntry from '../components/StaffEntry.astro';
+import { school, news, staff, bells } from '../lib/data';
+import { absoluteUrl } from '../lib/site';
+
+const [featured, ...others] = news;
+const team = ['remzije-racaj', 'besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina']
+  .map((id) => staff.find((s) => s.id === id)!)
+  .map((m) => ({ m, role: m.roles.find((r) => r.group === 'leadership') ?? m.roles.find((r) => r.group === 'support') ?? m.roles[0] }));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'School',
+  name: school.expandedName,
+  alternateName: school.name,
+  url: absoluteUrl('/'),
+  email: school.email,
+  telephone: school.telephoneE164,
+  address: { '@type': 'PostalAddress', streetAddress: 'Rr. Sokol Sopi', addressLocality: 'Prishtinë', addressCountry: 'XK' },
+  sameAs: [school.facebook],
+};
+---
+<Layout title={school.name} description="Faqja e SHFMU “Mitrush Kuteli”, Matiçan, Prishtinë: orari i ziles, konsultimet me prindër, stafi, lajmet dhe jeta shkollore." banner jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="tagline">{school.tagline}</p>
+        <h1>{school.name}</h1>
+        <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiçan të Prishtinës, ku muzika, sporti dhe mësimi i përditshëm bashkohen në një komunitet të vogël.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/shkolla">Njihuni me shkollën</a>
+          <a class="btn ghost" href="/oraret">Orari & konsultimet</a>
+        </div>
+      </div>
+      <figure class="hero-photo" style="margin:0">
+        <Photo id="foto-2" priority sizes="(min-width: 960px) 700px, 100vw" widths={[480, 800, 1200]} />
+        <figcaption class="hero-note">Në klasën e muzikës</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section tight" aria-labelledby="quick-h">
+    <div class="container">
+      <h2 id="quick-h" class="sr-only">Lidhje të shpejta për prindërit</h2>
+      <div class="quick">
+        <a href="/oraret#zilja"><strong>Orari i ziles</strong><span>Fillon {bells.firstShift[0].start} dhe {bells.secondShift[0].start}</span></a>
+        <a href="/konsultimet"><strong>Konsultimet me prindër</strong><span>Dita dhe ora e takimit</span></a>
+        <a href="/per-prinder#njoftimet"><strong>Njoftimet</strong><span>Njoftime për prindërit</span></a>
+        <a href="/dokumente"><strong>Dokumentet</strong><span>Orare për t’u parë ose shkarkuar</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="news-h">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Lajme</span><h2 id="news-h">Nga shkolla dhe rreth saj</h2></div>
+        <a class="link-arrow" href="/lajme">Të gjitha lajmet</a>
+      </div>
+      <div class="news-grid featured">
+        {featured && <ArticleCard item={featured} big />}
+        <div class="stack-col">{others.map((n) => <ArticleCard item={n} />)}</div>
+      </div>
+      <p class="small muted" style="margin-top:16px">Lajmet janë përmbledhje të raportimeve publike, me lidhje te burimi.</p>
+    </div>
+  </section>
+
+  <section class="mission" aria-labelledby="mission-h">
+    <div class="container split" style="padding-block: var(--s6)">
+      <div>
+        <span class="eyebrow">Misioni</span>
+        <h2 id="mission-h" class="sr-only">Misioni i shkollës</h2>
+        <blockquote>{school.mission.text}</blockquote>
+        <cite>Misioni i shkollës</cite>
+      </div>
+      <div class="stack">
+        <p class="lead" style="margin:0">SHFMU “Mitrush Kuteli” punon në Prishtinë që nga viti shkollor 1946/47 dhe mban emrin e shkrimtarit shqiptar që nga viti 1992. Sot shkolla përfshin klasat I–IX dhe grupet parafillore.</p>
+        <a class="link-arrow" href="/shkolla">Lexo më shumë për shkollën</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="life-h">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Jeta shkollore</span><h2 id="life-h">Muzikë, sport dhe lëvizje</h2></div>
+        <a class="link-arrow" href="/klubet">Klubet dhe grupet</a>
+      </div>
+      <div class="mosaic">
+        <a class="ph a" href="/galeria#muzike"><Photo id="foto-5" sizes="(min-width: 860px) 600px, 50vw" /><span class="ph-cap">Kori i shkollës</span></a>
+        <a class="ph b" href="/galeria#sport"><Photo id="futboll-djemte" sizes="(min-width: 860px) 600px, 50vw" /><span class="ph-cap">Klubi i futbollit</span></a>
+        <a class="ph c" href="/galeria#sport"><Photo id="futboll-vajzat-existing" sizes="(min-width: 860px) 600px, 50vw" /><span class="ph-cap">Futboll i vajzave</span></a>
+        <a class="ph d" href="/galeria#natyre"><Photo id="foto-3" sizes="(min-width: 860px) 1200px, 100vw" /><span class="ph-cap">Aktivitet në natyrë</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="staff-h">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Stafi</span><h2 id="staff-h">Udhëheqja dhe shërbimet</h2></div>
+        <a class="link-arrow" href="/stafi">I gjithë stafi</a>
+      </div>
+      <div class="staff-grid">
+        {team.map(({ m, role }) => <StaffEntry member={m} role={role} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="contact-h">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Kontakti</span>
+        <h2 id="contact-h">Na shkruani ose na telefononi</h2>
+        <p class="lead">Për pyetje rreth shkollës, regjistrimit ose takimeve, kontaktoni drejtpërdrejt.</p>
+      </div>
+      <div class="card stack">
+        <p><strong>Email</strong><br /><a href={`mailto:${school.email}`}>{school.email}</a></p>
+        <p><strong>Telefon</strong><br /><a href={`tel:${school.telephoneE164}`}>{school.telephoneDisplay}</a></p>
+        <p><strong>Adresa</strong><br />{school.street}, {school.location}</p>
+        <a class="btn" href="/kontakti">Të gjitha mënyrat e kontaktit</a>
+      </div>
+    </div>
+  </section>
+</Layout>

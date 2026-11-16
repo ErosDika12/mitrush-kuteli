@@ -1,0 +1,55 @@
+[
+  {
+    "id": "orari-i-ziles-2026-27",
+    "title": "Orari i ziles për vitin shkollor 2026/27",
+    "originalTitle": "Orari i ziles për vitin shkollor 2026/27",
+    "category": "Orare",
+    "schoolYear": "2026/2027",
+    "date": "2026-08-31",
+    "format": "PNG",
+    "file": "/documents/orari-i-ziles-2026-27.png",
+    "description": "Dokumenti i nënshkruar i shkollës, me ndërrimin e parë, të dytë dhe grupet parafillore.",
+    "transcription": "/oraret#zilja",
+    "status": "published"
+  },
+  {
+    "id": "orari-i-konsultimeve-2026-27",
+    "title": "Orari i takimeve individuale ndërmjet stafit dhe prindërve",
+    "originalTitle": "Orari i Takimeve Individuale Ndërmjet Stafit të Shkollës dhe Prindërve",
+    "category": "Prindërit",
+    "schoolYear": "2026/2027",
+    "date": null,
+    "format": "PNG",
+    "file": "/documents/orari-i-konsultimeve-2026-27.png",
+    "description": "Ditët dhe orët kur mësimdhënësit, drejtoresha, sekretari, koordinatorja dhe psikologia takojnë prindërit.",
+    "transcription": "/konsultimet",
+    "status": "published"
+  },
+  {
+    "id": "orari-mesimor-javor-2026-27",
+    "title": "Orari mësimor për vitin shkollor 2026–2027",
+    "originalTitle": "Orari mësimor për vitin shkollor 2026–2027",
+    "category": "Orare",
+    "schoolYear": "2026/2027",
+    "date": null,
+    "format": "PNG",
+    "file": "/documents/orari-mesimor-javor-2026-27.png",
+    "description": "Matrica javore sipas mësimdhënësve (e hënë–e premte, orët 1–6). Fotografi e dokumentit origjinal.",
+    "transcription": "/oraret#klasat",
+    "status": "published"
+  },
+  {
+    "id": "plani-zhvillimor-historik",
+    "title": "Plani zhvillimor i shkollës (dokument historik)",
+    "originalTitle": "SHFMU “Mitrush Kuteli” — plan zhvillimor",
+    "category": "Arkiv",
+    "schoolYear": "2018–2021",
+    "date": null,
+    "format": "PDF",
+    "file": "https://prishtinaonline.com/uploads/shfmu_mitrush_kuteli.pdf",
+    "external": true,
+    "description": "Dokument i vjetër planifikimi i publikuar nga komuna. Përmban të dhëna për periudhën 2018–2021 dhe nuk përfaqëson gjendjen aktuale.",
+    "transcription": null,
+    "status": "published"
+  }
+]

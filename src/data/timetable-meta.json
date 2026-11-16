@@ -1,0 +1,16 @@
+{
+  "schoolYear": "2026/2027",
+  "title": "Orari mësimor për vitin shkollor 2026–2027",
+  "file": "/documents/orari-mesimor-javor-2026-27.png",
+  "status": "provisional",
+  "statusText": "Transkriptim provizor nga fotografia e dokumentit. Kontrolloni gjithmonë me dokumentin origjinal.",
+  "periodsPerDay": 6,
+  "teacherNameNotes": {
+    "akter-imeri": "Në tabelë shkruhet “Akter Y.”; fleta e konsultimeve ka Akter Imeri.",
+    "fortesa-gashi": "Mbiemri në tabelë është i shkurtuar dhe i palexueshëm; përdoret emri nga fleta e konsultimeve.",
+    "kemal-islami": "Në tabelë shkruhet vetëm “Kemal”."
+  },
+  "flaggedCells": [
+    { "staffId": "njomza-jetullahu", "day": 2, "period": 1, "reason": "Pranë vlerës 9.1 ka një njollë; lexohet si 9.1 por duhet konfirmuar." }
+  ]
+}

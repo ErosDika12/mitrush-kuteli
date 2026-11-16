@@ -1,0 +1,15 @@
+---
+import { formatDate } from '../lib/format';
+import type { NewsItem } from '../lib/data';
+interface Props { item: NewsItem; big?: boolean }
+const { item, big = false } = Astro.props;
+---
+<article class:list={['article-card', { big }]} data-news data-category={item.category} data-search={`${item.title} ${item.summary} ${item.category}`}>
+  <div class="meta">
+    <span class="tag">{item.category}</span>
+    <time datetime={item.publishedAt}>{formatDate(item.publishedAt)}</time>
+  </div>
+  <h3><a href={`/lajme/${item.slug}`}>{item.title}</a></h3>
+  <p class={big ? '' : 'muted'}>{item.summary}</p>
+  <span class="meta">{item.sourceKind}</span>
+</article>

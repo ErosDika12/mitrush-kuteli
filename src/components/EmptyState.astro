@@ -1,0 +1,8 @@
+---
+interface Props { title: string; hidden?: boolean; id?: string }
+const { title, hidden = false, id } = Astro.props;
+---
+<div class="empty" hidden={hidden} id={id} role="status">
+  <h3>{title}</h3>
+  <slot />
+</div>

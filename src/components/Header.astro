@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { nav, isOn } from '../lib/site';
+import { school } from '../lib/data';
+import { images } from '../lib/photos';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${school.name} — Ballina`}>
+      <Image src={images['stema']} alt="" width={52} height={52} densities={[1, 2]} loading="eager" />
+      <span class="brand-text">
+        <span class="brand-name">{school.name}</span>
+        <span class="brand-sub">Matiçan, Prishtinë</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" id="nav-toggle">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      <span>Menuja</span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Navigimi kryesor">
+      <ul class="nav-list">
+        {nav.map((item) => (
+          <li><a href={item.href} aria-current={isOn(path, item.match) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+      <form class="search-form" action="/kerko" method="get" role="search">
+        <label class="sr-only" for="nav-q">Kërko në faqe</label>
+        <input id="nav-q" type="search" name="q" placeholder="Kërko staf, lajme, dokumente" />
+        <button class="btn small" type="submit">Kërko</button>
+      </form>
+      <p class="nav-contact"><a href="/kontakti">Kontakti</a> · <a href={`tel:${school.telephoneE164}`}>{school.telephoneDisplay}</a></p>
+    </nav>
+
+    <div class="header-tools">
+      <a class="icon-btn" href="/kerko" aria-label="Kërko në faqe">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="2" /><path d="M14 14l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      </a>
+      <a class="icon-btn" href="/kontakti" aria-label={`Kontakti dhe telefoni ${school.telephoneDisplay}`}>
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3h3l1.5 4-2 1.3a9 9 0 0 0 4.2 4.2L13 10.5l4 1.5v3a2 2 0 0 1-2 2A12 12 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+  </div>
+</header>

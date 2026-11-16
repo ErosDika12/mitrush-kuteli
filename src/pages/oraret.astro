@@ -1,0 +1,240 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { bells, school } from '../lib/data';
+import { formatDate, gapMinutes, timeRange } from '../lib/format';
+import { teachers, classGrids, classIds, DAYS, PERIODS, conflicts, gaps, timetableMeta } from '../lib/timetable';
+
+type Row = { kind: 'period'; period: number; start: string; end: string } | { kind: 'gap'; minutes: number; start: string; end: string };
+function withGaps(list: { period: number; start: string; end: string }[]): Row[] {
+  const out: Row[] = [];
+  list.forEach((p, i) => {
+    out.push({ kind: 'period', ...p });
+    const n = list[i + 1];
+    if (n && gapMinutes(p.end, n.start) >= 10) out.push({ kind: 'gap', minutes: gapMinutes(p.end, n.start), start: p.end, end: n.start });
+  });
+  return out;
+}
+const shifts = [
+  { title: 'Ndërrimi i parë', rows: withGaps(bells.firstShift) },
+  { title: 'Ndërrimi i dytë', rows: withGaps(bells.secondShift) },
+];
+const dayLabel = (d: number) => DAYS[d];
+const periodsArr = Array.from({ length: PERIODS }, (_, i) => i);
+---
+<Layout section="prindi" title="Orari & konsultimet" description="Orari i ziles për vitin shkollor 2026/27, orari mësimor sipas klasave dhe dokumenti origjinal." crumbs={[{ label: 'Për prindërit', href: '/per-prinder' }, { label: 'Orari & konsultimet' }]}>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Viti shkollor {school.currentSchoolYear}</span>
+      <h1>Orari & konsultimet</h1>
+      <p class="lead">Orari i ziles, orari mësimor dhe dokumenti origjinal. Orari i takimeve me prindër ndodhet te <a href="/konsultimet">Konsultimet</a>.</p>
+    </div>
+  </div>
+
+  <section class="section tight">
+    <div class="container">
+      <nav class="tabs no-print" id="oraret-tabs" aria-label="Pamjet e orarit">
+        <a href="#zilja" data-tab="zilja">Orari i ziles</a>
+        <a href="#klasat" data-tab="klasat">Orari sipas klasave</a>
+        <a href="#origjinali" data-tab="origjinali">Dokumenti origjinal</a>
+        <a href="/konsultimet">Konsultimet me prindër</a>
+      </nav>
+
+      <!-- ZILJA -->
+      <section class="panel" id="zilja" data-panel aria-labelledby="zilja-h">
+        <h2 id="zilja-h">Orari i ziles</h2>
+        <p class="muted">Sipas dokumentit të nënshkruar më <strong>{formatDate(bells.documentDate)}</strong> nga drejtoresha. Referenca në dokument lexohet “{bells.reference}”. Viti në referencë është shkruar siç duket në origjinal dhe pret kontroll nga shkolla.</p>
+        <div class="shift-grid two">
+          {shifts.map((s) => (
+            <div class="table-wrap" tabindex="0" role="region" aria-label={s.title}>
+              <table>
+                <caption>{s.title}</caption>
+                <thead><tr><th scope="col">Ora</th><th scope="col">Koha</th></tr></thead>
+                <tbody>
+                  {s.rows.map((r) =>
+                    r.kind === 'period' ? (
+                      <tr><th scope="row">{r.period}</th><td class="num">{timeRange(r.start, r.end)}</td></tr>
+                    ) : (
+                      <tr class="gap-row"><td colspan="2">Pushim {r.start}–{r.end} ({r.minutes} min, i llogaritur nga orari)</td></tr>
+                    ),
+                  )}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+        <div class="table-wrap" style="margin-top:24px;max-width:560px">
+          <table>
+            <caption>Parafilloret</caption>
+            <thead><tr><th scope="col">Grupi</th><th scope="col">Koha</th></tr></thead>
+            <tbody>
+              {bells.preschoolGroups.map((g) => <tr><th scope="row">Grupi i {g.group === 'I' ? 'parë' : 'dytë'}</th><td class="num">{timeRange(g.start, g.end)}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:12px">Ndërrimi i dytë ka pesë orë; dokumenti nuk liston orë të gjashtë për të. Pushimet e treguara janë llogaritur nga ndryshimi mes orëve dhe nuk janë shpallur veçmas nga shkolla. Cilat klasa mësojnë në cilin ndërrim konfirmohet nga shkolla.</p>
+        <p class="no-print"><button class="btn ghost small" type="button" id="print-bells" hidden>Printo orarin e ziles</button> <a class="btn ghost small" href="/documents/orari-i-ziles-2026-27.png" download>Shkarko dokumentin origjinal (PNG)</a></p>
+      </section>
+
+      <!-- KLASAT -->
+      <section class="panel" id="klasat" data-panel aria-labelledby="klasat-h" style="margin-top:48px">
+        <h2 id="klasat-h">Orari sipas klasave</h2>
+        <div class="callout" style="margin-bottom:16px">
+          <p><strong>Kujdes.</strong> {timetableMeta.statusText} Fotografia e orarit është e ulët në cilësi dhe e anuar, ndaj çdo qelizë është lexuar dhe kontrolluar ndaj klasave dhe orëve të tjera, por jo e verifikuar nga shkolla.</p>
+          <details>
+            <summary>Çfarë është e pasigurt ose e papërputhshme në dokument?</summary>
+            <ul>
+              {conflicts.map((c) => <li>Klasa <strong>{c.classId}</strong>, {dayLabel(c.day)}, ora {c.period + 1}: shënohet te dy mësimdhënës ({c.teachers.join(' dhe ')}).</li>)}
+              {gaps.map((g) => <li>Klasa <strong>{g.classId}</strong>, {dayLabel(g.day)}, ora {g.period + 1}: asnjë mësimdhënës i shënuar.</li>)}
+              {timetableMeta.flaggedCells.map((f) => <li>{teachers.find((t) => t.staffId === f.staffId)?.name}, {dayLabel(f.day - 1)}, ora {f.period}: {f.reason}</li>)}
+              <li>Shënimet e klasës drejtuese në kolonën e majtë të tabelës nuk lexohen me siguri dhe nuk publikohen.</li>
+            </ul>
+            <p class="small">Qelizat bosh janë lënë bosh. Asnjë qelizë nuk është plotësuar me supozim.</p>
+          </details>
+        </div>
+
+        <form class="filters" id="tt-filters" onsubmit="return false" aria-label="Zgjidh orarin">
+          <div>
+            <label for="tt-class">Klasa</label>
+            <select id="tt-class">
+              {classIds.map((c) => <option value={c}>{c}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="tt-teacher">Mësimdhënësi</label>
+            <select id="tt-teacher">
+              <option value="">— zgjidhni (opsionale) —</option>
+              {teachers.map((t) => <option value={t.staffId}>{t.name} ({t.subject})</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="tt-day">Dita</label>
+            <select id="tt-day">
+              <option value="">Të gjitha ditët</option>
+              {DAYS.map((d, i) => <option value={String(i)}>{d}</option>)}
+            </select>
+          </div>
+          <div></div>
+        </form>
+
+        <div id="tt-class-views">
+          {classIds.map((cid) => {
+            const grid = classGrids.get(cid)!;
+            return (
+              <div class="table-wrap tt-view" data-class={cid} tabindex="0" role="region" aria-label={`Orari i klasës ${cid}`} style="margin-bottom:24px">
+                <table class="tt">
+                  <caption>Klasa {cid}, {timetableMeta.schoolYear} (transkriptim provizor)</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Ora</th>
+                      {DAYS.map((d, di) => <th scope="col" data-day={di}>{d}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {periodsArr.map((p) => (
+                      <tr>
+                        <th scope="row">{p + 1}</th>
+                        {DAYS.map((_, di) => {
+                          const slot = grid[di][p];
+                          return (
+                            <td data-day={di} class:list={{ free: slot.entries.length === 0, conflict: slot.conflict }}>
+                              {slot.entries.length === 0 ? <span title="Asnjë mësimdhënës i shënuar në dokument">—<span class="sr-only"> asnjë shënim</span></span> : slot.entries.map((e) => <span>{e.name}<small>{e.subject}</small></span>)}
+                              {slot.conflict && <span class="cell-conflict">⚠ Dyfishim në dokument</span>}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })}
+        </div>
+
+        <div id="tt-teacher-views" hidden>
+          {teachers.map((t) => (
+            <div class="table-wrap tt-view" data-teacher={t.staffId} tabindex="0" role="region" aria-label={`Orari i mësimdhënësit ${t.name}`} style="margin-bottom:24px">
+              <table class="tt tt-teacher">
+                <caption>{t.name}, {t.subject}</caption>
+                <thead>
+                  <tr><th scope="col">Dita</th>{periodsArr.map((p) => <th scope="col">Ora {p + 1}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {DAYS.map((d, di) => (
+                    <tr data-day={di}>
+                      <th scope="row">{d}</th>
+                      {t.days[di].map((cell) => (
+                        <td class:list={{ free: cell.state !== 'assigned', conflict: cell.conflict }}>
+                          {cell.state === 'assigned' ? cell.classId : <span>—<span class="sr-only"> bosh</span></span>}
+                          {cell.conflict && <span class="cell-conflict">⚠</span>}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+        <p class="small muted">Ora 1–6 janë orët mësimore të ditës, jo kohë në orë. Kohët e ziles ndodhen te <a href="#zilja">Orari i ziles</a>; ndarja e klasave sipas ndërrimeve nuk është konfirmuar.</p>
+      </section>
+
+      <!-- ORIGJINALI -->
+      <section class="panel" id="origjinali" data-panel aria-labelledby="orig-h" style="margin-top:48px">
+        <h2 id="orig-h">Dokumenti origjinal</h2>
+        <p class="muted">Fotografia e orarit mësimor të vitit 2026–2027, siç është dorëzuar. Është një matricë sipas mësimdhënësve, jo sipas klasave.</p>
+        <div class="doc-viewer">
+          <a href={timetableMeta.file} target="_blank" rel="noopener" aria-label="Hap fotografinë e orarit në madhësi të plotë (skedë e re)">
+            <img src={timetableMeta.file} width="1190" height="870" loading="lazy" alt="Foto e tabelës “Orari mësimor për vitin shkollor 2026–2027”: rreshta me emrat e 18 mësimdhënësve dhe kolona për ditët e hënë deri të premte, secila me orët 1 deri 6 dhe numra klasash si 7.2 dhe 8.3." />
+          </a>
+        </div>
+        <p class="no-print" style="margin-top:12px"><a class="btn small" href={timetableMeta.file} target="_blank" rel="noopener">Hap në madhësi të plotë</a> <a class="btn ghost small" href={timetableMeta.file} download>Shkarko (PNG)</a></p>
+      </section>
+    </div>
+  </section>
+
+  <script>
+    // Panel switching. Without JavaScript all three panels simply stack on the page.
+    const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-panel]'));
+    const tabs = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-tab]'));
+    function showPanel() {
+      const id = (location.hash || '#zilja').slice(1);
+      const target = panels.find((p) => p.id === id) ?? panels[0];
+      panels.forEach((p) => { p.hidden = p !== target; p.style.marginTop = '0'; });
+      tabs.forEach((t) => { if (t.dataset.tab === target.id) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current'); });
+    }
+    window.addEventListener('hashchange', showPanel);
+    showPanel();
+
+    // Timetable filters.
+    const sc = document.getElementById('tt-class') as HTMLSelectElement;
+    const st = document.getElementById('tt-teacher') as HTMLSelectElement;
+    const sd = document.getElementById('tt-day') as HTMLSelectElement;
+    const classViews = document.getElementById('tt-class-views')!;
+    const teacherViews = document.getElementById('tt-teacher-views')!;
+    function applyTT(writeUrl = false) {
+      const byTeacher = !!st.value;
+      classViews.hidden = byTeacher;
+      teacherViews.hidden = !byTeacher;
+      classViews.querySelectorAll<HTMLElement>('.tt-view').forEach((v) => (v.hidden = v.dataset.class !== sc.value));
+      teacherViews.querySelectorAll<HTMLElement>('.tt-view').forEach((v) => (v.hidden = v.dataset.teacher !== st.value));
+      document.querySelectorAll<HTMLElement>('#klasat [data-day]').forEach((el) => (el.hidden = !!sd.value && el.dataset.day !== sd.value));
+      if (!writeUrl) return;
+      const p = new URLSearchParams();
+      if (st.value) p.set('mesimdhenes', st.value); else p.set('klasa', sc.value);
+      if (sd.value) p.set('dita', sd.value);
+      history.replaceState(null, '', `${location.pathname}?${p.toString()}${location.hash}`);
+    }
+    const params = new URLSearchParams(location.search);
+    if (params.get('klasa')) sc.value = params.get('klasa')!;
+    if (params.get('mesimdhenes')) st.value = params.get('mesimdhenes')!;
+    if (params.get('dita')) sd.value = params.get('dita')!;
+    [sc, st, sd].forEach((el) => el.addEventListener('change', () => { if (el === sc) st.value = ''; applyTT(true); }));
+    applyTT();
+
+    const pb = document.getElementById('print-bells') as HTMLButtonElement;
+    pb.hidden = false;
+    pb.addEventListener('click', () => { document.documentElement.dataset.print = 'zilja'; window.print(); });
+    window.addEventListener('afterprint', () => { delete document.documentElement.dataset.print; });
+  </script>
+</Layout>

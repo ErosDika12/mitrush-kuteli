@@ -1,0 +1,262 @@
+[
+  {
+    "id": "bukurije-kameri-teaching",
+    "staffId": "bukurije-kameri",
+    "context": "teaching",
+    "weekdays": [
+      5
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "luljete-haxhijaj-teaching",
+    "staffId": "luljete-haxhijaj",
+    "context": "teaching",
+    "weekdays": [
+      2
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "fortesa-gashi-teaching",
+    "staffId": "fortesa-gashi",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "08:20",
+    "end": "09:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "edona-novoberdaliu-teaching",
+    "staffId": "edona-novoberdaliu",
+    "context": "teaching",
+    "weekdays": [
+      2
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "kemal-islami-teaching",
+    "staffId": "kemal-islami",
+    "context": "teaching",
+    "weekdays": [
+      4
+    ],
+    "start": "11:10",
+    "end": "11:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "sebahat-gashi-teaching",
+    "staffId": "sebahat-gashi",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "hasime-mehmeti-teaching",
+    "staffId": "hasime-mehmeti",
+    "context": "teaching",
+    "weekdays": [
+      4
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "matjane-kallaba-teaching",
+    "staffId": "matjane-kallaba",
+    "context": "teaching",
+    "weekdays": [
+      4
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "arta-kllokoqi-teaching",
+    "staffId": "arta-kllokoqi",
+    "context": "teaching",
+    "weekdays": [
+      4
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "hikmete-limani-teaching",
+    "staffId": "hikmete-limani",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "nora-vitija-teaching",
+    "staffId": "nora-vitija",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "albert-muslijaj-teaching",
+    "staffId": "albert-muslijaj",
+    "context": "teaching",
+    "weekdays": [
+      4
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "njomza-jetullahu-teaching",
+    "staffId": "njomza-jetullahu",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "akter-imeri-teaching",
+    "staffId": "akter-imeri",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "leonarda-berisha-teaching",
+    "staffId": "leonarda-berisha",
+    "context": "teaching",
+    "weekdays": [
+      5
+    ],
+    "start": "09:10",
+    "end": "09:55",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "shkelzen-asimi-teaching",
+    "staffId": "shkelzen-asimi",
+    "context": "teaching",
+    "weekdays": [
+      2
+    ],
+    "start": "08:20",
+    "end": "09:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "diellona-kabashi-teaching",
+    "staffId": "diellona-kabashi",
+    "context": "teaching",
+    "weekdays": [
+      4
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "fahrije-korca-teaching",
+    "staffId": "fahrije-korca",
+    "context": "teaching",
+    "weekdays": [
+      3
+    ],
+    "start": "10:20",
+    "end": "11:05",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "merita-sejdiu-support",
+    "staffId": "merita-sejdiu",
+    "context": "support",
+    "weekdays": [
+      1,
+      2
+    ],
+    "start": "12:00",
+    "end": "13:00",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "remzije-racaj-administration",
+    "staffId": "remzije-racaj",
+    "context": "administration",
+    "weekdays": [
+      2,
+      4
+    ],
+    "start": "10:00",
+    "end": "11:00",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "besnik-mehmeti-administration",
+    "staffId": "besnik-mehmeti",
+    "context": "administration",
+    "weekdays": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "start": "10:00",
+    "end": "11:00",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "hasime-mehmeti-coordination",
+    "staffId": "hasime-mehmeti",
+    "context": "coordination",
+    "weekdays": [
+      4
+    ],
+    "start": "11:00",
+    "end": "12:00",
+    "schoolYear": "2026/2027"
+  },
+  {
+    "id": "taibe-morina-psychology",
+    "staffId": "taibe-morina",
+    "context": "psychology",
+    "weekdays": [
+      1,
+      4
+    ],
+    "start": "14:00",
+    "end": "15:00",
+    "schoolYear": "2026/2027"
+  }
+]

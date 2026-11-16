@@ -1,0 +1,17 @@
+# dependencies and build output
+node_modules/
+dist/
+.astro/
+# local/secret
+.env
+.env.*
+!.env.example
+.vercel
+# private working material (kept locally, never committed)
+/package/
+/sources/
+/archive/
+/data/
+/work/
+/screenshots/
+*.zip

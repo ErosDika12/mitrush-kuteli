@@ -1,0 +1,111 @@
+{
+  "note": "Nuk janë dhënë koordinatori, orari i takimeve, numri i anëtarëve ose statusi aktual.",
+  "clubs": [
+    {
+      "id": "futboll-djemte",
+      "title": "Klubi i futbollit — djemtë",
+      "category": "Sport",
+      "group": "djemtë",
+      "photo": "futboll-djemte"
+    },
+    {
+      "id": "futboll-vajzat",
+      "title": "Klubi i futbollit — vajzat",
+      "category": "Sport",
+      "group": "vajzat",
+      "photo": "futboll-vajzat-existing"
+    },
+    {
+      "id": "basketboll-djemte",
+      "title": "Klubi i basketbollit — djemtë",
+      "category": "Sport",
+      "group": "djemtë",
+      "photo": "basketboll-djemte",
+      "context": "Fotografia është dërguar me kontekstin “2024”. Nuk është vit themelimi, datë e saktë ngjarjeje apo sezon aktual."
+    },
+    {
+      "id": "hendboll-djemte",
+      "title": "Klubi i hendbollit — djemtë",
+      "category": "Sport",
+      "group": "djemtë",
+      "photo": null
+    },
+    {
+      "id": "hendboll-vajzat",
+      "title": "Klubi i hendbollit — vajzat",
+      "category": "Sport",
+      "group": "vajzat",
+      "photo": null
+    },
+    {
+      "id": "shahu",
+      "title": "Klubi i shahut",
+      "category": "Sport mendor",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "kori",
+      "title": "Kori i shkollës",
+      "category": "Muzikë",
+      "group": null,
+      "photo": "foto-5"
+    },
+    {
+      "id": "historianet",
+      "title": "Klubi i historianëve",
+      "category": "Histori",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "gjeografet",
+      "title": "Klubi i gjeografëve",
+      "category": "Gjeografi",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "gjuhetaret",
+      "title": "Klubi i gjuhëtarëve",
+      "category": "Gjuhë",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "matematikanet",
+      "title": "Klubi i matematikanëve",
+      "category": "Matematikë",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "fizikantet",
+      "title": "Klubi i fizikantëve",
+      "category": "Fizikë",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "robotika",
+      "title": "Klubi i robotikës",
+      "category": "Teknologji",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "klubi-gjelber",
+      "title": "Klubi i gjelbër",
+      "category": "Mjedis",
+      "group": null,
+      "photo": null
+    },
+    {
+      "id": "ndermjetesimi",
+      "title": "Grupi i ndërmjetësimit",
+      "category": "Ndërmjetësim",
+      "group": null,
+      "photo": null
+    }
+  ]
+}

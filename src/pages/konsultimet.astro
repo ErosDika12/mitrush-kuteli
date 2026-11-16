@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ConsultationTable from '../components/ConsultationTable.astro';
+import EmptyState from '../components/EmptyState.astro';
+import { consultations, school, staffById } from '../lib/data';
+import { WEEKDAYS } from '../lib/format';
+
+const teaching = consultations.filter((c) => c.context === 'teaching')
+  .sort((a, b) => staffById.get(a.staffId)!.subjects[0].localeCompare(staffById.get(b.staffId)!.subjects[0], 'sq') || staffById.get(a.staffId)!.displayName.localeCompare(staffById.get(b.staffId)!.displayName, 'sq'));
+const admin = consultations.filter((c) => c.context !== 'teaching');
+const adminOrder = ['administration', 'coordination', 'psychology', 'support'];
+admin.sort((a, b) => adminOrder.indexOf(a.context) - adminOrder.indexOf(b.context));
+---
+<Layout section="prindi" title="Konsultimet me prindër" description={`Ditët dhe orët kur mësimdhënësit, drejtoresha, sekretari, koordinatorja dhe psikologia takojnë prindërit, viti ${school.currentSchoolYear}.`} crumbs={[{ label: 'Për prindërit', href: '/per-prinder' }, { label: 'Konsultimet' }]}>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Për prindërit · {school.currentSchoolYear}</span>
+      <h1>Konsultimet me prindër</h1>
+      <p class="lead">Kur mund t’i takoni mësimdhënësit dhe shërbimet e shkollës. Kjo është një listë disponueshmërie sipas fletës zyrtare, jo sistem rezervimi takimesh.</p>
+    </div>
+  </div>
+
+  <section class="section tight">
+    <div class="container">
+      <form class="filters" id="c-filters" role="search" aria-label="Filtro konsultimet" onsubmit="return false">
+        <div>
+          <label for="c-q">Emri ose lënda</label>
+          <input id="c-q" type="search" autocomplete="off" placeholder="p.sh. Akter, biologji, psikologe" />
+        </div>
+        <div>
+          <label for="c-day">Dita</label>
+          <select id="c-day">
+            <option value="">Të gjitha ditët</option>
+            {Object.entries(WEEKDAYS).map(([k, v]) => <option value={k}>{v}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="c-role">Lloji</label>
+          <select id="c-role">
+            <option value="">Të gjitha</option>
+            <option value="teaching">Mësimdhënës</option>
+            <option value="admin">Administratë dhe shërbime</option>
+          </select>
+        </div>
+        <div><button class="btn ghost" type="button" id="c-reset">Pastro</button></div>
+      </form>
+      <p class="count" id="c-count" aria-live="polite">{consultations.length} orare takimesh.</p>
+
+      <div class="stack" style="--gap:32px">
+        <section id="sec-admin" aria-labelledby="h-admin">
+          <h2 id="h-admin">Administrata dhe shërbimet</h2>
+          <ConsultationTable id="tbl-admin" caption={`Takime me administratën dhe shërbimet, ${school.currentSchoolYear}`} records={admin} showSubject={false} />
+        </section>
+        <section id="sec-teaching" aria-labelledby="h-teaching">
+          <h2 id="h-teaching">Mësimdhënësit</h2>
+          <ConsultationTable id="tbl-teaching" caption={`Takime me mësimdhënësit, ${school.currentSchoolYear}`} records={teaching} />
+        </section>
+      </div>
+
+      <EmptyState title="Asnjë konsultim nuk përputhet" id="c-empty" hidden>
+        <p>Provoni një emër tjetër ose pastroni filtrat.</p>
+      </EmptyState>
+
+      <div class="callout info" style="margin-top:24px">
+        <p><strong>Hasime Mehmeti</strong> shfaqet dy herë, sepse ka dy takime të ndara: si mësimdhënëse e artit muzikor (e enjte 10:20–11:05) dhe si koordinatore (e enjte 11:00–12:00).</p>
+        <p>Këto orare nuk janë orar zyre të përgjithshëm. Për pyetje të tjera, <a href="/kontakti">kontaktoni shkollën</a>.</p>
+      </div>
+
+      <p class="no-print" style="margin-top:24px">
+        <button class="btn ghost small" type="button" id="c-print" hidden>Printo këtë faqe</button>
+        <a class="btn ghost small" href="/documents/orari-i-konsultimeve-2026-27.png" download>Shkarko dokumentin origjinal (PNG)</a>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    import { normalize } from '../lib/format';
+    import { readParams, writeParams } from '../scripts/url-state';
+    const q = document.getElementById('c-q') as HTMLInputElement;
+    const day = document.getElementById('c-day') as HTMLSelectElement;
+    const role = document.getElementById('c-role') as HTMLSelectElement;
+    const count = document.getElementById('c-count')!;
+    const empty = document.getElementById('c-empty')!;
+    const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-consult]'));
+    const secAdmin = document.getElementById('sec-admin')!;
+    const secTeach = document.getElementById('sec-teaching')!;
+
+    function apply() {
+      const terms = normalize(q.value).split(/\s+/).filter(Boolean);
+      let shown = 0;
+      for (const r of rows) {
+        const inTeach = !!r.closest('#sec-teaching');
+        const ok =
+          terms.every((t) => (r.dataset.search || '').includes(t)) &&
+          (!day.value || (r.dataset.days || '').split(',').includes(day.value)) &&
+          (!role.value || (role.value === 'teaching') === inTeach);
+        r.hidden = !ok;
+        if (ok) shown++;
+      }
+      for (const s of [secAdmin, secTeach]) s.hidden = !s.querySelector('[data-consult]:not([hidden])');
+      empty.hidden = shown > 0;
+      count.textContent = shown ? `${shown} nga ${rows.length} orare takimesh.` : `Asnjë rezultat nga ${rows.length} orare takimesh.`;
+    }
+    const toUrl = (push: boolean) => writeParams({ q: q.value.trim(), dita: day.value, lloji: role.value }, push);
+    function fromUrl() { const p = readParams(); q.value = p.get('q') ?? ''; day.value = p.get('dita') ?? ''; role.value = p.get('lloji') ?? ''; apply(); }
+    q.addEventListener('input', () => { apply(); toUrl(false); });
+    day.addEventListener('change', () => { apply(); toUrl(true); });
+    role.addEventListener('change', () => { apply(); toUrl(true); });
+    document.getElementById('c-reset')!.addEventListener('click', () => { q.value = ''; day.value = ''; role.value = ''; apply(); toUrl(true); });
+    const print = document.getElementById('c-print') as HTMLButtonElement;
+    print.hidden = false; print.addEventListener('click', () => window.print());
+    window.addEventListener('popstate', fromUrl);
+    fromUrl();
+  </script>
+</Layout>

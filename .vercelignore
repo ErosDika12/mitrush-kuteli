@@ -1,0 +1,11 @@
+/sources/
+/archive/
+/work/
+/data/
+/package/
+/screenshots/
+/scripts/
+/node_modules/
+/dist/
+/.astro/
+/.env

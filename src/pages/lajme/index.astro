@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import { news, newsCategories } from '../../lib/data';
+---
+<Layout section="jeta" title="Lajme" description="Arkivi i lajmeve të SHFMU “Mitrush Kuteli”: përmbledhje të raportimeve publike me lidhje te burimet." crumbs={[{ label: 'Lajme' }]}>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Lajme</span>
+      <h1>Lajme dhe njoftime</h1>
+      <p class="lead">Përmbledhje të raportimeve publike për shkollën. Secili lajm tregon burimin dhe datën e botimit.</p>
+    </div>
+  </div>
+
+  <section class="section tight">
+    <div class="container">
+      <form class="filters" id="news-filters" method="get" action="/lajme" role="search" aria-label="Kërko në lajme">
+        <div>
+          <label for="n-q">Fjalë kyçe</label>
+          <input id="n-q" type="search" name="q" autocomplete="off" />
+        </div>
+        <div>
+          <label for="n-cat">Kategoria</label>
+          <select id="n-cat" name="kategoria">
+            <option value="">Të gjitha</option>
+            {newsCategories.map((c) => <option value={c}>{c}</option>)}
+          </select>
+        </div>
+        <div></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn" type="submit">Kërko</button>
+          <button class="btn ghost" type="reset" id="n-reset">Pastro</button>
+        </div>
+      </form>
+      <p class="count" id="news-count" aria-live="polite">{news.length} lajme në arkiv.</p>
+      <h2 class="sr-only">Lista e lajmeve</h2>
+      <div class="grid cols-3" id="news-list">
+        {news.map((n) => <ArticleCard item={n} />)}
+      </div>
+      <EmptyState title="Asnjë lajm nuk përputhet" id="news-empty" hidden>
+        <p>Provoni një fjalë tjetër ose pastroni filtrat.</p>
+        <button class="btn" type="button" id="news-empty-reset">Pastro filtrat</button>
+      </EmptyState>
+      <nav class="tabs" id="news-pager" aria-label="Faqet e arkivit" hidden style="margin-top:24px;border:0">
+        <button type="button" id="news-prev">← Më të reja</button>
+        <span id="news-page" style="align-self:center;font-weight:600"></span>
+        <button type="button" id="news-next">Më të vjetra →</button>
+      </nav>
+    </div>
+  </section>
+
+  <script>
+    import { normalize } from '../../lib/format';
+    import { readParams, writeParams } from '../../scripts/url-state';
+    const PAGE = 9;
+    const q = document.getElementById('n-q') as HTMLInputElement;
+    const cat = document.getElementById('n-cat') as HTMLSelectElement;
+    const form = document.getElementById('news-filters') as HTMLFormElement;
+    const count = document.getElementById('news-count')!;
+    const empty = document.getElementById('news-empty')!;
+    const pager = document.getElementById('news-pager')!;
+    const label = document.getElementById('news-page')!;
+    const prev = document.getElementById('news-prev') as HTMLButtonElement;
+    const next = document.getElementById('news-next') as HTMLButtonElement;
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-news]'));
+    let page = 1;
+
+    function apply() {
+      const terms = normalize(q.value).split(/\s+/).filter(Boolean);
+      const match = cards.filter((c) => terms.every((t) => normalize(c.dataset.search || '').includes(t)) && (!cat.value || c.dataset.category === cat.value));
+      const pages = Math.max(1, Math.ceil(match.length / PAGE));
+      page = Math.min(Math.max(1, page), pages);
+      cards.forEach((c) => (c.hidden = true));
+      match.slice((page - 1) * PAGE, page * PAGE).forEach((c) => (c.hidden = false));
+      empty.hidden = match.length > 0;
+      count.textContent = match.length ? `${match.length} nga ${cards.length} lajme.` : `Asnjë rezultat nga ${cards.length} lajme.`;
+      pager.hidden = pages <= 1;
+      label.textContent = `Faqja ${page} nga ${pages}`;
+      prev.disabled = page <= 1;
+      next.disabled = page >= pages;
+    }
+    const toUrl = (push: boolean) => writeParams({ q: q.value.trim(), kategoria: cat.value, faqja: page > 1 ? String(page) : '' }, push);
+    function fromUrl() {
+      const p = readParams();
+      q.value = p.get('q') ?? '';
+      cat.value = p.get('kategoria') ?? '';
+      page = Number(p.get('faqja')) || 1;
+      apply();
+    }
+    function reset() { q.value = ''; cat.value = ''; page = 1; apply(); toUrl(true); }
+    q.addEventListener('input', () => { page = 1; apply(); toUrl(false); });
+    cat.addEventListener('change', () => { page = 1; apply(); toUrl(true); });
+    form.addEventListener('submit', (e) => { e.preventDefault(); page = 1; apply(); toUrl(true); });
+    form.addEventListener('reset', (e) => { e.preventDefault(); reset(); });
+    document.getElementById('news-empty-reset')!.addEventListener('click', reset);
+    prev.addEventListener('click', () => { page -= 1; apply(); toUrl(true); window.scrollTo({ top: 0 }); });
+    next.addEventListener('click', () => { page += 1; apply(); toUrl(true); window.scrollTo({ top: 0 }); });
+    window.addEventListener('popstate', fromUrl);
+    fromUrl();
+  </script>
+</Layout>

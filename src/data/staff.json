@@ -1,0 +1,619 @@
+[
+  {
+    "id": "bukurije-kameri",
+    "displayName": "Bukurije Kameri",
+    "aliases": [],
+    "subjects": [
+      "Gjuhë shqipe"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënës/e",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "luljete-haxhijaj",
+    "displayName": "Luljeta Haxhiaj",
+    "aliases": [
+      "Luljetë Haxhijaj",
+      "Luljeta Haxhijaj"
+    ],
+    "subjects": [
+      "Gjuhë shqipe"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "fortesa-gashi",
+    "displayName": "Fortesa Gashi",
+    "aliases": [],
+    "subjects": [
+      "Gjuhë shqipe"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "edona-novoberdaliu",
+    "displayName": "Edona Novobërdaliu",
+    "aliases": [],
+    "subjects": [
+      "Gjuhë angleze"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënës/e",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "kemal-islami",
+    "displayName": "Kemall Islami",
+    "aliases": [
+      "Kemal Islami"
+    ],
+    "subjects": [
+      "Gjuhë angleze"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënës",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "sebahat-gashi",
+    "displayName": "Sebahate Gashi",
+    "aliases": [
+      "Sebahat Gashi"
+    ],
+    "subjects": [
+      "Gjuhë gjermane"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "sebahate-gashi",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "hasime-mehmeti",
+    "displayName": "Hasime Mehmeti",
+    "aliases": [],
+    "subjects": [
+      "Art muzikor"
+    ],
+    "roles": [
+      {
+        "label": "Koordinatore",
+        "group": "leadership"
+      },
+      {
+        "label": "Mësimdhënëse e muzikës",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "hasime-mehmeti",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "matjane-kallaba",
+    "displayName": "Matjane Kallaba",
+    "aliases": [],
+    "subjects": [
+      "Art figurativ"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "matjane-kallaba",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "arta-kllokoqi",
+    "displayName": "Arta Kllokoqi",
+    "aliases": [],
+    "subjects": [
+      "Matematikë"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "hikmete-limani",
+    "displayName": "Hikmete Limani",
+    "aliases": [],
+    "subjects": [
+      "Matematikë"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "hikmete-limani",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "nora-vitija",
+    "displayName": "Nora Vitia",
+    "aliases": [
+      "Nora Vitija"
+    ],
+    "subjects": [
+      "Gjeografi"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "albert-muslijaj",
+    "displayName": "Albert Muslija",
+    "aliases": [
+      "Albert Muslijaj"
+    ],
+    "subjects": [
+      "Histori"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënës",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "albert-muslija",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "njomza-jetullahu",
+    "displayName": "Njomza Jetullahu",
+    "aliases": [],
+    "subjects": [
+      "Edukatë qytetare"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "akter-imeri",
+    "displayName": "Aktere Ymeri",
+    "aliases": [
+      "Akter Ymeri",
+      "Akter Imeri"
+    ],
+    "subjects": [
+      "Biologji"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "aktere-ymeri",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "leonarda-berisha",
+    "displayName": "Leonarda Berisha",
+    "aliases": [],
+    "subjects": [
+      "Fizikë"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "leonarda-berisha",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "shkelzen-asimi",
+    "displayName": "Shkëlzen Asimi",
+    "aliases": [],
+    "subjects": [
+      "Kimi"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënës",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "diellona-kabashi",
+    "displayName": "Diellona Kabashi",
+    "aliases": [],
+    "subjects": [
+      "TIK"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënës/e",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "fahrije-korca",
+    "displayName": "Fahrije Korça",
+    "aliases": [
+      "Fahrie Korqa"
+    ],
+    "subjects": [
+      "Edukatë fizike dhe sport"
+    ],
+    "roles": [
+      {
+        "label": "Mësimdhënëse",
+        "group": "teaching"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "fahrije-korca",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "merita-sejdiu",
+    "displayName": "Merita Sejdiu",
+    "aliases": [],
+    "subjects": [
+      "Mësuese mbështetëse"
+    ],
+    "roles": [
+      {
+        "label": "Mësuese mbështetëse",
+        "group": "support"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "remzije-racaj",
+    "displayName": "Remzije Racaj",
+    "aliases": [
+      "Remzije Kosumi Racaj"
+    ],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Drejtoreshë",
+        "group": "leadership"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "remzije-racaj",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "besnik-mehmeti",
+    "displayName": "Besnik Mehmeti",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Sekretar i shkollës",
+        "group": "leadership"
+      }
+    ],
+    "source": "consultations",
+    "portrait": {
+      "file": "besnik-mehmeti",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "taibe-morina",
+    "displayName": "Taibe Morina",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Psikologe",
+        "group": "support"
+      }
+    ],
+    "source": "consultations",
+    "portrait": null
+  },
+  {
+    "id": "donjeta-rrashiti",
+    "displayName": "Donjeta Rrashiti",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": {
+      "file": "donjeta-rrashiti",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    },
+    "stage": "I–V"
+  },
+  {
+    "id": "ardita-sherifi",
+    "displayName": "Ardita Sherifi",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": {
+      "file": "ardita-sherifi",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "linda-veseli",
+    "displayName": "Linda Veseli",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": {
+      "file": "linda-veseli",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "merita-hoti",
+    "displayName": "Merita Hoti",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": {
+      "file": "merita-hoti",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "fitore-sherifi",
+    "displayName": "Fitore Sherifi",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Pozicioni nuk është specifikuar",
+        "group": "other"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": {
+      "file": "fitore-sherifi",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "yllka-zubaku",
+    "displayName": "Yllka Zubaku",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Asistente për fëmijët me nevoja të veçanta",
+        "group": "support"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": {
+      "file": "yllka-zubaku",
+      "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
+      "approved": true
+    }
+  },
+  {
+    "id": "blinera-maliqi",
+    "displayName": "Blinera Maliqi",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null
+  },
+  {
+    "id": "valbona-rapuca",
+    "displayName": "Valbona Rapuca",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null
+  },
+  {
+    "id": "hatixhe-zogaj",
+    "displayName": "Hatixhe Zogaj",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Asistente për fëmijët me nevoja të veçanta",
+        "group": "support"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null
+  },
+  {
+    "id": "alban-mustafa",
+    "displayName": "Alban Mustafa",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësues",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null
+  },
+  {
+    "id": "adelina-arifi",
+    "displayName": "Adelina Arifi",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese parashkollore",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null,
+    "stage": "parashkollor"
+  },
+  {
+    "id": "gentiana-mavriqi",
+    "displayName": "Gentiana Mavriqi",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null
+  },
+  {
+    "id": "diturie-hajdini",
+    "displayName": "Diturie Hajdini",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese e ciklit fillor",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-captions-2026-11-16",
+    "portrait": null,
+    "stage": "I–V"
+  }
+]

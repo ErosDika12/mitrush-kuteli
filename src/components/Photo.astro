@@ -1,0 +1,27 @@
+---
+import { Picture } from 'astro:assets';
+import { photoById } from '../lib/photos';
+
+interface Props {
+  id: string;
+  sizes?: string;
+  widths?: number[];
+  priority?: boolean;
+  class?: string;
+  alt?: string;
+}
+const { id, sizes = '(min-width: 960px) 600px, 100vw', widths = [480, 800, 1200], priority = false, class: cls, alt } = Astro.props;
+const p = photoById.get(id);
+if (!p) throw new Error(`Unknown photo id: ${id}`);
+---
+<Picture
+  src={p.src}
+  alt={alt ?? p.alt}
+  widths={widths}
+  sizes={sizes}
+  formats={['avif', 'webp']} fallbackFormat="jpg"
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  decoding={priority ? 'sync' : 'async'}
+  class={cls}
+/>

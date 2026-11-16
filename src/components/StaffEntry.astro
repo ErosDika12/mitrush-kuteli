@@ -1,0 +1,39 @@
+---
+import { Picture } from 'astro:assets';
+import { initials, normalize, timeRange, weekdayList } from '../lib/format';
+import { consultations, CONTEXT_LABELS, type StaffMember, type Role } from '../lib/data';
+import { images } from '../lib/photos';
+interface Props { member: StaffMember; role: Role; lazy?: boolean }
+const { member, role, lazy = true } = Astro.props;
+const mine = consultations.filter((c) => c.staffId === member.id);
+const roleLine = member.roles.map((r) => r.label).join(' · ');
+const subject = member.subjects.filter((s) => !member.roles.some((r) => r.label === s)).join(', ');
+const stageText = member.stage && member.stage !== 'parashkollor' ? `klasat ${member.stage}` : '';
+const search = normalize([member.displayName, ...member.aliases, ...member.roles.map((r) => r.label), ...member.subjects, member.stage ?? ''].join(' '));
+const img = member.portrait?.approved ? images[member.portrait.file] : undefined;
+const tone = member.id.length % 2 === 0 ? 'a' : 'b';
+---
+<article class="person" data-person data-id={member.id} data-group={role.group} data-subjects={member.subjects.join('|')} data-search={search} data-days={mine.flatMap((c) => c.weekdays).join(',')}>
+  <div class:list={['portrait', { initials: !img }, tone]}>
+    {img ? (
+      <Picture src={img} alt={`Portret i ${member.displayName}`} widths={[240, 400, 640]} sizes="(min-width: 1000px) 270px, (min-width: 600px) 30vw, 46vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading={lazy ? 'lazy' : 'eager'} decoding="async" />
+    ) : (
+      <span aria-hidden="true">{initials(member.displayName)}</span>
+    )}
+  </div>
+  <div class="person-body">
+    <h3>{member.displayName}</h3>
+    <p class="role">{roleLine}{stageText && ` · ${stageText}`}{subject && ` · ${subject}`}</p>
+    {mine.length > 0 && (
+      <p class="consult">
+        <strong>Takim me prindër:</strong>
+        {mine.map((c) => (
+          <>
+            <br />{weekdayList(c.weekdays)}, {timeRange(c.start, c.end)}
+            {(member.roles.length > 1 || mine.length > 1) && <span class="muted"> ({CONTEXT_LABELS[c.context]})</span>}
+          </>
+        ))}
+      </p>
+    )}
+  </div>
+</article>

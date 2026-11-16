@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import { getImage } from 'astro:assets';
+import { photos, albums } from '../lib/photos';
+
+const full = await Promise.all(
+  photos.map(async (p) => ({ id: p.id, url: (await getImage({ src: p.src, width: 1600, format: 'webp' })).src })),
+);
+const fullUrl = new Map(full.map((f) => [f.id, f.url]));
+let index = -1;
+---
+<Layout section="jeta" title="Galeria" description="Fotografi nga jeta e SHFMU “Mitrush Kuteli”: muzikë, sport dhe aktivitete në natyrë." crumbs={[{ label: 'Galeria' }]} ogPhoto="foto-4">
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Galeria</span>
+      <h1>Fotografi nga shkolla</h1>
+      <p class="lead">Klikoni mbi një fotografi për ta parë më të madhe. Përdorni shigjetat e tastierës për të kaluar te tjetra dhe Escape për ta mbyllur.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      {albums.map((al) => {
+        const list = photos.filter((p) => p.album === al.id);
+        return (
+          <div class="staff-group" id={al.id}>
+            <h2>{al.title}</h2>
+            <p class="muted">{al.text}</p>
+            <div class="gallery-grid">
+              {list.map((p) => {
+                index += 1;
+                return (
+                  <button class="thumb" type="button" data-lb data-index={index} data-full={fullUrl.get(p.id)} data-alt={p.alt} data-caption={p.caption}>
+                    <span class="frame"><Photo id={p.id} sizes="(min-width: 900px) 320px, 50vw" widths={[320, 640]} /></span>
+                    <span>{p.caption}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+      <p class="small muted">Fotografitë janë dërguar nga shkolla. Nëse dëshironi që një fotografi të hiqet, shkruani te <a href="/kontakti">kontakti</a>.</p>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lb" aria-label="Pamje e zmadhuar e fotografisë">
+    <div class="lb-inner">
+      <div class="lb-bar">
+        <span id="lb-count" aria-live="polite"></span>
+        <button class="lb-btn" type="button" id="lb-close" aria-label="Mbyll fotografinë">✕</button>
+      </div>
+      <div class="lb-stage" id="lb-stage">
+        <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Fotografia e mëparshme">‹</button>
+        <img id="lb-img" alt="" />
+        <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="Fotografia tjetër">›</button>
+      </div>
+      <p class="lb-cap" id="lb-cap"></p>
+    </div>
+  </dialog>
+
+  <script>
+    const dlg = document.getElementById('lb') as HTMLDialogElement;
+    const img = document.getElementById('lb-img') as HTMLImageElement;
+    const cap = document.getElementById('lb-cap')!;
+    const count = document.getElementById('lb-count')!;
+    const stage = document.getElementById('lb-stage')!;
+    const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lb]'));
+    let cur = 0;
+    let trigger: HTMLElement | null = null;
+
+    function show(i: number) {
+      cur = (i + thumbs.length) % thumbs.length;
+      const t = thumbs[cur];
+      img.src = t.dataset.full!;
+      img.alt = t.dataset.alt!;
+      cap.textContent = t.dataset.caption!;
+      count.textContent = `${cur + 1} / ${thumbs.length}`;
+      const next = new Image(); next.src = thumbs[(cur + 1) % thumbs.length].dataset.full!;
+    }
+    function open(i: number, from: HTMLElement) {
+      trigger = from;
+      show(i);
+      dlg.showModal();
+      document.documentElement.classList.add('lock');
+      (document.getElementById('lb-close') as HTMLElement).focus();
+    }
+    thumbs.forEach((t, i) => t.addEventListener('click', () => open(i, t)));
+    document.getElementById('lb-close')!.addEventListener('click', () => dlg.close());
+    document.getElementById('lb-prev')!.addEventListener('click', () => show(cur - 1));
+    document.getElementById('lb-next')!.addEventListener('click', () => show(cur + 1));
+    dlg.addEventListener('close', () => {
+      document.documentElement.classList.remove('lock');
+      img.removeAttribute('src');
+      trigger?.focus();
+    });
+    dlg.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1); }
+    });
+    // Click on the dark backdrop closes the dialog.
+    dlg.addEventListener('click', (e) => { if (e.target === dlg || (e.target as HTMLElement).classList.contains('lb-inner')) dlg.close(); });
+    // Swipe on touch screens.
+    let x0 = 0;
+    stage.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+    stage.addEventListener('pointerup', (e) => {
+      const dx = e.clientX - x0;
+      if (e.pointerType === 'touch' && Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+    });
+  </script>
+</Layout>

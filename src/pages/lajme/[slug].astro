@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { news, type NewsItem } from '../../lib/data';
+import { formatDate, formatDateList } from '../../lib/format';
+import { absoluteUrl } from '../../lib/site';
+
+export function getStaticPaths() {
+  return news.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props as { item: NewsItem };
+const related = news.filter((n) => n.slug !== item.slug).sort((a) => (a.category === item.category ? -1 : 1)).slice(0, 2);
+const Content = item.Content;
+const eventText = item.eventDates?.length ? formatDateList(item.eventDates) : item.eventDate ? formatDate(item.eventDate) : null;
+const url = absoluteUrl(`/lajme/${item.slug}`);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: item.title,
+  datePublished: item.publishedAt,
+  inLanguage: 'sq',
+  ...(url ? { mainEntityOfPage: url } : {}),
+};
+---
+<Layout section="jeta" title={item.title} description={item.summary} crumbs={[{ label: 'Lajme', href: '/lajme' }, { label: item.title }]} jsonLd={jsonLd}>
+  <article class="section">
+    <div class="container">
+      <div class="prose">
+        <div class="meta" style="margin-bottom:12px">
+          <span class="tag">{item.category}</span>
+          <span>Botuar në burim: <time datetime={item.publishedAt}>{formatDate(item.publishedAt)}</time></span>
+          {eventText && <span>Data e ngjarjes: {eventText}</span>}
+        </div>
+        <h1>{item.title}</h1>
+        <p class="lead">{item.summary}</p>
+        <div class="stack"><Content /></div>
+
+        <aside class="source-box" aria-labelledby="src-h">
+          <h2 id="src-h" style="font-size:1.1rem">Burimi</h2>
+          <p class="small muted" style="margin-bottom:8px">{item.sourceKind}. Shkolla ende nuk e ka miratuar formulimin; teksti është shkruar me fjalë tona.</p>
+          <ul style="margin:0;padding-left:20px">
+            {item.sources.map((s) => <li><a href={s.url} rel="noopener noreferrer" target="_blank">{s.name}</a>{s.note && <span class="muted"> · {s.note}</span>} <span class="small muted">(hapet në skedë të re)</span></li>)}
+          </ul>
+        </aside>
+
+        <p style="margin-top:24px"><button class="btn ghost small" type="button" id="copy-link" data-label="Kopjo lidhjen">Kopjo lidhjen</button> <span id="copy-msg" class="small muted" role="status"></span></p>
+      </div>
+    </div>
+  </article>
+
+  {related.length > 0 && (
+    <section class="section alt" aria-labelledby="rel-h">
+      <div class="container">
+        <h2 id="rel-h">Lajme të tjera</h2>
+        <div class="grid cols-2">{related.map((n) => <ArticleCard item={n} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <script>
+    const btn = document.getElementById('copy-link') as HTMLButtonElement;
+    const msg = document.getElementById('copy-msg')!;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        msg.textContent = 'Lidhja u kopjua.';
+      } catch {
+        msg.textContent = 'Kopjimi nuk u lejua nga shfletuesi. Kopjoni adresën nga shiriti i adresave.';
+      }
+    });
+  </script>
+</Layout>

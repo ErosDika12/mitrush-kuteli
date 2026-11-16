@@ -1,0 +1,31 @@
+---
+import { staffById, CONTEXT_LABELS, type Consultation } from '../lib/data';
+import { normalize, timeRange, weekdayList } from '../lib/format';
+
+interface Props { caption: string; records: Consultation[]; showSubject?: boolean; id: string }
+const { caption, records, showSubject = true, id } = Astro.props;
+const rows = records.map((c) => {
+  const s = staffById.get(c.staffId)!;
+  const what = c.context === 'teaching' ? s.subjects.join(', ') : c.context === 'support' ? s.roles[0].label : s.roles.find((r) => r.group !== 'teaching')?.label ?? CONTEXT_LABELS[c.context];
+  const search = normalize([s.displayName, ...s.aliases, what, ...s.subjects, ...s.roles.map((r) => r.label)].join(' '));
+  return { c, s, what, search };
+});
+---
+<div class="table-wrap" id={id} tabindex="0" role="region" aria-label={caption}>
+  <table>
+    <caption>{caption}</caption>
+    <thead>
+      <tr><th scope="col">Emri</th><th scope="col">{showSubject ? 'Lënda' : 'Roli'}</th><th scope="col">Dita</th><th scope="col">Ora</th></tr>
+    </thead>
+    <tbody>
+      {rows.map(({ c, s, what, search }) => (
+        <tr data-consult data-days={c.weekdays.join(',')} data-search={search}>
+          <th scope="row">{s.displayName}</th>
+          <td>{what}{c.context === 'coordination' && ' (koordinim)'}</td>
+          <td>{weekdayList(c.weekdays)}</td>
+          <td class="num">{timeRange(c.start, c.end)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

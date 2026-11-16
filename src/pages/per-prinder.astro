@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { school, faq, bells, news } from '../lib/data';
+const notices = news.filter((n) => n.category === 'Njoftim');
+---
+<Layout section="prindi" title="Për prindërit" description="Orari i ziles, konsultimet me mësimdhënësit, dokumentet dhe pyetje të shpeshta për prindërit e SHFMU “Mitrush Kuteli”." crumbs={[{ label: 'Për prindërit' }]}>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Për prindërit · {school.currentSchoolYear}</span>
+      <h1>Qendra për prindër</h1>
+      <p class="lead">Gjithçka që prindërit kërkojnë më shpesh, në një vend: orari, takimet me mësimdhënësit, dokumentet dhe kontakti.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid pair">
+        <a class="card" href="/oraret#zilja" style="text-decoration:none"><h2 style="font-size:1.4rem">Orari i ziles</h2><p class="muted">Ndërrimi i parë: {bells.firstShift[0].start}–{bells.firstShift[bells.firstShift.length - 1].end}. Ndërrimi i dytë: {bells.secondShift[0].start}–{bells.secondShift[bells.secondShift.length - 1].end}. Plus grupet parafillore.</p><span class="link-arrow">Hap orarin</span></a>
+        <a class="card" href="/konsultimet" style="text-decoration:none"><h2 style="font-size:1.4rem">Konsultimet me prindër</h2><p class="muted">Kërkoni mësimdhënësin sipas emrit ose lëndës dhe shihni ditën e orën e takimit.</p><span class="link-arrow">Hap konsultimet</span></a>
+        <a class="card" href="/oraret#klasat" style="text-decoration:none"><h2 style="font-size:1.4rem">Orari mësimor</h2><p class="muted">Transkriptim provizor sipas klasave, bashkë me dokumentin origjinal.</p><span class="link-arrow">Hap orarin mësimor</span></a>
+        <a class="card" href="/dokumente" style="text-decoration:none"><h2 style="font-size:1.4rem">Dokumentet</h2><p class="muted">Orare dhe dokumente që mund t’i shihni ose t’i shkarkoni.</p><span class="link-arrow">Hap dokumentet</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="reg-h">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Regjistrimi</span>
+        <h2 id="reg-h">Regjistrimi i nxënësve</h2>
+      </div>
+      <div class="stack">
+        <p>Datat, dokumentet e nevojshme dhe procedura e regjistrimit nuk janë dhënë ende për këtë faqe, ndaj nuk i shkruajmë të pasakta. Për regjistrim ose transferim, ju lutemi kontaktoni shkollën drejtpërdrejt.</p>
+        <p><a class="btn" href="/kontakti">Kontaktoni shkollën</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="njoftimet" aria-labelledby="notice-h">
+    <div class="container prose">
+      <h2 id="notice-h">Njoftimet</h2>
+      {notices.length === 0 ? (
+        <p>Për momentin nuk ka njoftime zyrtare për prindërit. Lajmet e raportuara janë te <a href="/lajme">Lajme</a>.</p>
+      ) : notices.map((n) => <p><a href={`/lajme/${n.slug}`}>{n.title}</a></p>)}
+    </div>
+  </section>
+
+  <section class="section alt" id="kontakti" aria-labelledby="pc-h">
+    <div class="container split">
+      <div><span class="eyebrow">Kontakti</span><h2 id="pc-h">Kontaktoni shkollën</h2></div>
+      <div class="card stack">
+        <p><strong>Email</strong><br /><a href={`mailto:${school.email}`}>{school.email}</a></p>
+        <p><strong>Telefon</strong><br /><a href={`tel:${school.telephoneE164}`}>{school.telephoneDisplay}</a></p>
+        <p><strong>Adresa</strong><br />{school.street}, {school.location}</p>
+        <a class="link-arrow" href="/kontakti">Të gjitha detajet e kontaktit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-h">
+    <div class="container prose">
+      <h2 id="faq-h">Pyetje të shpeshta</h2>
+      {faq.map((f) => (
+        <details style="border-bottom:1px solid var(--line);padding:14px 0">
+          <summary style="font-weight:700;cursor:pointer">{f.q}</summary>
+          <p style="margin-top:10px">{f.a} <a href={f.href}>Shko te faqja</a></p>
+        </details>
+      ))}
+    </div>
+  </section>
+</Layout>

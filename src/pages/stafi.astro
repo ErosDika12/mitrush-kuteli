@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StaffEntry from '../components/StaffEntry.astro';
+import EmptyState from '../components/EmptyState.astro';
+import { staff, GROUP_LABELS, type RoleGroup } from '../lib/data';
+
+const groups: RoleGroup[] = ['leadership', 'teaching', 'support', 'other'];
+const subjects = [...new Set(staff.flatMap((s) => s.subjects))].sort((a, b) => a.localeCompare(b, 'sq'));
+const order = ['remzije-racaj', 'besnik-mehmeti', 'hasime-mehmeti'];
+const rank = (id: string) => (order.includes(id) ? order.indexOf(id) : 99);
+const entries = (g: RoleGroup) =>
+  staff
+    .filter((m) => m.roles[0].group === g).map((m) => ({ m, role: m.roles[0] }))
+    .sort((a, b) => g === 'leadership' ? (rank(a.m.id) - rank(b.m.id)) : (g === 'teaching' ? (a.m.subjects[0] ?? '~').localeCompare(b.m.subjects[0] ?? '~', 'sq') || a.m.displayName.localeCompare(b.m.displayName, 'sq') : 0));
+---
+<Layout title="Stafi" description="Drejtoria, mësimdhënësit dhe shërbimet mbështetëse të SHFMU “Mitrush Kuteli”, me kërkim sipas emrit ose lëndës dhe orarin e takimeve me prindër." crumbs={[{ label: 'Stafi' }]}>
+  <div class="page-head">
+    <div class="container">
+      <span class="eyebrow">Stafi</span>
+      <h1>Njerëzit e shkollës</h1>
+      <p class="lead">Kërkoni sipas emrit ose lëndës. Ku ka orar takimi me prindër sipas fletës së konsultimeve 2026/2027, ai tregohet në kartelë.</p>
+    </div>
+  </div>
+
+  <section class="section tight">
+    <div class="container">
+      <form class="filters" id="staff-filters" method="get" action="/stafi" role="search" aria-label="Kërko në stafin">
+        <div>
+          <label for="f-q">Emri ose lënda</label>
+          <input id="f-q" type="search" name="q" autocomplete="off" placeholder="p.sh. Shkelzen, gjerman, matematikë" />
+        </div>
+        <div>
+          <label for="f-lenda">Lënda</label>
+          <select id="f-lenda" name="lenda">
+            <option value="">Të gjitha lëndët</option>
+            {subjects.map((s) => <option value={s}>{s}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="f-grupi">Grupi</label>
+          <select id="f-grupi" name="grupi">
+            <option value="">Të gjithë</option>
+            {groups.map((g) => <option value={g}>{GROUP_LABELS[g]}</option>)}
+          </select>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn" type="submit">Kërko</button>
+          <button class="btn ghost" type="reset" id="f-reset">Pastro</button>
+        </div>
+      </form>
+
+      <p class="count" id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona në listën e ngarkuar.</p>
+      <p class="small muted">Kjo është lista e personave të njohur nga dokumentet dhe fotografitë e dhëna, jo numri zyrtar i punonjësve të shkollës. Kartelat pa foto tregojnë inicialet.</p>
+
+      {groups.map((g) => (
+        <div class="staff-group" data-group-section={g}>
+          <h2>{GROUP_LABELS[g]}</h2>
+          <div class="staff-grid">
+            {entries(g).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
+          </div>
+        </div>
+      ))}
+
+      <EmptyState title="Nuk u gjet asnjë person" id="staff-empty" hidden>
+        <p>Provoni një shkrim tjetër ose pastroni filtrat.</p>
+        <button class="btn" type="button" id="staff-empty-reset">Pastro filtrat</button>
+      </EmptyState>
+    </div>
+  </section>
+
+  <script>
+    import { normalize } from '../lib/format';
+    import { readParams, writeParams } from '../scripts/url-state';
+
+    const form = document.getElementById('staff-filters') as HTMLFormElement;
+    const q = document.getElementById('f-q') as HTMLInputElement;
+    const lenda = document.getElementById('f-lenda') as HTMLSelectElement;
+    const grupi = document.getElementById('f-grupi') as HTMLSelectElement;
+    const count = document.getElementById('staff-count')!;
+    const empty = document.getElementById('staff-empty')!;
+    const people = Array.from(document.querySelectorAll<HTMLElement>('[data-person]'));
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-group-section]'));
+    const total = new Set(people.map((p) => p.dataset.id)).size;
+
+    function apply() {
+      const terms = normalize(q.value).split(/\s+/).filter(Boolean);
+      const seen = new Set<string>();
+      for (const p of people) {
+        const hay = p.dataset.search || '';
+        const ok =
+          terms.every((t) => hay.includes(t)) &&
+          (!lenda.value || (p.dataset.subjects || '').split('|').includes(lenda.value)) &&
+          (!grupi.value || p.dataset.group === grupi.value);
+        p.hidden = !ok;
+        if (ok) seen.add(p.dataset.id!);
+      }
+      for (const s of sections) s.hidden = !s.querySelector('[data-person]:not([hidden])');
+      empty.hidden = seen.size > 0;
+      count.textContent = seen.size
+        ? `Po shfaqen ${seen.size} nga ${total} persona në listën e ngarkuar.`
+        : `Asnjë rezultat nga ${total} persona në listën e ngarkuar.`;
+    }
+    function fromUrl() {
+      const p = readParams();
+      q.value = p.get('q') ?? '';
+      lenda.value = p.get('lenda') ?? '';
+      grupi.value = p.get('grupi') ?? '';
+      apply();
+    }
+    function toUrl(push: boolean) { writeParams({ q: q.value.trim(), lenda: lenda.value, grupi: grupi.value }, push); }
+    function reset() { q.value = ''; lenda.value = ''; grupi.value = ''; apply(); toUrl(true); q.focus(); }
+
+    q.addEventListener('input', () => { apply(); toUrl(false); });
+    lenda.addEventListener('change', () => { apply(); toUrl(true); });
+    grupi.addEventListener('change', () => { apply(); toUrl(true); });
+    form.addEventListener('submit', (e) => { e.preventDefault(); apply(); toUrl(true); });
+    form.addEventListener('reset', (e) => { e.preventDefault(); reset(); });
+    document.getElementById('staff-empty-reset')!.addEventListener('click', reset);
+    window.addEventListener('popstate', fromUrl);
+    fromUrl();
+  </script>
+</Layout>
