@@ -63,3 +63,13 @@ Viti shkollor ndryshohet te `src/data/school.json` (`currentSchoolYear`) dhe te 
 - Portretet: `node scripts/prepare-photos.mjs` krijon `src/assets/staff/*.webp` nga paketa private (`package/`, jo në dalje). `node scripts/merge-staff.mjs` bashkon të dhënat e stafit pa fshirë ID-të.
 - Për të lidhur një portret: vendosni `"portrait": {"file": "emri-i-skedarit", "mapping": "…", "approved": true}` te `src/data/staff.json` dhe skedarin te `src/assets/staff/`.
 - Kontrolli i daljes: `node scripts/audit-dist.mjs`.
+
+## Deployment (GitHub → Vercel)
+- Repository: private `ErosDika12/mitrush-kuteli`, production branch `main`.
+- Vercel project: `mitrushkuteli` (team `erosdika12s-projects`), framework Astro, build `astro build`, output `dist`, Node 24.x.
+- Stable address: https://mitrushkuteli.vercel.app (set in `SITE_URL`, production only).
+- A push to `main` updates the stable deployment; branches and pull requests get preview deployments.
+- Indexing is off: `ALLOW_INDEXING=false`. Every page is `noindex` and `robots.txt` disallows everything until the school approves indexing (set `ALLOW_INDEXING=true` in Vercel, then redeploy).
+- Deployment protection (Vercel Authentication) stays as configured in the project settings; check it before sharing the link.
+- Never commit `package/`, `sources/`, `archive/`, `data/`, `.env` or the photo work package; they are in `.gitignore`.
+- Before pushing: `npm run check && npm run validate && node scripts/check-roster.mjs && npm run build && node scripts/audit-dist.mjs`.
