@@ -70,6 +70,6 @@ Viti shkollor ndryshohet te `src/data/school.json` (`currentSchoolYear`) dhe te 
 - Stable address: https://mitrushkuteli.vercel.app (set in `SITE_URL`, production only).
 - A push to `main` updates the stable deployment; branches and pull requests get preview deployments.
 - Indexing is off: `ALLOW_INDEXING=false`. Every page is `noindex` and `robots.txt` disallows everything until the school approves indexing (set `ALLOW_INDEXING=true` in Vercel, then redeploy).
-- Deployment protection (Vercel Authentication) stays as configured in the project settings; check it before sharing the link.
+- Access: production (`mitrushkuteli.vercel.app`) is public, as the owner requested on 2026-11-17. Vercel Authentication uses Standard Protection (API value `all_except_custom_domains`), so generated deployment URLs and non-production previews still require a Vercel login. The GitHub repository stays private.
 - Never commit `package/`, `sources/`, `archive/`, `data/`, `.env` or the photo work package; they are in `.gitignore`.
 - Before pushing: `npm run check && npm run validate && node scripts/check-roster.mjs && npm run build && node scripts/audit-dist.mjs`.

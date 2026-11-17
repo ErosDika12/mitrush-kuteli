@@ -26,8 +26,9 @@ const jsonLd = {
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="tagline">{school.tagline}</p>
+        <span class="eyebrow">Matiçan, Prishtinë</span>
         <h1>{school.name}</h1>
+        <p class="tagline">{school.tagline}</p>
         <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiçan të Prishtinës, ku muzika, sporti dhe mësimi i përditshëm bashkohen në një komunitet të vogël.</p>
         <div class="hero-actions">
           <a class="btn" href="/shkolla">Njihuni me shkollën</a>
@@ -63,7 +64,7 @@ const jsonLd = {
         {featured && <ArticleCard item={featured} big />}
         <div class="stack-col">{others.map((n) => <ArticleCard item={n} />)}</div>
       </div>
-      <p class="small muted" style="margin-top:16px">Lajmet janë përmbledhje të raportimeve publike, me lidhje te burimi.</p>
+      <p class="small muted" style="margin-top:16px">Përmbledhje të raportimeve publike, me lidhje te burimi.</p>
     </div>
   </section>
 
@@ -103,7 +104,7 @@ const jsonLd = {
         <div><span class="eyebrow">Stafi</span><h2 id="staff-h">Udhëheqja dhe shërbimet</h2></div>
         <a class="link-arrow" href="/stafi">I gjithë stafi</a>
       </div>
-      <div class="staff-grid">
+      <div class="staff-grid preview">
         {team.map(({ m, role }) => <StaffEntry member={m} role={role} />)}
       </div>
     </div>

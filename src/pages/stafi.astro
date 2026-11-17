@@ -18,7 +18,7 @@ const entries = (g: RoleGroup) =>
     <div class="container">
       <span class="eyebrow">Stafi</span>
       <h1>Njerëzit e shkollës</h1>
-      <p class="lead">Kërkoni sipas emrit ose lëndës. Ku ka orar takimi me prindër sipas fletës së konsultimeve 2026/2027, ai tregohet në kartelë.</p>
+      <p class="lead">Gjeni mësimdhënësit dhe shërbimet e shkollës sipas emrit ose lëndës. Ku ka orar takimi me prindër për vitin shkollor 2026/2027, ai shfaqet në kartelë.</p>
     </div>
   </div>
 
@@ -49,13 +49,12 @@ const entries = (g: RoleGroup) =>
         </div>
       </form>
 
-      <p class="count" id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona në listën e ngarkuar.</p>
-      <p class="small muted">Kjo është lista e personave të njohur nga dokumentet dhe fotografitë e dhëna, jo numri zyrtar i punonjësve të shkollës. Kartelat pa foto tregojnë inicialet.</p>
+      <p class="count" id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona.</p>
 
       {groups.map((g) => (
         <div class="staff-group" data-group-section={g}>
           <h2>{GROUP_LABELS[g]}</h2>
-          <div class="staff-grid">
+          <div class:list={["staff-grid", g]}>
             {entries(g).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
           </div>
         </div>
@@ -97,8 +96,8 @@ const entries = (g: RoleGroup) =>
       for (const s of sections) s.hidden = !s.querySelector('[data-person]:not([hidden])');
       empty.hidden = seen.size > 0;
       count.textContent = seen.size
-        ? `Po shfaqen ${seen.size} nga ${total} persona në listën e ngarkuar.`
-        : `Asnjë rezultat nga ${total} persona në listën e ngarkuar.`;
+        ? `Po shfaqen ${seen.size} nga ${total} persona.`
+        : `Asnjë rezultat nga ${total} persona.`;
     }
     function fromUrl() {
       const p = readParams();

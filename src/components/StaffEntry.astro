@@ -6,7 +6,7 @@ import { images } from '../lib/photos';
 interface Props { member: StaffMember; role: Role; lazy?: boolean }
 const { member, role, lazy = true } = Astro.props;
 const mine = consultations.filter((c) => c.staffId === member.id);
-const roleLine = member.roles.map((r) => r.label).join(' · ');
+const roleLine = member.roles.map((r) => r.label).filter((l) => !/nuk është specifikuar/i.test(l)).join(' · ');
 const subject = member.subjects.filter((s) => !member.roles.some((r) => r.label === s)).join(', ');
 const stageText = member.stage && member.stage !== 'parashkollor' ? `klasat ${member.stage}` : '';
 const search = normalize([member.displayName, ...member.aliases, ...member.roles.map((r) => r.label), ...member.subjects, member.stage ?? ''].join(' '));
@@ -23,7 +23,7 @@ const tone = member.id.length % 2 === 0 ? 'a' : 'b';
   </div>
   <div class="person-body">
     <h3>{member.displayName}</h3>
-    <p class="role">{roleLine}{stageText && ` · ${stageText}`}{subject && ` · ${subject}`}</p>
+    {(roleLine || stageText || subject) && <p class="role">{[roleLine, stageText, subject].filter(Boolean).join(' · ')}</p>}
     {mine.length > 0 && (
       <p class="consult">
         <strong>Takim me prindër:</strong>
