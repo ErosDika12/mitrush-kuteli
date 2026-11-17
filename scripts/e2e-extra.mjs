@@ -39,10 +39,17 @@ ok('skip link is first focus stop', (await page.evaluate(() => document.activeEl
 // --- Staff placement
 await page.goto(base + '/stafi', { waitUntil: 'networkidle' });
 ok('staff: 35 cards, one per person (Hasime once)', (await page.locator('[data-person]').count()) === 35 && (await page.locator('[data-person][data-id="hasime-mehmeti"]').count()) === 1);
-ok('staff: Hasime sits in administration with both roles', (await page.locator('[data-group-section="leadership"] [data-id="hasime-mehmeti"]').innerText()).includes('Koordinatore') && (await page.locator('[data-group-section="leadership"] [data-id="hasime-mehmeti"]').innerText()).includes('Mësimdhënëse e muzikës'));
+ok('staff: Hasime sits in administration with both roles', (await page.locator('[data-group-section="udheheqja"] [data-id="hasime-mehmeti"]').innerText()).includes('Koordinatore') && (await page.locator('[data-group-section="udheheqja"] [data-id="hasime-mehmeti"]').innerText()).includes('Mësimdhënëse e muzikës'));
 await page.goto(base + '/stafi?lenda=' + encodeURIComponent('Art muzikor'), { waitUntil: 'networkidle' });
 ok('staff: music subject filter finds Hasime', (await page.locator('[data-person]:visible').count()) === 1 && (await page.locator('[data-person]:visible').innerText()).includes('Hasime'));
-for (const [g, n] of [['leadership', 3], ['teaching', 27], ['support', 4], ['other', 1]]) ok('staff group ' + g + ' has ' + n, (await page.locator('[data-group-section="' + g + '"] [data-person]').count()) === n);
+for (const [g, n] of [['udheheqja', 3], ['lendore', 17], ['fillor', 2], ['mesuesit', 7], ['parashkollor', 1], ['mbeshtetese', 4], ['stafi', 1]]) ok('staff section ' + g + ' has ' + n, (await page.locator('[data-group-section="' + g + '"] [data-person]').count()) === n);
+await page.goto(base + '/stafi?q=muzik', { waitUntil: 'networkidle' });
+ok('staff: searching "muzik" finds Hasime once and shows the music cross-reference', (await page.locator('[data-person]:visible').count()) === 1 && (await page.locator('[data-see]:visible').count()) === 1);
+await page.goto(base + '/stafi?q=psikolog', { waitUntil: 'networkidle' });
+ok('staff: role search finds the psychologist', (await page.locator('[data-person]:visible').innerText()).includes('Taibe Morina'));
+await page.goto(base + '/stafi', { waitUntil: 'networkidle' });
+ok('staff: Merita Hoti and Merita Sejdiu are separate cards', (await page.locator('[data-person][data-id="merita-hoti"]').count()) === 1 && (await page.locator('[data-person][data-id="merita-sejdiu"]').count()) === 1);
+ok('staff: no "position missing" message', !(await page.locator('main').innerText()).includes('nuk është specifikuar'));
 
 // --- Documents: served, real PNGs, downloadable
 await page.goto(base + '/dokumente', { waitUntil: 'networkidle' });

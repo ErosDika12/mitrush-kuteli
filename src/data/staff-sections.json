@@ -1,0 +1,58 @@
+[
+  {
+    "id": "udheheqja",
+    "title": "Udhëheqja dhe administrata",
+    "blocks": [
+      { "ids": ["remzije-racaj", "besnik-mehmeti", "hasime-mehmeti"] }
+    ]
+  },
+  {
+    "id": "lendore",
+    "title": "Mësimdhënësit lëndorë",
+    "blocks": [
+      { "title": "Gjuhë shqipe", "ids": ["bukurije-kameri", "luljete-haxhijaj", "fortesa-gashi"] },
+      { "title": "Gjuhë angleze", "ids": ["edona-novoberdaliu", "kemal-islami"] },
+      { "title": "Gjuhë gjermane", "ids": ["sebahat-gashi"] },
+      { "title": "Matematikë", "ids": ["hikmete-limani", "arta-kllokoqi"] },
+      { "title": "Biologji", "ids": ["akter-imeri"] },
+      { "title": "Fizikë", "ids": ["leonarda-berisha"] },
+      { "title": "Kimi", "ids": ["shkelzen-asimi"] },
+      { "title": "Histori", "ids": ["albert-muslijaj"] },
+      { "title": "Gjeografi", "ids": ["nora-vitija"] },
+      { "title": "Edukatë qytetare", "ids": ["njomza-jetullahu"] },
+      { "title": "Art figurativ", "ids": ["matjane-kallaba"] },
+      { "title": "Art muzikor", "see": "hasime-mehmeti", "seeLabel": "Udhëheqja dhe administrata" },
+      { "title": "Edukatë fizike dhe sport", "ids": ["fahrije-korca"] },
+      { "title": "Teknologji / TIK", "ids": ["diellona-kabashi"] }
+    ]
+  },
+  {
+    "id": "fillor",
+    "title": "Arsimi fillor, klasat I–V",
+    "blocks": [{ "ids": ["donjeta-rrashiti", "diturie-hajdini"] }]
+  },
+  {
+    "id": "mesuesit",
+    "title": "Mësuesit",
+    "blocks": [
+      { "ids": ["ardita-sherifi", "linda-veseli", "merita-hoti", "blinera-maliqi", "valbona-rapuca", "alban-mustafa", "gentiana-mavriqi"] }
+    ]
+  },
+  {
+    "id": "parashkollor",
+    "title": "Arsimi parashkollor",
+    "blocks": [{ "ids": ["adelina-arifi"] }]
+  },
+  {
+    "id": "mbeshtetese",
+    "title": "Shërbimet mbështetëse",
+    "blocks": [
+      { "ids": ["taibe-morina", "merita-sejdiu", "yllka-zubaku", "hatixhe-zogaj"] }
+    ]
+  },
+  {
+    "id": "stafi",
+    "title": "Stafi i shkollës",
+    "blocks": [{ "ids": ["fitore-sherifi"] }]
+  }
+]

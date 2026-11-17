@@ -2,24 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 import StaffEntry from '../components/StaffEntry.astro';
 import EmptyState from '../components/EmptyState.astro';
-import { staff, GROUP_LABELS, type RoleGroup } from '../lib/data';
+import { staff } from '../lib/data';
+import sectionData from '../data/staff-sections.json';
 
-const groups: RoleGroup[] = ['leadership', 'teaching', 'support', 'other'];
+interface Block { title?: string; ids?: string[]; see?: string; seeLabel?: string }
+interface Section { id: string; title: string; blocks: Block[] }
+const sections = sectionData as Section[];
+
+// Every person must appear in exactly one card of the directory.
+const placed = sections.flatMap((s) => s.blocks.flatMap((b) => b.ids ?? []));
+const missing = staff.filter((m) => !placed.includes(m.id)).map((m) => m.id);
+const dupes = placed.filter((id, i) => placed.indexOf(id) !== i);
+const unknown = placed.filter((id) => !staff.some((m) => m.id === id));
+if (missing.length || dupes.length || unknown.length) {
+  throw new Error(`staff-sections.json mismatch. missing: ${missing}; duplicates: ${dupes}; unknown: ${unknown}`);
+}
+const byId = new Map(staff.map((m) => [m.id, m]));
 const subjects = [...new Set(staff.flatMap((s) => s.subjects))].sort((a, b) => a.localeCompare(b, 'sq'));
-const hasPhoto = (m: (typeof staff)[number]) => !!m.portrait?.approved;
-const order = ['remzije-racaj', 'besnik-mehmeti', 'hasime-mehmeti'];
-const rank = (id: string) => (order.includes(id) ? order.indexOf(id) : 99);
-const entries = (g: RoleGroup) =>
-  staff
-    .filter((m) => m.roles[0].group === g).map((m) => ({ m, role: m.roles[0] }))
-    .sort((a, b) => g === 'leadership' ? (rank(a.m.id) - rank(b.m.id)) : (g === 'teaching' ? (a.m.subjects[0] ?? '~').localeCompare(b.m.subjects[0] ?? '~', 'sq') || a.m.displayName.localeCompare(b.m.displayName, 'sq') : 0));
+const hasPhoto = (id: string) => !!byId.get(id)!.portrait?.approved;
+const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.roles[0] }; };
 ---
-<Layout title="Stafi" description="Drejtoria, mësimdhënësit dhe shërbimet mbështetëse të SHFMU “Mitrush Kuteli”, me kërkim sipas emrit ose lëndës dhe orarin e takimeve me prindër." crumbs={[{ label: 'Stafi' }]}>
+<Layout title="Stafi" description="Drejtoria, mësimdhënësit sipas lëndës, arsimi fillor dhe parashkollor dhe shërbimet mbështetëse të SHFMU “Mitrush Kuteli”, me kërkim sipas emrit, lëndës ose rolit."  crumbs={[{ label: 'Stafi' }]}>
   <div class="page-head">
     <div class="container">
       <span class="eyebrow">Stafi</span>
       <h1>Njerëzit e shkollës</h1>
-      <p class="lead">Kërkoni sipas emrit ose lëndës. Kartela tregon orarin e takimit me prindër, ku ka.</p>
+      <p class="lead">Kërkoni sipas emrit, lëndës ose rolit. Kartela tregon orarin e takimit me prindër, ku ka.</p>
     </div>
   </div>
 
@@ -27,8 +35,8 @@ const entries = (g: RoleGroup) =>
     <div class="container">
       <form class="filters" id="staff-filters" method="get" action="/stafi" role="search" aria-label="Kërko në stafin">
         <div>
-          <label for="f-q">Emri ose lënda</label>
-          <input id="f-q" type="search" name="q" autocomplete="off" placeholder="p.sh. Shkelzen, gjerman, matematikë" />
+          <label for="f-q">Emri, lënda ose roli</label>
+          <input id="f-q" type="search" name="q" autocomplete="off" placeholder="p.sh. Shkelzen, gjerman, psikologe" />
         </div>
         <div>
           <label for="f-lenda">Lënda</label>
@@ -41,7 +49,7 @@ const entries = (g: RoleGroup) =>
           <label for="f-grupi">Grupi</label>
           <select id="f-grupi" name="grupi">
             <option value="">Të gjithë</option>
-            {groups.map((g) => <option value={g}>{GROUP_LABELS[g]}</option>)}
+            {sections.map((s) => <option value={s.id}>{s.title}</option>)}
           </select>
         </div>
         <div style="display:flex;gap:8px">
@@ -52,14 +60,29 @@ const entries = (g: RoleGroup) =>
 
       <p class="count" id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona.</p>
 
-      {groups.map((g) => (
-        <div class="staff-group" data-group-section={g}>
-          <h2>{GROUP_LABELS[g]}</h2>
-          <div class:list={["staff-grid", g]}>
-            {entries(g).filter(({ m }) => hasPhoto(m)).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
-          </div>
-          <div class="staff-compact">
-            {entries(g).filter(({ m }) => !hasPhoto(m)).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
+      {sections.map((sec) => (
+        <div class="staff-group" data-group-section={sec.id}>
+          <h2>{sec.title}</h2>
+          <div class:list={['staff-blocks', { multi: sec.blocks.length > 1 }]}>
+          {sec.blocks.map((b) => (
+            <div class="staff-block" data-block>
+              {b.title && <h3 class="subject-h">{b.title}</h3>}
+              {b.see ? (
+                <p class="see-also" data-see={b.see}>
+                  <a href={`#${b.see}`}>{byId.get(b.see)!.displayName}</a> · shih kartën te {b.seeLabel}
+                </p>
+              ) : (
+                <>
+                  <div class:list={['staff-grid', sec.id]}>
+                    {(b.ids ?? []).filter(hasPhoto).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} />)}
+                  </div>
+                  <div class="staff-compact">
+                    {(b.ids ?? []).filter((id) => !hasPhoto(id)).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} />)}
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
           </div>
         </div>
       ))}
@@ -82,6 +105,7 @@ const entries = (g: RoleGroup) =>
     const count = document.getElementById('staff-count')!;
     const empty = document.getElementById('staff-empty')!;
     const people = Array.from(document.querySelectorAll<HTMLElement>('[data-person]'));
+    const blocks = Array.from(document.querySelectorAll<HTMLElement>('[data-block]'));
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-group-section]'));
     const total = new Set(people.map((p) => p.dataset.id)).size;
 
@@ -97,7 +121,13 @@ const entries = (g: RoleGroup) =>
         p.hidden = !ok;
         if (ok) seen.add(p.dataset.id!);
       }
-      for (const s of sections) s.hidden = !s.querySelector('[data-person]:not([hidden])');
+      // A cross-reference (e.g. music teacher) shows only while the card it points to is shown and no group filter hides it.
+      for (const l of document.querySelectorAll<HTMLElement>('[data-see]')) {
+        const target = document.getElementById(l.dataset.see!);
+        l.hidden = !target || target.hidden || !!grupi.value;
+      }
+      for (const b of blocks) b.hidden = !b.querySelector('[data-person]:not([hidden]), [data-see]:not([hidden])');
+      for (const s of sections) s.hidden = !s.querySelector('[data-block]:not([hidden])');
       empty.hidden = seen.size > 0;
       count.textContent = seen.size
         ? `Po shfaqen ${seen.size} nga ${total} persona.`

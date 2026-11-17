@@ -5,6 +5,10 @@ import ArticleCard from '../components/ArticleCard.astro';
 import StaffEntry from '../components/StaffEntry.astro';
 import { school, news, staff, bells } from '../lib/data';
 import { absoluteUrl } from '../lib/site';
+import { photoById } from '../lib/photos';
+
+// Real photograph of the school building (Matiçan). Shown only once supplied: add src/assets/photos/school-building.jpg and its entry in src/data/photos.json.
+const hasBuilding = photoById.has('school-building');
 
 const recent = news.slice(0, 3);
 const team = ['remzije-racaj', 'besnik-mehmeti', 'hasime-mehmeti']
@@ -23,17 +27,17 @@ const jsonLd = {
 };
 ---
 <Layout title={school.name} description="Faqja e SHFMU “Mitrush Kuteli”, Matiçan, Prishtinë: orari i ziles, konsultimet me prindër, stafi, lajmet dhe jeta shkollore." banner jsonLd={jsonLd}>
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Matiçan, Prishtinë</span>
-        <h1>{school.name}</h1>
-        <p class="lead">Shkollë fillore dhe e mesme e ulët, ku muzika, sporti dhe mësimi i përditshëm bashkohen në një komunitet të vogël. <em>{school.tagline}</em></p>
+  <section class:list={['hero-wide', { 'has-photo': hasBuilding }]}>
+    {hasBuilding && <Photo id="school-building" priority class="hero-bg" sizes="100vw" widths={[640, 960, 1440, 1920]} alt="" />}
+    <div class="container hero-wide-inner">
+      <span class="eyebrow">Matiçan, Prishtinë</span>
+      <h1>{school.name}</h1>
+      <p class="tagline">{school.tagline}</p>
+      <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiçan, ku muzika, sporti dhe mësimi i përditshëm bashkohen në një komunitet të vogël.</p>
+      <div class="hero-actions">
         <a class="btn" href="/shkolla">Njihuni me shkollën</a>
+        <a class="btn ghost" href="/per-prinder">Për prindërit</a>
       </div>
-      <figure class="hero-photo">
-        <Photo id="foto-2" priority sizes="(min-width: 960px) 640px, 100vw" widths={[480, 800, 1200]} />
-      </figure>
     </div>
   </section>
 
