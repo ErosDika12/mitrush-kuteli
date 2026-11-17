@@ -69,7 +69,7 @@ Viti shkollor ndryshohet te `src/data/school.json` (`currentSchoolYear`) dhe te 
 - Vercel project: `mitrushkuteli` (team `erosdika12s-projects`), framework Astro, build `astro build`, output `dist`, Node 24.x.
 - Stable address: https://mitrushkuteli.vercel.app (set in `SITE_URL`, production only).
 - A push to `main` updates the stable deployment; branches and pull requests get preview deployments.
-- Indexing is off: `ALLOW_INDEXING=false`. Every page is `noindex` and `robots.txt` disallows everything until the school approves indexing (set `ALLOW_INDEXING=true` in Vercel, then redeploy).
+- Indexing: enabled for production only (`ALLOW_INDEXING=true` in the Production environment, set 2026-11-17 at the owner's request). Production pages are `index, follow`, `robots.txt` allows crawling (except `/kerko`) and points to `/sitemap.xml`. Preview deployments keep `ALLOW_INDEXING=false`, so they stay `noindex`. To switch indexing off again, set the Production value to `false` and redeploy.
 - Access: production (`mitrushkuteli.vercel.app`) is public, as the owner requested on 2026-11-17. Vercel Authentication uses Standard Protection (API value `all_except_custom_domains`), so generated deployment URLs and non-production previews still require a Vercel login. The GitHub repository stays private.
 - Never commit `package/`, `sources/`, `archive/`, `data/`, `.env` or the photo work package; they are in `.gitignore`.
 - Before pushing: `npm run check && npm run validate && node scripts/check-roster.mjs && npm run build && node scripts/audit-dist.mjs`.
