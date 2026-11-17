@@ -1,7 +1,7 @@
 import { news } from '../lib/data';
 import { ALLOW_INDEXING, SITE_URL } from '../lib/site';
 
-const staticPaths = ['/', '/shkolla', '/stafi', '/lajme', '/aktivitete', '/galeria', '/oraret', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/festat/28-nentori', '/privatesia'];
+const staticPaths = ['/', '/shkolla', '/stafi', '/lajme', '/aktivitete', '/klubet', '/galeria', '/oraret', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/festat/28-nentori', '/privatesia'];
 
 export function GET() {
   // Only published content is listed; drafts never reach `news`.

@@ -2,7 +2,8 @@ import { school } from './data';
 
 /** Canonical origin; undefined for private previews. */
 export const SITE_URL: string | undefined = (import.meta.env.SITE_URL || process.env.SITE_URL || undefined)?.replace(/\/$/, '');
-export const ALLOW_INDEXING = (import.meta.env.ALLOW_INDEXING || process.env.ALLOW_INDEXING) === 'true' && !!SITE_URL;
+// Astro coerces "true"/"false" in import.meta.env to booleans, so compare as text.
+export const ALLOW_INDEXING = String(import.meta.env.ALLOW_INDEXING ?? process.env.ALLOW_INDEXING ?? '').trim().toLowerCase() === 'true' && !!SITE_URL;
 
 export interface NavItem { label: string; href: string; match: string[] }
 
