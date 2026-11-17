@@ -6,7 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SectionNav from '../components/SectionNav.astro';
 import type { SectionId } from '../lib/site';
 import { school } from '../lib/data';
-import { ALLOW_INDEXING, absoluteUrl, SITE_URL } from '../lib/site';
+import { ALLOW_INDEXING, absoluteUrl, SITE_URL, GOOGLE_SITE_VERIFICATION } from '../lib/site';
 import { getImage } from 'astro:assets';
 import { photoById } from '../lib/photos';
 
@@ -38,6 +38,7 @@ const b = school.seasonalBanner;
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     <meta name="theme-color" content="#17243B" />
+    {GOOGLE_SITE_VERIFICATION && <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />}
     {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
     <meta property="og:type" content="website" />

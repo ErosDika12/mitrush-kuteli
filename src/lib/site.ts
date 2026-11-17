@@ -5,6 +5,10 @@ export const SITE_URL: string | undefined = (import.meta.env.SITE_URL || process
 // Astro coerces "true"/"false" in import.meta.env to booleans, so compare as text.
 export const ALLOW_INDEXING = String(import.meta.env.ALLOW_INDEXING ?? process.env.ALLOW_INDEXING ?? '').trim().toLowerCase() === 'true' && !!SITE_URL;
 
+/** Optional Google Search Console HTML-tag verification token (public value, e.g. from google-site-verification). */
+const gsv = String(import.meta.env.GOOGLE_SITE_VERIFICATION ?? process.env.GOOGLE_SITE_VERIFICATION ?? '').trim();
+export const GOOGLE_SITE_VERIFICATION: string | undefined = /^[A-Za-z0-9_-]{20,120}$/.test(gsv) ? gsv : undefined;
+
 export interface NavItem { label: string; href: string; match: string[] }
 
 /** Exactly five primary pages. Everything else lives under one of them (see sections below). */
