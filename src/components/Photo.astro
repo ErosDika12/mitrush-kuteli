@@ -9,8 +9,10 @@ interface Props {
   priority?: boolean;
   class?: string;
   alt?: string;
+  focus?: string;
+  crop?: boolean;
 }
-const { id, sizes = '(min-width: 960px) 600px, 100vw', widths = [480, 800, 1200], priority = false, class: cls, alt } = Astro.props;
+const { id, sizes = '(min-width: 960px) 600px, 100vw', widths = [480, 800, 1200], priority = false, class: cls, alt, focus, crop = false } = Astro.props;
 const p = photoById.get(id);
 if (!p) throw new Error(`Unknown photo id: ${id}`);
 ---
@@ -24,4 +26,5 @@ if (!p) throw new Error(`Unknown photo id: ${id}`);
   fetchpriority={priority ? 'high' : 'auto'}
   decoding={priority ? 'sync' : 'async'}
   class={cls}
+  style={`object-position:${focus ?? p.focus ?? '50% 50%'}${crop && p.ratio ? `;aspect-ratio:${p.ratio};width:100%;object-fit:cover` : ''}`}
 />

@@ -1,7 +1,27 @@
 [
-  { "q": "Ku e gjej orarin e ziles?", "a": "Te faqja Orari & konsultimet, skeda “Orari i ziles”. Ajo përputhet me dokumentin e nënshkruar të 31.08.2026.", "href": "/oraret" },
-  { "q": "Kur mund të takoj një mësimdhënës?", "a": "Çdo mësimdhënës ka një orar takimi me prindërit. Kërkoni emrin ose lëndën te faqja e konsultimeve. Ky është orar disponueshmërie, jo sistem rezervimi.", "href": "/konsultimet" },
-  { "q": "Si e kontaktoj shkollën?", "a": "Me email ose telefon, sipas të dhënave te faqja e kontaktit.", "href": "/kontakti" },
-  { "q": "Ku shpallen njoftimet zyrtare?", "a": "Lajmet publikohen te Lajmet, ndërsa dokumentet zyrtare gjenden te Dokumentet.", "href": "/lajme" },
-  { "q": "Si regjistrohet një nxënës?", "a": "Datat dhe dokumentet e regjistrimit nuk janë dhënë ende në këtë faqe. Ju lutemi kontaktoni shkollën drejtpërdrejt.", "href": "/kontakti" }
+  {
+    "q": "Ku e gjej orarin e ziles?",
+    "a": "Orari i ziles është te faqja Për prindërit, sipas dokumentit të nënshkruar të 31.08.2026.",
+    "href": "/per-prinder#orari"
+  },
+  {
+    "q": "Kur mund të takoj një mësimdhënës?",
+    "a": "Çdo mësimdhënës ka një orar takimi me prindërit. Kërkoni emrin ose lëndën te Konsultimet. Ky është orar disponueshmërie, jo sistem rezervimi.",
+    "href": "/per-prinder#konsultimet"
+  },
+  {
+    "q": "Si e kontaktoj shkollën?",
+    "a": "Me email ose telefon, sipas të dhënave te faqja e kontaktit.",
+    "href": "/kontakti"
+  },
+  {
+    "q": "Ku shpallen njoftimet zyrtare?",
+    "a": "Lajmet publikohen te Lajmet, ndërsa dokumentet zyrtare gjenden te Dokumentet.",
+    "href": "/lajme"
+  },
+  {
+    "q": "Si regjistrohet një nxënës?",
+    "a": "Për regjistrim dhe transferim, kontaktoni sekretarinë e shkollës.",
+    "href": "/kontakti"
+  }
 ]

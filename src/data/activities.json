@@ -2,22 +2,29 @@
   {
     "id": "muzike",
     "title": "Muzikë dhe kor",
-    "kind": "Veprimtari e vërejtur",
-    "text": "Ora e muzikës, kori i shkollës dhe pjesëmarrja në gara muzikore janë pjesë e jetës së shkollës. Fotografitë tona e tregojnë klasën e muzikës, një paraqitje të korit dhe një ngjarje me banderolën e ArsKosova 2026.",
-    "photos": ["foto-2", "foto-5", "foto-4"]
+    "kind": "Muzikë",
+    "text": "Ora e muzikës, kori i shkollës dhe pjesëmarrja në gara muzikore janë pjesë e jetës së përditshme të shkollës.",
+    "photos": [
+      "foto-5",
+      "foto-4"
+    ]
   },
   {
     "id": "sport",
     "title": "Sport",
-    "kind": "Veprimtari e vërejtur",
-    "text": "Nxënëse të shkollës luajnë futboll në një turne në fushë me bari sintetik. Klubet e rregullta sportive nuk janë konfirmuar ende dhe për këtë arsye nuk paraqiten këtu.",
-    "photos": ["foto-1"]
+    "kind": "Sport",
+    "text": "Nxënësit dhe nxënëset luajnë futboll, basketboll dhe hendboll në klubet sportive të shkollës.",
+    "photos": [
+      "foto-1"
+    ]
   },
   {
     "id": "natyre",
     "title": "Aktivitete jashtë klase",
-    "kind": "Veprimtari e vërejtur",
-    "text": "Nxënësit dalin jashtë ambienteve të shkollës për aktivitete në natyrë, në një park me gjelbërim.",
-    "photos": ["foto-3"]
+    "kind": "Në natyrë",
+    "text": "Nxënësit dalin jashtë ambienteve të shkollës për aktivitete në natyrë.",
+    "photos": [
+      "foto-3"
+    ]
   }
 ]

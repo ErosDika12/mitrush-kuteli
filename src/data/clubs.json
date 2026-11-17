@@ -1,5 +1,4 @@
 {
-  "note": "Nuk janë dhënë koordinatori, orari i takimeve, numri i anëtarëve ose statusi aktual.",
   "clubs": [
     {
       "id": "futboll-djemte",
@@ -20,8 +19,7 @@
       "title": "Klubi i basketbollit — djemtë",
       "category": "Sport",
       "group": "djemtë",
-      "photo": "basketboll-djemte",
-      "context": "Fotografia është dërguar me kontekstin “2024”. Nuk është vit themelimi, datë e saktë ngjarjeje apo sezon aktual."
+      "photo": "basketboll-djemte"
     },
     {
       "id": "hendboll-djemte",

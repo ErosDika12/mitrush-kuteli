@@ -40,11 +40,11 @@ const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
         <h2>Identiteti</h2>
         <p>Emri i plotë i shkollës është <strong>{school.expandedName}</strong>. Ajo ndodhet në {school.street}, {school.location}. Festa e shkollës është më <strong>{school.schoolDay}</strong>.</p>
         <p>Motoja e shkollës, <em>{school.tagline}</em>, përmbledh atë që synojmë çdo ditë: nxënës që nxënë me kënaqësi, krijojnë me guxim dhe e gjejnë vendin e vet.</p>
-        <p class="small muted">Teksti i këtij seksioni është shkruar për këtë faqe dhe pret miratimin e shkollës.</p>
+        <p>Sipas raportimit publik të marsit 2026, shkolla ka edhe një <a href="/lajme/dhoma-burimore-arsim-gjitheperfshires">dhomë burimore</a> për mbështetjen e arsimit gjithëpërfshirës.</p>
       </div>
       <figure style="margin:0">
         <div style="border-radius:var(--radius);overflow:hidden"><Photo id="foto-3" sizes="(min-width: 900px) 560px, 100vw" /></div>
-        <figcaption class="small muted" style="margin-top:8px">Aktivitet në natyrë me nxënës. Një fotografi e objektit të shkollës do të shtohet kur të jepet nga shkolla.</figcaption>
+        <figcaption class="small muted" style="margin-top:8px">Aktivitet në natyrë me nxënës.</figcaption>
       </figure>
     </div>
   </section>
@@ -54,7 +54,7 @@ const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
       <div>
         <span class="eyebrow">Historia</span>
         <h2 id="hist-h">Disa pika kyçe</h2>
-        <p class="muted">Datat vijnë nga një dokument historik i planit zhvillimor të shkollës. Numrat e nxënësve nga ai dokument nuk përdoren si të dhëna të sotme.</p>
+        <p class="muted">Datat vijnë nga plani zhvillimor i shkollës.</p>
       </div>
       <ol class="timeline">
         {history.map((h) => <li><span class="when">{h.date}</span>{h.text}<br /><span class="small muted">{h.source}</span></li>)}
@@ -68,7 +68,6 @@ const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
       <div class="grid cols-3">
         {school.stages.map((s) => <div class="card"><h3>{s.title}</h3><p class="muted" style="margin:0">{s.text}</p></div>)}
       </div>
-      <p class="small muted" style="margin-top:16px">Ndarja e klasave sipas ndërrimeve konfirmohet nga shkolla dhe nuk paraqitet këtu si rregull.</p>
     </div>
   </section>
 
@@ -81,18 +80,7 @@ const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
     </div>
   </section>
 
-  <section class="section" aria-labelledby="space-h">
-    <div class="container split">
-      <div class="stack">
-        <h2 id="space-h">Ambientet</h2>
-        <p>Fotografitë tona tregojnë një klasë muzike me tabelë dhe piano elektrike, si dhe aktivitete në ambiente të jashtme. Sipas raportimit publik të marsit 2026, shkolla ka edhe një <a href="/lajme/dhoma-burimore-arsim-gjitheperfshires">dhomë burimore</a> për mbështetjen e arsimit gjithëpërfshirës.</p>
-        <p class="small muted">Lista e plotë e ambienteve do të shtohet pasi shkolla ta konfirmojë.</p>
-      </div>
-      <div style="border-radius:var(--radius);overflow:hidden"><Photo id="foto-2" sizes="(min-width: 900px) 560px, 100vw" /></div>
-    </div>
-  </section>
-
-  <section class="section alt" aria-labelledby="lead-h">
+  <section class="section" aria-labelledby="lead-h">
     <div class="container">
       <div class="section-head">
         <div><span class="eyebrow">Udhëheqja</span><h2 id="lead-h">Drejtoria dhe administrata</h2></div>
@@ -104,7 +92,6 @@ const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
           <h3 style="font-size:1.6rem;margin:0">{director.displayName}</h3>
           <p class="role muted" style="margin:0">Drejtoreshë e shkollës</p>
           {dCons.map((c) => <p style="margin:0"><strong>Takim me prindër:</strong> {weekdayList(c.weekdays)}, {timeRange(c.start, c.end)}</p>)}
-          <p class="small muted">Një mesazh i drejtoreshës nuk është dhënë ende dhe nuk publikohet.</p>
         </div>
       </div>
       <h3 style="margin-top:var(--s5)">Administrata dhe shërbimet</h3>

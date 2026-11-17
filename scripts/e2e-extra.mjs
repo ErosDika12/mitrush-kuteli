@@ -22,7 +22,7 @@ for (const [url, label] of [['/oraret', 'Për prindërit'], ['/konsultimet', 'P�
 }
 await page.goto(base + '/per-prinder', { waitUntil: 'networkidle' });
 const sub = await page.locator('.section-nav a').allInnerTexts();
-ok('Për prindërit sub-navigation', JSON.stringify(sub) === JSON.stringify(['Përmbledhje', 'Orari', 'Konsultimet', 'Dokumentet', 'Njoftimet', 'Kontakti']), sub.join(' | '));
+ok('Për prindërit sub-navigation', JSON.stringify(sub) === JSON.stringify(['Përmbledhje', 'Orari', 'Konsultimet', 'Dokumentet', 'Kontakti']), sub.join(' | '));
 await page.locator('.section-nav a', { hasText: 'Orari' }).click();
 await page.waitForURL('**/oraret');
 ok('sub-navigation link reaches /oraret with Orari current', (await page.locator('.section-nav a[aria-current="page"]').innerText()) === 'Orari');

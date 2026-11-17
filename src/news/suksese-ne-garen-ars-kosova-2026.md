@@ -2,6 +2,7 @@
 title: "Suksese në garën Ars Kosova 2026"
 summary: "Sipas raportimit të 12 qershorit 2026, dy nxënës të shkollës morën çmimin e parë dhe të dytë në garën ndërkombëtare për muzicientë të rinj."
 category: "Muzikë"
+image: "foto-4"
 publishedAt: "2026-06-12"
 status: "published"
 sourceKind: "Përmbledhje e raportimit"

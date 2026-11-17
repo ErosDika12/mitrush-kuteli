@@ -15,7 +15,7 @@ let index = -1;
     <div class="container">
       <span class="eyebrow">Galeria</span>
       <h1>Fotografi nga shkolla</h1>
-      <p class="lead">Klikoni mbi një fotografi për ta parë më të madhe. Përdorni shigjetat e tastierës për të kaluar te tjetra dhe Escape për ta mbyllur.</p>
+      <p class="lead">Klikoni mbi një fotografi për ta zmadhuar.</p>
     </div>
   </div>
 
@@ -31,7 +31,7 @@ let index = -1;
               {list.map((p) => {
                 index += 1;
                 return (
-                  <button class="thumb" type="button" data-lb data-index={index} data-full={fullUrl.get(p.id)} data-alt={p.alt} data-caption={p.caption}>
+                  <button class:list={['thumb', { wide: p.src.width / p.src.height > 1.7 }]} type="button" data-lb data-index={index} data-full={fullUrl.get(p.id)} data-alt={p.alt} data-caption={p.caption}>
                     <span class="frame"><Photo id={p.id} sizes="(min-width: 900px) 320px, 50vw" widths={[320, 640]} /></span>
                     <span>{p.caption}</span>
                   </button>
@@ -41,7 +41,7 @@ let index = -1;
           </div>
         );
       })}
-      <p class="small muted">Fotografitë janë dërguar nga shkolla. Nëse dëshironi që një fotografi të hiqet, shkruani te <a href="/kontakti">kontakti</a>.</p>
+      <p class="small muted">Nëse dëshironi që një fotografi të hiqet, shkruani te <a href="/kontakti">kontakti</a>.</p>
     </div>
   </section>
 

@@ -6,6 +6,7 @@ import { staff, GROUP_LABELS, type RoleGroup } from '../lib/data';
 
 const groups: RoleGroup[] = ['leadership', 'teaching', 'support', 'other'];
 const subjects = [...new Set(staff.flatMap((s) => s.subjects))].sort((a, b) => a.localeCompare(b, 'sq'));
+const hasPhoto = (m: (typeof staff)[number]) => !!m.portrait?.approved;
 const order = ['remzije-racaj', 'besnik-mehmeti', 'hasime-mehmeti'];
 const rank = (id: string) => (order.includes(id) ? order.indexOf(id) : 99);
 const entries = (g: RoleGroup) =>
@@ -18,7 +19,7 @@ const entries = (g: RoleGroup) =>
     <div class="container">
       <span class="eyebrow">Stafi</span>
       <h1>Njerëzit e shkollës</h1>
-      <p class="lead">Gjeni mësimdhënësit dhe shërbimet e shkollës sipas emrit ose lëndës. Ku ka orar takimi me prindër për vitin shkollor 2026/2027, ai shfaqet në kartelë.</p>
+      <p class="lead">Kërkoni sipas emrit ose lëndës. Kartela tregon orarin e takimit me prindër, ku ka.</p>
     </div>
   </div>
 
@@ -55,7 +56,10 @@ const entries = (g: RoleGroup) =>
         <div class="staff-group" data-group-section={g}>
           <h2>{GROUP_LABELS[g]}</h2>
           <div class:list={["staff-grid", g]}>
-            {entries(g).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
+            {entries(g).filter(({ m }) => hasPhoto(m)).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
+          </div>
+          <div class="staff-compact">
+            {entries(g).filter(({ m }) => !hasPhoto(m)).map(({ m, role }) => <StaffEntry member={m} role={role} />)}
           </div>
         </div>
       ))}

@@ -38,7 +38,6 @@ export const sections: Record<SectionId, { title: string; items: { label: string
       { label: 'Orari', href: '/oraret', match: ['/oraret'] },
       { label: 'Konsultimet', href: '/konsultimet', match: ['/konsultimet'] },
       { label: 'Dokumentet', href: '/dokumente', match: ['/dokumente'] },
-      { label: 'Njoftimet', href: '/per-prinder#njoftimet' },
       { label: 'Kontakti', href: '/kontakti', match: ['/kontakti'] },
     ],
   },

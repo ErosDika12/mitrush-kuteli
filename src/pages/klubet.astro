@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
-import { clubs, clubsData } from '../lib/data';
+import { clubs } from '../lib/data';
+import { photoById } from '../lib/photos';
+const isWide = (id: string) => { const p = photoById.get(id); return !!p && p.src.width / p.src.height > 1.7; };
 
 const sport = clubs.filter((c) => c.category.startsWith('Sport') && c.category === 'Sport');
 const others = clubs.filter((c) => !sport.includes(c));
@@ -11,7 +13,7 @@ const others = clubs.filter((c) => !sport.includes(c));
     <div class="container">
       <span class="eyebrow">Jeta shkollore</span>
       <h1>Klubet dhe grupet</h1>
-      <p class="lead">Klubet e listuara nga shkolla. {clubsData.note} Për pjesëmarrje, kontaktoni shkollën.</p>
+      <p class="lead">Sport, kor dhe klube lëndore. Për pjesëmarrje, kontaktoni shkollën.</p>
     </div>
   </div>
 
@@ -21,11 +23,10 @@ const others = clubs.filter((c) => !sport.includes(c));
       <div class="club-grid">
         {sport.map((c) => (
           <article class:list={['club', { plain: !c.photo }]} id={c.id}>
-            {c.photo && <div class="ph"><Photo id={c.photo} sizes="(min-width: 900px) 380px, 100vw" widths={[400, 700, 1000]} /></div>}
+            {c.photo && <div class:list={['ph', { wide: isWide(c.photo) }]}><Photo id={c.photo} sizes="(min-width: 900px) 380px, 100vw" widths={[400, 700, 1000]} /></div>}
             <div class="club-body">
               <h3>{c.title}</h3>
-              {c.context && <p class="small muted">{c.context}</p>}
-              {!c.photo && <p class="small muted">Fotografi nuk është dhënë ende.</p>}
+              {!c.photo && <p class="small muted">{c.group ? `Grupi i ${c.group}` : c.category}</p>}
             </div>
           </article>
         ))}
@@ -39,15 +40,14 @@ const others = clubs.filter((c) => !sport.includes(c));
       <div class="club-grid">
         {others.map((c) => (
           <article class:list={['club', { plain: !c.photo }]} id={c.id}>
-            {c.photo && <div class="ph"><Photo id={c.photo} sizes="(min-width: 900px) 380px, 100vw" widths={[400, 700, 1000]} /></div>}
+            {c.photo && <div class:list={['ph', { wide: isWide(c.photo) }]}><Photo id={c.photo} sizes="(min-width: 900px) 380px, 100vw" widths={[400, 700, 1000]} /></div>}
             <div class="club-body">
               <h3>{c.title}</h3>
-              <p class="small muted">{c.category}{c.photo ? '' : ' · fotografi nuk është dhënë ende'}</p>
+              <p class="small muted">{c.category}</p>
             </div>
           </article>
         ))}
       </div>
-      <p class="small muted" style="margin-top:var(--s3)">Fotografitë e ekipeve tregojnë grupe nxënësish; ato nuk janë dëshmi për rezultate, tituj ose ngjarje të caktuara. Mbledhjet e këshillit nuk publikohen pa përshkrim, datë dhe burim.</p>
     </div>
   </section>
 </Layout>

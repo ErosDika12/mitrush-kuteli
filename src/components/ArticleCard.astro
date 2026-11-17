@@ -1,10 +1,12 @@
 ---
 import { formatDate } from '../lib/format';
 import type { NewsItem } from '../lib/data';
+import Photo from './Photo.astro';
 interface Props { item: NewsItem; big?: boolean }
 const { item, big = false } = Astro.props;
 ---
 <article class:list={['article-card', { big }]} data-news data-category={item.category} data-search={`${item.title} ${item.summary} ${item.category}`}>
+  {item.image && <a class="card-photo" href={`/lajme/${item.slug}`} tabindex="-1" aria-hidden="true"><Photo id={item.image} sizes="(min-width: 900px) 380px, 100vw" widths={[400, 700]} /></a>}
   <div class="meta">
     <span class="tag">{item.category}</span>
     <time datetime={item.publishedAt}>{formatDate(item.publishedAt)}</time>

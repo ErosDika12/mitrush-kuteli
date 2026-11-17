@@ -13,7 +13,7 @@ const search = normalize([member.displayName, ...member.aliases, ...member.roles
 const img = member.portrait?.approved ? images[member.portrait.file] : undefined;
 const tone = member.id.length % 2 === 0 ? 'a' : 'b';
 ---
-<article class="person" data-person data-id={member.id} data-group={role.group} data-subjects={member.subjects.join('|')} data-search={search} data-days={mine.flatMap((c) => c.weekdays).join(',')}>
+<article class:list={['person', { compact: !img }]} data-person data-id={member.id} data-group={role.group} data-subjects={member.subjects.join('|')} data-search={search} data-days={mine.flatMap((c) => c.weekdays).join(',')}>
   <div class:list={['portrait', { initials: !img }, tone]}>
     {img ? (
       <Picture src={img} alt={`Portret i ${member.displayName}`} widths={[240, 400, 640]} sizes="(min-width: 1000px) 270px, (min-width: 600px) 30vw, 46vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading={lazy ? 'lazy' : 'eager'} decoding="async" />

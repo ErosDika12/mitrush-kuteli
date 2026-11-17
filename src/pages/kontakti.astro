@@ -9,7 +9,7 @@ const subject = encodeURIComponent('Pyetje për shkollën');
     <div class="container">
       <span class="eyebrow">Kontakti</span>
       <h1>Na kontaktoni</h1>
-      <p class="lead">Mënyrat zyrtare për të arritur shkollën.</p>
+      <p class="lead">Telefon, email dhe adresa e shkollës.</p>
     </div>
   </div>
 
@@ -23,12 +23,12 @@ const subject = encodeURIComponent('Pyetje për shkollën');
       </div>
       <div class="stack">
         <h2>Si të na shkruani</h2>
-        <p>Kjo faqe nuk ka formular me dërgim të drejtpërdrejtë. Butoni më poshtë hap programin tuaj të postës me një mesazh të zbrazët drejtuar shkollës; mesazhi dërgohet vetëm kur ta dërgoni ju nga posta juaj.</p>
+        <p>Shkruani me email; butoni më poshtë hap programin tuaj të postës.</p>
         <p><a class="btn" href={`mailto:${school.email}?subject=${subject}`}>Hap postën për të shkruar</a></p>
         <h2 style="margin-top:32px">Udhëzime për ardhje</h2>
-        <p>Hapni adresën në një hartë të jashtme. Hartat nuk ngarkohen në këtë faqe.</p>
+        <p>Hapni adresën në hartë.</p>
         <p><a class="btn ghost" href={mapsUrl} rel="noopener noreferrer" target="_blank">Hap në Google Maps</a> <a class="btn ghost" href={osmUrl} rel="noopener noreferrer" target="_blank">Hap në OpenStreetMap</a></p>
-        <p class="small muted">Adresa është marrë nga drejtoria e shkollave. Për takime me mësimdhënës shihni <a href="/konsultimet">orarin e konsultimeve</a>; ai nuk është orar zyre i përgjithshëm.</p>
+        <p class="small muted">Për takime me mësimdhënës shihni <a href="/per-prinder#konsultimet">orarin e konsultimeve</a>.</p>
       </div>
     </div>
   </section>

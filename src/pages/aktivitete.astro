@@ -8,8 +8,8 @@ import { photoById } from '../lib/photos';
   <div class="page-head">
     <div class="container">
       <span class="eyebrow">Jeta shkollore</span>
-      <h1>Aktivitete që shihen në fotografitë tona</h1>
-      <p class="lead">Këtu paraqiten veprimtari nga fotografitë e shkollës. Lajmet, klubet dhe galeria janë në menynë më sipër.</p>
+      <h1>Jeta në shkollën tonë</h1>
+      <p class="lead">Muzikë, sport dhe aktivitete jashtë klase. Shihni edhe lajmet, klubet dhe galerinë.</p>
     </div>
   </div>
 
@@ -20,7 +20,7 @@ import { photoById } from '../lib/photos';
           <div class="ph-col stack">
             {a.photos.map((pid, j) => (
               <figure style="margin:0">
-                <div class="ph" style={j === 0 ? '' : 'max-width:70%'}><Photo id={pid} sizes="(min-width: 860px) 560px, 100vw" /></div>
+                <div class="ph" style={j === 0 ? '' : 'max-width:70%'}><Photo id={pid} crop sizes="(min-width: 860px) 560px, 100vw" /></div>
                 <figcaption class="small muted" style="margin-top:6px">{photoById.get(pid)?.caption}</figcaption>
               </figure>
             ))}
@@ -41,7 +41,7 @@ import { photoById } from '../lib/photos';
       <div class="stack">
         <span class="eyebrow">Klubet</span>
         <h2 id="club-teaser">Klube dhe grupe të shkollës</h2>
-        <p>Futboll, basketboll, hendboll, shah, kor dhe klube lëndore. Fotografitë që kemi i paraqitim te faqja e klubeve.</p>
+        <p>Futboll, basketboll, hendboll, shah, kor dhe klube lëndore.</p>
         <a class="btn" href="/klubet">Shih klubet</a>
       </div>
       <div class="photo-band">
@@ -51,11 +51,4 @@ import { photoById } from '../lib/photos';
     </div>
   </section>
 
-  <section class="section alt">
-    <div class="container prose">
-      <h2>Keni një projekt ose aktivitet për të ndarë?</h2>
-      <p>Mësimdhënësit dhe prindërit mund t’i dërgojnë shkollës fotografi dhe përshkrime për aktivitetet. Ato publikohen pas miratimit.</p>
-      <a class="btn" href="/kontakti">Kontaktoni shkollën</a>
-    </div>
-  </section>
 </Layout>
