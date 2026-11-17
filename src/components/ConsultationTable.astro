@@ -11,7 +11,7 @@ const rows = records.map((c) => {
   return { c, s, what, search };
 });
 ---
-<div class="table-wrap" id={id} tabindex="0" role="region" aria-label={caption}>
+<div class="table-wrap consult-table" id={id} tabindex="0" role="region" aria-label={caption}>
   <table>
     <caption>{caption}</caption>
     <thead>
@@ -21,9 +21,9 @@ const rows = records.map((c) => {
       {rows.map(({ c, s, what, search }) => (
         <tr data-consult data-days={c.weekdays.join(',')} data-search={search}>
           <th scope="row">{s.displayName}</th>
-          <td>{what}{c.context === 'coordination' && ' (koordinim)'}</td>
-          <td>{weekdayList(c.weekdays)}</td>
-          <td class="num">{timeRange(c.start, c.end)}</td>
+          <td data-label={showSubject ? 'Lënda' : 'Roli'}>{what}{c.context === 'coordination' && ' (koordinim)'}</td>
+          <td data-label="Dita">{weekdayList(c.weekdays)}</td>
+          <td class="num" data-label="Ora">{timeRange(c.start, c.end)}</td>
         </tr>
       ))}
     </tbody>

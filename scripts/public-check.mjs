@@ -29,20 +29,32 @@ for (const [name, path] of pages) {
     title: document.title,
   }));
   ok(info.nav === 'Ballina|Shkolla|Stafi|Jeta shkollore|Për prindërit', `${path}: five nav links (${info.nav})`);
-  ok(/noindex/.test(info.robots || ''), `${path}: robots meta = ${info.robots}`);
+  ok(info.robots === 'index, follow', `${path}: robots meta = ${info.robots}`);
   ok(info.broken === 0 && !bad.length, `${path}: ${info.imgs} images, ${info.broken} broken, failed requests: ${bad.length ? bad.join(', ') : 'none'}`);
-  if (name === 'home') ok(info.heroBg === 'rgb(250, 247, 240)', `home: light ivory hero (new design), bg ${info.heroBg}`);
+  if (name === 'home') ok(info.heroBg === 'rgb(255, 255, 255)', `home: white hero (new design), bg ${info.heroBg}`);
   await p.screenshot({ path: `${out}/${name}-1440.png`, fullPage: true });
   await ctx.close();
 }
-const m = await browser.newContext({ viewport: { width: 390, height: 844 } });
-const mp = await m.newPage();
-await mp.goto(base + '/', { waitUntil: 'networkidle' });
-await mp.screenshot({ path: `${out}/home-390.png`, fullPage: true });
-const r = await m.request.get(base + '/robots.txt');
-ok(r.status() === 200 && /Disallow: \//.test(await r.text()), 'robots.txt public and disallows all');
-const d = await m.request.get(base + '/documents/orari-i-konsultimeve-2026-27.png');
-ok(d.status() === 200 && /image\/png/.test(d.headers()['content-type']), 'document download 200 image/png');
+// Mobile and tablet screenshots of the five pages. Fetches run inside the page so the host mapping applies.
+for (const [w, h] of [[390, 844], [768, 1024]]) {
+  const m = await browser.newContext({ viewport: { width: w, height: h } });
+  const mp = await m.newPage();
+  for (const [name, path] of pages) {
+    await mp.goto(base + path, { waitUntil: 'networkidle' });
+    await mp.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); } window.scrollTo(0, 0); });
+    await mp.waitForTimeout(1200);
+    const over = await mp.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
+    ok(!over, `${path} at ${w}px: no horizontal overflow`);
+    await mp.screenshot({ path: `${out}/${name}-${w}.png`, fullPage: true });
+  }
+  if (w === 390) {
+    const rb = await mp.evaluate(async (b) => { const r = await fetch(b + '/robots.txt'); return { s: r.status, t: await r.text() }; }, base);
+    ok(rb.s === 200 && /Allow: \//.test(rb.t) && !/Disallow: \/\s*$/m.test(rb.t), 'robots.txt public and allows crawling');
+    const d = await mp.evaluate(async (b) => { const r = await fetch(b + '/documents/orari-i-konsultimeve-2026-27.png'); return { s: r.status, c: r.headers.get('content-type') }; }, base);
+    ok(d.s === 200 && /image\/png/.test(d.c), 'document download 200 image/png');
+  }
+  await m.close();
+}
 await browser.close();
 console.log(fail ? `FAILURES: ${fail}` : 'PUBLIC CHECK OK');
 process.exit(fail ? 1 : 0);
