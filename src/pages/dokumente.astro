@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import EmptyState from '../components/EmptyState.astro';
 import { documents } from '../lib/data';
 import { formatDate, normalize } from '../lib/format';
+import { statSync } from 'node:fs';
+const sizeOf = (file: string) => { try { const b = statSync('public' + file).size; return b >= 1048576 ? `${(b / 1048576).toFixed(1).replace('.', ',')} MB` : `${Math.round(b / 1024)} KB`; } catch { return ''; } };
 
 const categories = [...new Set(documents.map((d) => d.category))];
 const years = [...new Set(documents.map((d) => d.schoolYear))];
@@ -18,7 +20,7 @@ const years = [...new Set(documents.map((d) => d.schoolYear))];
 
   <section class="section tight">
     <div class="container">
-      <form class="filters" id="d-filters" onsubmit="return false" role="search" aria-label="Filtro dokumentet">
+      <form class="filters filters-compact doc-filters" id="d-filters" onsubmit="return false" role="search" aria-label="Filtro dokumentet">
         <div><label for="d-q">Fjalë kyçe</label><input id="d-q" type="search" autocomplete="off" /></div>
         <div><label for="d-cat">Kategoria</label><select id="d-cat"><option value="">Të gjitha</option>{categories.map((c) => <option>{c}</option>)}</select></div>
         <div><label for="d-year">Viti</label><select id="d-year"><option value="">Të gjithë</option>{years.map((y) => <option>{y}</option>)}</select></div>
@@ -33,13 +35,13 @@ const years = [...new Set(documents.map((d) => d.schoolYear))];
               <h3>{d.title}</h3>
               <p class="muted" style="margin:0 0 6px">{d.description}</p>
               <p class="meta" style="margin:0">
-                <span class="tag">{d.category}</span><span>Viti: {d.schoolYear}</span>{d.date && <span>Data: {formatDate(d.date)}</span>}<span>Format: {d.format}</span>
+                <span class="tag">{d.category}</span><span>Viti: {d.schoolYear}</span>{d.date && <span>Data: {formatDate(d.date)}</span>}<span>{d.format}{!d.external && sizeOf(d.file) ? `, ${sizeOf(d.file)}` : ''}</span>
               </p>
-              <p class="small muted" style="margin:6px 0 0">Titulli origjinal: {d.originalTitle}</p>
+              {d.originalTitle !== d.title && <p class="small muted" style="margin:6px 0 0">Titulli origjinal: {d.originalTitle}</p>}
             </div>
             <div class="doc-actions">
               <a class="btn small" href={d.file} target="_blank" rel="noopener noreferrer">{d.external ? 'Hap burimin' : 'Shiko'}<span class="sr-only"> {d.title} (skedë e re)</span></a>
-              {!d.external && <a class="btn ghost small" href={d.file} download>Shkarko {d.format}</a>}
+              {!d.external && <a class="btn ghost small" href={d.file} download>Shkarko{sizeOf(d.file) ? ` (${sizeOf(d.file)})` : ''}<span class="sr-only"> {d.title}</span></a>}
               {d.transcription && <a class="btn ghost small" href={d.transcription}>Version i lexueshëm</a>}
             </div>
           </article>

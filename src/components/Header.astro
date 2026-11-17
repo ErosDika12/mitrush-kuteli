@@ -5,20 +5,23 @@ import { school } from '../lib/data';
 import { images } from '../lib/photos';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+// Keep “Mitrush Kuteli” together so a narrow header wraps after SHFMU.
+const brandName = school.name.replace('Mitrush Kuteli', 'Mitrush\u00a0Kuteli');
 ---
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label={`${school.name} — Ballina`}>
-      <Image src={images['stema']} alt="" width={52} height={52} densities={[1, 2]} loading="eager" />
+      <Image src={images['stema']} alt="" width={40} height={40} densities={[1, 2]} loading="eager" />
       <span class="brand-text">
-        <span class="brand-name">{school.name}</span>
+        <span class="brand-name">{brandName}</span>
         <span class="brand-sub">Matiçan, Prishtinë</span>
       </span>
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" id="nav-toggle">
-      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-      <span>Menuja</span>
+      <svg class="ico-open" width="22" height="22" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      <svg class="ico-close" width="22" height="22" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" /></svg>
+      <span class="t-open">Menuja</span><span class="t-close">Mbyll</span>
     </button>
 
     <nav class="primary-nav" id="primary-nav" aria-label="Navigimi kryesor">
@@ -27,12 +30,20 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           <li><a href={item.href} aria-current={isOn(path, item.match) ? 'page' : undefined}>{item.label}</a></li>
         ))}
       </ul>
+      <div class="nav-quick" aria-label="Lidhje të shpejta">
+        <a href="/per-prinder#orari">Orari</a>
+        <a href="/per-prinder#konsultimet">Konsultimet</a>
+        <a href="/kontakti">Kontakti</a>
+      </div>
+      <div class="nav-call">
+        <a class="btn" href={`tel:${school.telephoneE164}`}>Telefono {school.telephoneDisplay}</a>
+        <a class="btn ghost" href={`mailto:${school.email}`}>Dërgo email</a>
+      </div>
       <form class="search-form" action="/kerko" method="get" role="search">
         <label class="sr-only" for="nav-q">Kërko në faqe</label>
         <input id="nav-q" type="search" name="q" placeholder="Kërko staf, lajme, dokumente" />
         <button class="btn small" type="submit">Kërko</button>
       </form>
-      <p class="nav-contact"><a href="/kontakti">Kontakti</a> · <a href={`tel:${school.telephoneE164}`}>{school.telephoneDisplay}</a></p>
     </nav>
 
     <div class="header-tools">

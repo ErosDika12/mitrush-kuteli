@@ -11,7 +11,7 @@ const admin = consultations.filter((c) => c.context !== 'teaching');
 const adminOrder = ['administration', 'coordination', 'psychology', 'support'];
 admin.sort((a, b) => adminOrder.indexOf(a.context) - adminOrder.indexOf(b.context));
 ---
-<form class="filters" id="c-filters" role="search" aria-label="Filtro konsultimet" onsubmit="return false">
+<form class="filters filters-compact" id="c-filters" role="search" aria-label="Filtro konsultimet" onsubmit="return false">
   <div>
     <label for="c-q">Emri ose lënda</label>
     <input id="c-q" type="search" autocomplete="off" placeholder="p.sh. Akter, biologji, psikologe" />
@@ -31,9 +31,9 @@ admin.sort((a, b) => adminOrder.indexOf(a.context) - adminOrder.indexOf(b.contex
       <option value="admin">Administratë dhe shërbime</option>
     </select>
   </div>
-  <div><button class="btn ghost" type="button" id="c-reset">Pastro</button></div>
+  <div class="filter-actions"><button class="btn ghost" type="button" id="c-reset">Pastro</button></div>
 </form>
-<p class="count" id="c-count" aria-live="polite">{consultations.length} orare takimesh.</p>
+<p class="count"><span id="c-count" aria-live="polite">{consultations.length} orare takimesh.</span><button class="clear-link" type="button" id="c-clear" hidden>Pastro filtrat</button></p>
 
 <div class="stack" style="--gap:32px">
   <section id="sec-admin" aria-labelledby="h-admin">
@@ -57,6 +57,7 @@ admin.sort((a, b) => adminOrder.indexOf(a.context) - adminOrder.indexOf(b.contex
   const day = document.getElementById('c-day') as HTMLSelectElement;
   const role = document.getElementById('c-role') as HTMLSelectElement;
   const count = document.getElementById('c-count')!;
+  const clearBtn = document.getElementById('c-clear') as HTMLButtonElement;
   const empty = document.getElementById('c-empty')!;
   const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-consult]'));
   const secAdmin = document.getElementById('sec-admin')!;
@@ -76,6 +77,7 @@ admin.sort((a, b) => adminOrder.indexOf(a.context) - adminOrder.indexOf(b.contex
     }
     for (const s of [secAdmin, secTeach]) s.hidden = !s.querySelector('[data-consult]:not([hidden])');
     empty.hidden = shown > 0;
+    clearBtn.hidden = shown === 0 || !(q.value || day.value || role.value);
     count.textContent = shown ? `${shown} nga ${rows.length} orare takimesh.` : `Asnjë rezultat nga ${rows.length} orare takimesh.`;
   }
   const toUrl = (push: boolean) => writeParams({ q: q.value.trim(), dita: day.value, lloji: role.value }, push);
@@ -84,6 +86,7 @@ admin.sort((a, b) => adminOrder.indexOf(a.context) - adminOrder.indexOf(b.contex
   day.addEventListener('change', () => { apply(); toUrl(true); });
   role.addEventListener('change', () => { apply(); toUrl(true); });
   document.getElementById('c-reset')!.addEventListener('click', () => { q.value = ''; day.value = ''; role.value = ''; apply(); toUrl(true); });
+  clearBtn.addEventListener('click', () => { q.value = ''; day.value = ''; role.value = ''; apply(); toUrl(true); });
   const print = document.getElementById('c-print') as HTMLButtonElement | null;
   if (print) { print.hidden = false; print.addEventListener('click', () => window.print()); }
   window.addEventListener('popstate', fromUrl);

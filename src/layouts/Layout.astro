@@ -71,8 +71,10 @@ const b = school.seasonalBanner;
       const nav = document.getElementById('primary-nav');
       const mq = window.matchMedia('(min-width: 1040px)');
 
+      const header = document.querySelector<HTMLElement>('.site-header');
       function setDrawer(open: boolean, returnFocus = false) {
         if (!toggle || !nav) return;
+        if (open && header) nav.style.setProperty('--nav-top', Math.max(0, Math.round(header.getBoundingClientRect().bottom)) + 'px');
         nav.classList.toggle('open', open);
         toggle.setAttribute('aria-expanded', String(open));
         document.documentElement.classList.toggle('lock', open && !mq.matches);
@@ -83,6 +85,10 @@ const b = school.seasonalBanner;
         if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') setDrawer(false, true);
       });
       mq.addEventListener('change', () => setDrawer(false));
+      // Following any link in the drawer (also in-page #anchors) closes it and releases the scroll lock.
+      nav?.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a[href]')) setDrawer(false); });
+      // Back/forward cache must never restore a locked page.
+      window.addEventListener('pageshow', () => setDrawer(false));
       // Keep focus inside the open drawer on phones.
       nav?.addEventListener('keydown', (e) => {
         if (e.key !== 'Tab' || mq.matches || toggle?.getAttribute('aria-expanded') !== 'true') return;

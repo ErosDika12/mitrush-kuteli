@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import ConsultationExplorer from '../components/ConsultationExplorer.astro';
 import { school, bells, documents, news } from '../lib/data';
 import { formatDate, timeRange } from '../lib/format';
+import { statSync } from 'node:fs';
+const sizeOf = (file: string) => { try { const b = statSync('public' + file).size; return b >= 1048576 ? `${(b / 1048576).toFixed(1).replace('.', ',')} MB` : `${Math.round(b / 1024)} KB`; } catch { return ''; } };
 
 const shifts = [
   { title: 'Ndërrimi i parë', rows: bells.firstShift },
@@ -73,11 +75,11 @@ const notices = news.filter((n) => n.category === 'Njoftim');
           <li>
             <div>
               <strong>{d.title}</strong>
-              <span class="small muted">{d.schoolYear} · {d.format}</span>
+              <span class="small muted">{d.schoolYear} · {d.format}{!d.external && sizeOf(d.file) ? `, ${sizeOf(d.file)}` : ''}</span>
             </div>
             <div class="doc-actions">
               <a class="btn small" href={d.file} target="_blank" rel="noopener noreferrer">{d.external ? 'Hap' : 'Shiko'}<span class="sr-only"> {d.title} (skedë e re)</span></a>
-              {!d.external && <a class="btn ghost small" href={d.file} download>Shkarko<span class="sr-only"> {d.title}</span></a>}
+              {!d.external && <a class="btn ghost small" href={d.file} download>Shkarko {d.format}<span class="sr-only"> {d.title}</span></a>}
             </div>
           </li>
         ))}

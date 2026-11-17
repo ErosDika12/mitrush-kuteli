@@ -5,7 +5,7 @@ const { section } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const s = sections[section];
 ---
-<nav class="section-nav" aria-label={`Në ${s.title}`}>
+<nav class="section-nav" aria-label={`Në ${s.title}`} data-title={`Më shumë te ${s.title}`}>
   <div class="container">
     <ul>
       {s.items.map((it) => (

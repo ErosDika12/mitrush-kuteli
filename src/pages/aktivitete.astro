@@ -20,7 +20,7 @@ import { photoById } from '../lib/photos';
           <div class="ph-col stack">
             {a.photos.map((pid, j) => (
               <figure style="margin:0">
-                <div class="ph" style={j === 0 ? '' : 'max-width:70%'}><Photo id={pid} crop sizes="(min-width: 860px) 560px, 100vw" /></div>
+                <div class="ph"><Photo id={pid} crop sizes="(min-width: 860px) 560px, 100vw" /></div>
                 <figcaption class="small muted" style="margin-top:6px">{photoById.get(pid)?.caption}</figcaption>
               </figure>
             ))}

@@ -33,7 +33,7 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
 
   <section class="section tight">
     <div class="container">
-      <form class="filters" id="staff-filters" method="get" action="/stafi" role="search" aria-label="Kërko në stafin">
+      <form class="filters filters-compact" id="staff-filters" method="get" action="/stafi" role="search" aria-label="Kërko në stafin">
         <div>
           <label for="f-q">Emri, lënda ose roli</label>
           <input id="f-q" type="search" name="q" autocomplete="off" placeholder="p.sh. Shkelzen, gjerman, psikologe" />
@@ -52,13 +52,13 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
             {sections.map((s) => <option value={s.id}>{s.title}</option>)}
           </select>
         </div>
-        <div style="display:flex;gap:8px">
+        <div class="filter-actions">
           <button class="btn" type="submit">Kërko</button>
           <button class="btn ghost" type="reset" id="f-reset">Pastro</button>
         </div>
       </form>
 
-      <p class="count" id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona.</p>
+      <p class="count" id="staff-count-wrap"><span id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona.</span><button class="clear-link" type="button" id="staff-clear" hidden>Pastro filtrat</button></p>
 
       {sections.map((sec) => (
         <div class="staff-group" data-group-section={sec.id}>
@@ -103,6 +103,7 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
     const lenda = document.getElementById('f-lenda') as HTMLSelectElement;
     const grupi = document.getElementById('f-grupi') as HTMLSelectElement;
     const count = document.getElementById('staff-count')!;
+    const clearBtn = document.getElementById('staff-clear') as HTMLButtonElement;
     const empty = document.getElementById('staff-empty')!;
     const people = Array.from(document.querySelectorAll<HTMLElement>('[data-person]'));
     const blocks = Array.from(document.querySelectorAll<HTMLElement>('[data-block]'));
@@ -129,6 +130,7 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
       for (const b of blocks) b.hidden = !b.querySelector('[data-person]:not([hidden]), [data-see]:not([hidden])');
       for (const s of sections) s.hidden = !s.querySelector('[data-block]:not([hidden])');
       empty.hidden = seen.size > 0;
+      clearBtn.hidden = seen.size === 0 || !(q.value || lenda.value || grupi.value);
       count.textContent = seen.size
         ? `Po shfaqen ${seen.size} nga ${total} persona.`
         : `Asnjë rezultat nga ${total} persona.`;
@@ -149,6 +151,7 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
     form.addEventListener('submit', (e) => { e.preventDefault(); apply(); toUrl(true); });
     form.addEventListener('reset', (e) => { e.preventDefault(); reset(); });
     document.getElementById('staff-empty-reset')!.addEventListener('click', reset);
+    clearBtn.addEventListener('click', reset);
     window.addEventListener('popstate', fromUrl);
     fromUrl();
   </script>

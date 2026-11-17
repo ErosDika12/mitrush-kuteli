@@ -69,7 +69,7 @@ ok('download: first document downloads with PNG filename', download.suggestedFil
 ok('documents: 4 listed; historical plan is external PDF link, not downloaded copy', (await page.locator('.doc').count()) === 4 && (await page.locator('.doc a[href^="https://prishtinaonline.com"]').count()) === 1);
 ok('documents: no file labelled PDF is a PNG', !(await page.locator('.doc:has-text("PNG") :text("PDF")').count()));
 const tags = await page.locator('.doc .meta').allInnerTexts();
-ok('documents: formats shown (3 PNG, 1 PDF)', tags.filter((t) => t.includes('Format: PNG')).length === 3 && tags.filter((t) => t.includes('Format: PDF')).length === 1);
+ok('documents: formats and sizes shown (3 PNG with sizes, 1 PDF)', tags.filter((t) => /PNG, \d+([,.]\d+)? (KB|MB)/.test(t.replace(/\s+/g, ' '))).length === 3 && tags.filter((t) => /\bPDF\b/.test(t)).length === 1, tags.map((t) => t.replace(/\s+/g, ' ')).join(' | '));
 
 // --- Contact links
 const home = await (await ctx.request.get(base + '/kontakti')).text();
