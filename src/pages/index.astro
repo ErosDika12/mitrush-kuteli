@@ -1,16 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
-import ArticleCard from '../components/ArticleCard.astro';
 import StaffEntry from '../components/StaffEntry.astro';
-import { school, news, staff, bells } from '../lib/data';
+import LifeRotator from '../components/LifeRotator.astro';
+import VideoBox from '../components/VideoBox.astro';
+import { school, staff } from '../lib/data';
 import { absoluteUrl } from '../lib/site';
 import { photoById } from '../lib/photos';
 
-// Real photograph of the school building (Matiçan). Shown only once supplied: add src/assets/photos/school-building.jpg and its entry in src/data/photos.json.
+// Real photograph of the school building (Matiçan). Shown only once supplied: add src/assets/photos/school-building.jpg
+// and its entry {"id":"school-building", ...} in src/data/photos.json. Until then the hero is a plain navy block.
 const hasBuilding = photoById.has('school-building');
 
-const recent = news.slice(0, 3);
 const team = ['remzije-racaj', 'besnik-mehmeti', 'hasime-mehmeti']
   .map((id) => staff.find((s) => s.id === id)!)
   .map((m) => ({ m, role: m.roles.find((r) => r.group === 'leadership') ?? m.roles[0] }));
@@ -26,70 +27,27 @@ const jsonLd = {
   sameAs: [school.facebook],
 };
 ---
-<Layout title={school.name} description="Faqja e SHFMU “Mitrush Kuteli”, Matiçan, Prishtinë: orari i ziles, konsultimet me prindër, stafi, lajmet dhe jeta shkollore." banner jsonLd={jsonLd}>
+<Layout title={school.name} description="SHFMU “Mitrush Kuteli”, shkollë fillore dhe e mesme e ulët në Matiçan, Prishtinë: jeta shkollore, udhëheqja, stafi dhe informacione për prindërit." jsonLd={jsonLd}>
   <section class:list={['hero-wide', { 'has-photo': hasBuilding }]}>
-    {hasBuilding && <Photo id="school-building" priority class="hero-bg" sizes="100vw" widths={[640, 960, 1440, 1920]} alt="" />}
+    {hasBuilding && <Photo id="school-building" priority class="hero-bg" sizes="100vw" widths={[640, 960, 1440, 1920]} alt="Objekti i SHFMU “Mitrush Kuteli”" />}
     <div class="container hero-wide-inner">
-      <span class="eyebrow">Matiçan, Prishtinë</span>
       <h1>{school.name}</h1>
       <p class="tagline">{school.tagline}</p>
-      <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiçan, ku muzika, sporti dhe mësimi i përditshëm bashkohen në një komunitet të vogël.</p>
-      <div class="hero-actions">
-        <a class="btn" href="/shkolla">Njihuni me shkollën</a>
-        <a class="btn ghost" href="/per-prinder">Për prindërit</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="shortcuts-wrap" aria-labelledby="quick-h">
-    <div class="container">
-      <h2 id="quick-h" class="sr-only">Lidhje të shpejta</h2>
-      <div class="shortcuts">
-        <a href="/per-prinder#orari"><strong>Orari</strong><span>Zilja fillon {bells.firstShift[0].start} dhe {bells.secondShift[0].start}</span></a>
-        <a href="/per-prinder#konsultimet"><strong>Konsultimet</strong><span>Dita dhe ora e takimit me mësimdhënësin</span></a>
-        <a href="/kontakti"><strong>Kontakti</strong><span>{school.telephoneDisplay} · email dhe adresa</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="news-h">
-    <div class="container">
-      <div class="section-head">
-        <h2 id="news-h">Lajme</h2>
-        <a class="link-arrow" href="/lajme">Të gjitha lajmet</a>
-      </div>
-      <div class="news-cards">
-        {recent.map((n) => <ArticleCard item={n} />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt mission" aria-labelledby="mission-h">
-    <div class="container split">
-      <div>
-        <h2 id="mission-h" class="sr-only">Misioni i shkollës</h2>
-        <blockquote>{school.mission.text}</blockquote>
-        <cite>Misioni i shkollës</cite>
-      </div>
-      <div class="stack">
-        <p class="lead" style="margin:0">SHFMU “Mitrush Kuteli” punon në Prishtinë që nga viti shkollor 1946/47 dhe mban emrin e shkrimtarit shqiptar që nga viti 1992. Sot shkolla përfshin klasat I–IX dhe grupet parafillore.</p>
-        <a class="link-arrow" href="/shkolla">Rreth shkollës</a>
-      </div>
+      <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiçan të Prishtinës, ku mësimi, muzika dhe sporti bashkohen në një komunitet të vogël.</p>
     </div>
   </section>
 
   <section class="section" aria-labelledby="life-h">
     <div class="container">
       <div class="section-head">
-        <h2 id="life-h">Jeta në shkollën tonë</h2>
-        <a class="link-arrow" href="/aktivitete">Më shumë nga jeta shkollore</a>
+        <h2 id="life-h">Jeta shkollore</h2>
+        <a class="link-arrow" href="/aktivitete">Të gjitha aktivitetet</a>
       </div>
-      <div class="act-grid">
-        <a class="ph wide" href="/galeria#muzike"><Photo id="foto-5" sizes="(min-width: 860px) 780px, 100vw" /><span class="ph-cap">Kori i shkollës</span></a>
-        <a class="ph" href="/galeria#sport"><Photo id="futboll-djemte" sizes="(min-width: 860px) 390px, 100vw" /><span class="ph-cap">Klubi i futbollit</span></a>
-      </div>
+      <LifeRotator />
     </div>
   </section>
+
+  <VideoBox />
 
   <section class="section alt" aria-labelledby="staff-h">
     <div class="container">

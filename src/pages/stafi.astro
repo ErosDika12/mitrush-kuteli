@@ -6,7 +6,7 @@ import { staff } from '../lib/data';
 import sectionData from '../data/staff-sections.json';
 
 interface Block { title?: string; ids?: string[]; see?: string; seeLabel?: string }
-interface Section { id: string; title: string; blocks: Block[] }
+interface Section { id: string; title: string; note?: string; blocks: Block[] }
 const sections = sectionData as Section[];
 
 // Every person must appear in exactly one card of the directory.
@@ -41,14 +41,14 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
         <div>
           <label for="f-lenda">Lënda</label>
           <select id="f-lenda" name="lenda">
-            <option value="">Të gjitha lëndët</option>
+            <option value="">Të gjitha</option>
             {subjects.map((s) => <option value={s}>{s}</option>)}
           </select>
         </div>
         <div>
-          <label for="f-grupi">Grupi</label>
+          <label for="f-grupi">Kategoria</label>
           <select id="f-grupi" name="grupi">
-            <option value="">Të gjithë</option>
+            <option value="">Të gjitha</option>
             {sections.map((s) => <option value={s.id}>{s.title}</option>)}
           </select>
         </div>
@@ -63,6 +63,7 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
       {sections.map((sec) => (
         <div class="staff-group" data-group-section={sec.id}>
           <h2>{sec.title}</h2>
+          {sec.note && <p class="muted staff-note" data-note>{sec.note}</p>}
           <div class:list={['staff-blocks', { multi: sec.blocks.length > 1 }]}>
           {sec.blocks.map((b) => (
             <div class="staff-block" data-block>
@@ -128,8 +129,11 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
         l.hidden = !target || target.hidden || !!grupi.value;
       }
       for (const b of blocks) b.hidden = !b.querySelector('[data-person]:not([hidden]), [data-see]:not([hidden])');
-      for (const s of sections) s.hidden = !s.querySelector('[data-block]:not([hidden])');
-      empty.hidden = seen.size > 0;
+      for (const s of sections) {
+        const note = s.querySelector('[data-note]');
+        s.hidden = note ? !!(terms.length || lenda.value || (grupi.value && grupi.value !== s.dataset.groupSection)) : !s.querySelector('[data-block]:not([hidden])');
+      }
+      empty.hidden = seen.size > 0 || !sections.every((s) => s.hidden);
       clearBtn.hidden = seen.size === 0 || !(q.value || lenda.value || grupi.value);
       count.textContent = seen.size
         ? `Po shfaqen ${seen.size} nga ${total} persona.`

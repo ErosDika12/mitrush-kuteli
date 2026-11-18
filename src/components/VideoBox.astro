@@ -1,0 +1,33 @@
+---
+import { Picture } from 'astro:assets';
+import Photo from './Photo.astro';
+import home from '../data/home.json';
+import { photoById, images } from '../lib/photos';
+// Configure in src/data/home.json -> video. Put the file in public/video/ and set "src" (e.g. "/video/ambientet.mp4")
+// and optionally "poster" (e.g. "/video/ambientet.jpg"). With no video the box shows the school building photo
+// (once supplied) or a plain static panel. There is no Play button until a real video is configured.
+const v = home.video;
+const hasBuilding = photoById.has('school-building');
+---
+<section class="vbox-sec" aria-labelledby="video-h">
+  <div class="container">
+    <h2 id="video-h">{v.title}</h2>
+    <div class="vbox">
+      {v.src ? (
+        <video controls preload="none" playsinline poster={v.poster || undefined} aria-label={v.title}>
+          <source src={v.src} type="video/mp4" />
+        </video>
+      ) : v.poster ? (
+        <img src={v.poster} alt="" loading="lazy" decoding="async" />
+      ) : hasBuilding ? (
+        <Photo id="school-building" sizes="(min-width: 960px) 1100px, 100vw" alt="Objekti i shkollës" />
+      ) : (
+        <div class="vbox-static">
+          <Picture src={images['stema']} alt="" widths={[120, 240]} sizes="72px" formats={['webp']} loading="lazy" class="vbox-crest" />
+          <p class="vbox-name">SHFMU “Mitrush Kuteli”</p>
+          <p class="vbox-sub">{v.caption}</p>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

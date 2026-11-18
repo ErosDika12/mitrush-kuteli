@@ -1,0 +1,15 @@
+{
+  "rotatorIntervalMs": 6000,
+  "slides": [
+    { "field": "Muzikë", "title": "Kori i shkollës", "text": "Nxënësit këndojnë së bashku në skenë.", "photo": "foto-5", "focus": "50% 45%", "href": "/aktivitete#muzike" },
+    { "field": "Sport", "title": "Futboll në sallë", "text": "Ekipi i djemve në klubin e futbollit.", "photo": "futboll-djemte", "focus": "50% 40%", "href": "/klubet#sport" },
+    { "field": "Mjedis dhe komunitet", "title": "Aktivitete në natyrë", "text": "Nxënësit dalin së bashku jashtë klasës.", "photo": "foto-3", "focus": "50% 70%", "href": "/aktivitete#natyre" },
+    { "field": "Muzikë", "title": "Gara muzikore ArsKosova", "text": "Nxënës të shkollës në garën e edicionit të 21-të.", "photo": "foto-4", "focus": "50% 40%", "href": "/lajme/suksese-ne-garen-ars-kosova-2026" }
+  ],
+  "video": {
+    "title": "Njihuni me ambientet tona",
+    "src": "",
+    "poster": "",
+    "caption": "SHFMU “Mitrush Kuteli”, Rr. Sokol Sopi, Matiçan, Prishtinë"
+  }
+}

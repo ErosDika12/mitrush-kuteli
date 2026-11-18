@@ -1,100 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Photo from '../components/Photo.astro';
-import StaffEntry from '../components/StaffEntry.astro';
-import { Picture } from 'astro:assets';
-import { images } from '../lib/photos';
-import { consultations } from '../lib/data';
-import { timeRange, weekdayList } from '../lib/format';
-import { school, history, staff } from '../lib/data';
+import { school } from '../lib/data';
 
-const director = staff.find((s) => s.id === 'remzije-racaj')!;
-const dImg = director.portrait?.approved ? images[director.portrait.file] : undefined;
-const dCons = consultations.filter((c) => c.staffId === director.id);
-const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
-  const m = staff.find((s) => s.id === id)!;
-  return { m, role: m.roles.find((r) => r.group === 'leadership') ?? m.roles[0] };
-});
+// Only values confirmed by the school are shown; set "confirmed": true in src/data/school.json -> facts once a value is verified.
+const facts = school.facts.filter((f) => f.confirmed && f.value);
 ---
-<Layout title="Rreth shkollës" description="Identiteti, historia, shkallët e arsimit dhe vlerat e SHFMU “Mitrush Kuteli” në Matiçan të Prishtinës." crumbs={[{ label: 'Shkolla' }]}>
+<Layout title="Rreth shkollës" description="Identiteti, shkallët e arsimit dhe emri i SHFMU “Mitrush Kuteli” në Matiçan të Prishtinës." crumbs={[{ label: 'Shkolla' }]}>
   <div class="page-head">
     <div class="container">
       <span class="eyebrow">Shkolla</span>
       <h1>Rreth shkollës</h1>
-      <p class="lead">{school.expandedName}, në Matiçan të Prishtinës.</p>
     </div>
   </div>
 
-  <section class="mission" aria-labelledby="mission-h">
-    <div class="container" style="padding-block: var(--s5)">
-      <span class="eyebrow">Misioni</span>
-      <h2 id="mission-h" class="sr-only">Misioni i shkollës</h2>
-      <blockquote>{school.mission.text}</blockquote>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container split">
+  <section class="section" aria-labelledby="id-h">
+    <div class="container identity">
       <div class="stack">
-        <h2>Identiteti</h2>
-        <p>Emri i plotë i shkollës është <strong>{school.expandedName}</strong>. Ajo ndodhet në {school.street}, {school.location}. Festa e shkollës është më <strong>{school.schoolDay}</strong>.</p>
-        <p>Motoja e shkollës, <em>{school.tagline}</em>, përmbledh atë që synojmë çdo ditë: nxënës që nxënë me kënaqësi, krijojnë me guxim dhe e gjejnë vendin e vet.</p>
+        <h2 id="id-h">Identiteti i shkollës</h2>
+        <p>{school.expandedName} ndodhet në {school.street}, {school.location}. Motoja jonë, <em>{school.tagline}</em>, përmbledh atë që synojmë çdo ditë: nxënës që nxënë me kënaqësi, krijojnë me guxim dhe e gjejnë vendin e vet.</p>
+        <p>Misioni ynë: <strong>{school.mission.text}</strong></p>
         <p>Sipas raportimit publik të marsit 2026, shkolla ka edhe një <a href="/lajme/dhoma-burimore-arsim-gjitheperfshires">dhomë burimore</a> për mbështetjen e arsimit gjithëpërfshirës.</p>
       </div>
-      <figure style="margin:0">
-        <div style="border-radius:var(--radius);overflow:hidden"><Photo id="foto-3" sizes="(min-width: 900px) 560px, 100vw" /></div>
-        <figcaption class="small muted" style="margin-top:8px">Aktivitet në natyrë me nxënës.</figcaption>
-      </figure>
+      <aside class="facts" aria-labelledby="facts-h">
+        <h3 id="facts-h">Të dhëna kryesore</h3>
+        <dl>
+          {facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+        </dl>
+      </aside>
     </div>
   </section>
 
-  <section class="section alt" aria-labelledby="hist-h">
-    <div class="container split">
-      <div>
-        <span class="eyebrow">Historia</span>
-        <h2 id="hist-h">Disa pika kyçe</h2>
-        <p class="muted">Datat vijnë nga plani zhvillimor i shkollës.</p>
-      </div>
-      <ol class="timeline">
-        {history.map((h) => <li><span class="when">{h.date}</span>{h.text}<br /><span class="small muted">{h.source}</span></li>)}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="stages-h">
+  <section class="section alt" aria-labelledby="stages-h">
     <div class="container">
       <h2 id="stages-h">Shkallët e arsimit</h2>
-      <div class="grid cols-3">
-        {school.stages.map((s) => <div class="card"><h3>{s.title}</h3><p class="muted" style="margin:0">{s.text}</p></div>)}
+      <div class="stage-list">
+        {school.stages.map((s) => (
+          <article class="stage" id={s.id}>
+            <span class="stage-range">{s.range}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </article>
+        ))}
       </div>
-    </div>
-  </section>
-
-  <section class="section alt" aria-labelledby="values-h">
-    <div class="container">
-      <h2 id="values-h">Vlerat tona</h2>
-      <div class="grid cols-3">
-        {school.values.map((v) => <div class="card"><h3>{v.title}</h3><p class="muted" style="margin:0">{v.text}</p></div>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="lead-h">
-    <div class="container">
-      <div class="section-head">
-        <div><span class="eyebrow">Udhëheqja</span><h2 id="lead-h">Drejtoria dhe administrata</h2></div>
-        <a class="link-arrow" href="/stafi">I gjithë stafi</a>
-      </div>
-      <div class="lead-feature">
-        <div class="portrait">{dImg ? <Picture src={dImg} alt={`Portret i ${director.displayName}`} widths={[320, 560]} sizes="280px" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" /> : null}</div>
-        <div class="stack">
-          <h3 style="font-size:1.6rem;margin:0">{director.displayName}</h3>
-          <p class="role muted" style="margin:0">Drejtoreshë e shkollës</p>
-          {dCons.map((c) => <p style="margin:0"><strong>Takim me prindër:</strong> {weekdayList(c.weekdays)}, {timeRange(c.start, c.end)}</p>)}
-        </div>
-      </div>
-      <h3 style="margin-top:var(--s5)">Administrata dhe shërbimet</h3>
-      <div class="staff-grid leadership">{admin.map(({ m, role }) => <StaffEntry member={m} role={role} />)}</div>
     </div>
   </section>
 
@@ -102,8 +49,10 @@ const admin = ['besnik-mehmeti', 'hasime-mehmeti', 'taibe-morina'].map((id) => {
     <div class="container prose">
       <span class="eyebrow">Emri i shkollës</span>
       <h2 id="name-h">Mitrush Kuteli, shkrimtari</h2>
-      <p>“Mitrush Kuteli” është pseudonimi letrar i <strong>Dhimitër Paskos</strong> (1907–1967), i lindur më 13 shtator 1907 në Pogradec. Ai konsiderohet, bashkë me Ernest Koliqin, themelues i prozës moderne shqipe. Ndër veprat e tij janë <em>“Netë shqiptare”</em> (1938) dhe <em>“Tregime të moçme shqiptare”</em> (1965).</p>
-      <p class="small muted">Burimi: <a href="https://en.wikipedia.org/wiki/Mitrush_Kuteli" rel="noopener noreferrer" target="_blank">Wikipedia, “Mitrush Kuteli”</a> (hapet në skedë të re). Viti i lindjes dhe i vdekjes (1907–1967) përputhet në disa burime; data e saktë e vdekjes ndryshon midis burimeve, ndaj nuk shkruhet këtu.</p>
+      <p>“Mitrush Kuteli” është pseudonimi letrar i <strong>Dhimitër Paskos</strong>, i lindur më 13 shtator 1907 në Pogradec dhe i ndarë nga jeta në Tiranë në vitin 1967. Ishte shkrimtar, përkthyes dhe ekonomist. Ai konsiderohet, bashkë me Ernest Koliqin, themelues i prozës moderne shqipe.</p>
+      <p>Ndër veprat e tij janë <em>“Netë shqiptare”</em> (1938) dhe <em>“Tregime të moçme shqiptare”</em> (1965), me të cilat u dha një formë letrare rrëfimeve popullore e historike shqiptare.</p>
+      <p>Shkolla jonë e mban emrin e tij që nga <strong>20 qershori 1992</strong>, sipas vendimit nr. 8 (plani zhvillimor i shkollës).</p>
+      <p class="small muted">Burime: <a href="https://en.wikipedia.org/wiki/Mitrush_Kuteli" rel="noopener noreferrer" target="_blank">Wikipedia, “Mitrush Kuteli”</a> (hapet në skedë të re) dhe plani zhvillimor i shkollës. Data e saktë e vdekjes ndryshon midis burimeve, ndaj shkruhet vetëm viti.</p>
     </div>
   </section>
 </Layout>
