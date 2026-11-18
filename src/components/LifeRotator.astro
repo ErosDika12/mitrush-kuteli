@@ -4,13 +4,13 @@ import home from '../data/home.json';
 const slides = home.slides;
 const interval = home.rotatorIntervalMs;
 ---
-<section class="rot" id="life-rotator" aria-roledescription="karusel" aria-label="Jeta shkollore" data-interval={interval}>
+<section class="rot" id="life-rotator" aria-roledescription="karusel" aria-label="Pamje nga aktivitetet" data-interval={interval}>
   <div class="rot-stage" id="rot-stage" tabindex="0" aria-live="off">
     {slides.map((s, i) => (
       <article class:list={['rot-slide', { active: i === 0 }]} aria-roledescription="pamje" aria-label={`${i + 1} nga ${slides.length}`} data-slide>
-        <a class="rot-photo" href={s.href} tabindex="-1" aria-hidden="true">
+        <div class="rot-photo" aria-hidden="true">
           <Photo id={s.photo} focus={s.focus} sizes="(min-width: 960px) 1100px, 100vw" widths={[480, 800, 1200]} alt="" />
-        </a>
+        </div>
         <div class="rot-text">
           <span class="rot-field">{s.field}</span>
           <h3>{s.title}</h3>
