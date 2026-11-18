@@ -6,6 +6,7 @@ const site = process.env.SITE_URL || undefined;
 
 export default defineConfig({
   site,
+  redirects: { '/shkolla': '/#shkolla' },
   trailingSlash: 'ignore',
   build: { format: 'directory' },
   devToolbar: { enabled: false },

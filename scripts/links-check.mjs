@@ -2,7 +2,7 @@
 // node scripts/links-check.mjs http://localhost:4331
 import { chromium } from 'playwright';
 const base = process.argv[2] || 'http://localhost:4331';
-const routes = ['/', '/shkolla', '/stafi', '/lajme', '/lajme/suksese-ne-garen-ars-kosova-2026', '/aktivitete', '/klubet', '/galeria', '/oraret', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/kerko', '/privatesia', '/festat/28-nentori', '/nuk-ekziston'];
+const routes = ['/', '/stafi', '/lajme', '/lajme/suksese-ne-garen-ars-kosova-2026', '/aktivitete', '/klubet', '/galeria', '/oraret', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/kerko', '/privatesia', '/festat/28-nentori', '/nuk-ekziston'];
 const browser = await chromium.launch();
 const ctx = await browser.newContext();
 const problems = [];

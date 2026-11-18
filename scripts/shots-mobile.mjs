@@ -7,7 +7,7 @@ if (existsSync(out) && readdirSync(out).length) { console.error('folder not empt
 mkdirSync(out, { recursive: true });
 const widths = (w || '360,390,430,768,1440').split(',').map(Number);
 const pages = [
-  ['home', '/'], ['shkolla', '/shkolla'], ['stafi', '/stafi'], ['jeta', '/lajme'], ['prinderit', '/per-prinder'],
+  ['home', '/'], ['stafi', '/stafi'], ['jeta', '/lajme'], ['prinderit', '/per-prinder'],
   ['aktivitete', '/aktivitete'], ['klubet', '/klubet'], ['galeria', '/galeria'], ['kontakti', '/kontakti'], ['oraret', '/oraret'], ['konsultimet', '/konsultimet'], ['dokumente', '/dokumente'],
 ];
 const browser = await chromium.launch(process.env.PUBLIC_CHECK_IP ? { args: [`--host-resolver-rules=MAP ${new URL(base).hostname} ${process.env.PUBLIC_CHECK_IP}`] } : {});

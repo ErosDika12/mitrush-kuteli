@@ -12,10 +12,10 @@ const page = await ctx.newPage();
 // --- Five primary links, section sub-navigation
 await page.goto(base + '/', { waitUntil: 'networkidle' });
 const prim = await page.locator('#primary-nav .nav-list a').allInnerTexts();
-ok('desktop nav: exactly five primary links', JSON.stringify(prim) === JSON.stringify(['Ballina', 'Shkolla', 'Stafi', 'Jeta shkollore', 'Për prindërit']), prim.join(' | '));
+ok('desktop nav: exactly four primary links', JSON.stringify(prim) === JSON.stringify(['Ballina', 'Stafi', 'Jeta shkollore', 'Për prindërit']), prim.join(' | '));
 ok('desktop nav: mobile menu button hidden, no dropdown toggles', !(await page.locator('#nav-toggle').isVisible()) && (await page.locator('.sub-toggle').count()) === 0);
 ok('desktop nav: no Kontakti tab among the primary links', !prim.includes('Kontakti'));
-for (const [url, label] of [['/oraret', 'Për prindërit'], ['/konsultimet', 'Për prindërit'], ['/dokumente', 'Për prindërit'], ['/kontakti', 'Për prindërit'], ['/lajme', 'Jeta shkollore'], ['/klubet', 'Jeta shkollore'], ['/galeria', 'Jeta shkollore'], ['/stafi', 'Stafi'], ['/shkolla', 'Shkolla'], ['/', 'Ballina']]) {
+for (const [url, label] of [['/oraret', 'Për prindërit'], ['/konsultimet', 'Për prindërit'], ['/dokumente', 'Për prindërit'], ['/kontakti', 'Për prindërit'], ['/lajme', 'Jeta shkollore'], ['/klubet', 'Jeta shkollore'], ['/galeria', 'Jeta shkollore'], ['/stafi', 'Stafi'], ['/', 'Ballina']]) {
   await page.goto(base + url, { waitUntil: 'domcontentloaded' });
   const cur = await page.locator('#primary-nav .nav-list a[aria-current="page"]').allInnerTexts();
   ok(`active primary link on ${url} is "${label}"`, cur.length === 1 && cur[0] === label, cur.join(','));
@@ -124,7 +124,7 @@ ok('consultations vs scanned sheet: all 23 rows match name, role/subject, day(s)
 for (const w of [390, 1280]) {
   const p = await browser.newPage({ viewport: { width: w, height: 900 } });
   const small = [];
-  for (const r of ['/', '/stafi', '/oraret', '/konsultimet', '/lajme', '/dokumente', '/galeria', '/kontakti', '/shkolla']) {
+  for (const r of ['/', '/stafi', '/oraret', '/konsultimet', '/lajme', '/dokumente', '/galeria', '/kontakti']) {
     await p.goto(base + r, { waitUntil: 'networkidle' });
     const found = await p.evaluate(() => {
       const out = [];

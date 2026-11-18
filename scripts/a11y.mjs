@@ -5,7 +5,7 @@ const base = process.argv[2] || 'http://localhost:4331';
 const axe = fs.readFileSync('node_modules/axe-core/axe.min.js', 'utf8');
 const b = await chromium.launch();
 let bad = 0;
-for (const w of [1280, 390]) for (const r of ['/', '/shkolla', '/stafi', '/lajme', '/lajme/suksese-ne-garen-ars-kosova-2026', '/aktivitete', '/klubet', '/galeria', '/oraret', '/oraret#klasat', '/oraret#origjinali', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/kerko', '/privatesia', '/festat/28-nentori']) {
+for (const w of [1280, 390]) for (const r of ['/', '/stafi', '/lajme', '/lajme/suksese-ne-garen-ars-kosova-2026', '/aktivitete', '/klubet', '/galeria', '/oraret', '/oraret#klasat', '/oraret#origjinali', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/kerko', '/privatesia', '/festat/28-nentori']) {
   const p = await b.newPage({ viewport: { width: w, height: 900 } });
   await p.goto(base + r, { waitUntil: 'networkidle' });
   await p.evaluate(axe);

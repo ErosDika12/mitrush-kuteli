@@ -5,7 +5,7 @@ import { mkdirSync } from 'node:fs';
 const base = process.argv[2];
 const out = process.argv[3];
 mkdirSync(out, { recursive: true });
-const pages = [['home', '/'], ['shkolla', '/shkolla'], ['stafi', '/stafi'], ['jeta', '/lajme'], ['prinderit', '/per-prinder']];
+const pages = [['home', '/'], ['stafi', '/stafi'], ['jeta', '/lajme'], ['prinderit', '/per-prinder']];
 // Optional: PUBLIC_CHECK_IP maps only the hostname to a reachable edge IP (TLS/SNI still use the real name).
 const ip = process.env.PUBLIC_CHECK_IP;
 const browser = await chromium.launch(ip ? { args: [`--host-resolver-rules=MAP ${new URL(base).hostname} ${ip}`] } : {});

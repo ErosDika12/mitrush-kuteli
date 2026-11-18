@@ -6,7 +6,7 @@ const out = process.argv[3];
 if (!out) throw new Error('output folder required');
 if (existsSync(out) && readdirSync(out).length) throw new Error(`${out} already has files; choose a new folder`);
 mkdirSync(out, { recursive: true });
-const pages = [['home', '/'], ['shkolla', '/shkolla'], ['stafi', '/stafi'], ['jeta', '/lajme'], ['prinderit', '/per-prinder']];
+const pages = [['home', '/'], ['stafi', '/stafi'], ['jeta', '/lajme'], ['prinderit', '/per-prinder']];
 const browser = await chromium.launch();
 for (const [name, path] of pages) {
   for (const w of [390, 768, 1440]) {

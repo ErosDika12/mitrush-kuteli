@@ -12,7 +12,7 @@ page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 page.on('pageerror', (e) => errors.push('pageerror ' + e.message));
 page.on('response', (r) => { if (r.status() >= 400 && !r.url().endsWith('/nuk-ekziston')) failed.push(r.status() + ' ' + r.url()); });
 
-const routes = ['/', '/shkolla', '/stafi', '/lajme', '/lajme/suksese-ne-garen-ars-kosova-2026', '/lajme/dhoma-burimore-arsim-gjitheperfshires', '/lajme/bashkepunim-per-cilesi-ne-mesimdhenie', '/aktivitete', '/klubet', '/galeria', '/oraret', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/kerko', '/privatesia', '/festat/28-nentori'];
+const routes = ['/', '/stafi', '/lajme', '/lajme/suksese-ne-garen-ars-kosova-2026', '/lajme/dhoma-burimore-arsim-gjitheperfshires', '/lajme/bashkepunim-per-cilesi-ne-mesimdhenie', '/aktivitete', '/klubet', '/galeria', '/oraret', '/per-prinder', '/konsultimet', '/dokumente', '/kontakti', '/kerko', '/privatesia', '/festat/28-nentori'];
 for (const r of routes) {
   await page.goto(base + r, { waitUntil: 'networkidle' });
   await page.evaluate(async () => {
@@ -33,7 +33,7 @@ ok('404 page returns 404 and has content', r404.status() === 404 && (await page.
 for (const w of [360, 390, 768, 1280, 1440]) {
   const p = await browser.newPage({ viewport: { width: w, height: 800 } });
   const bad = [];
-  for (const r of ['/', '/stafi', '/oraret', '/konsultimet', '/galeria', '/lajme', '/kontakti', '/dokumente', '/shkolla']) {
+  for (const r of ['/', '/stafi', '/oraret', '/konsultimet', '/galeria', '/lajme', '/kontakti', '/dokumente']) {
     await p.goto(base + r, { waitUntil: 'networkidle' });
     const o = await p.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (o > 0) bad.push(r + '(+' + o + ')');
@@ -54,7 +54,7 @@ for (const w of [360, 390, 768, 1280, 1440]) {
   ok('mobile: Escape closes menu and returns focus', (await toggle.getAttribute('aria-expanded')) === 'false' && (await p.evaluate(() => document.activeElement && document.activeElement.id)) === 'nav-toggle');
   await toggle.click();
   const labels = await p.locator('#primary-nav .nav-list a').allInnerTexts();
-  ok('mobile: menu lists exactly the five primary links', JSON.stringify(labels) === JSON.stringify(['Ballina', 'Shkolla', 'Stafi', 'Jeta shkollore', 'Për prindërit']), labels.join(' | '));
+  ok('mobile: menu lists exactly the four primary links', JSON.stringify(labels) === JSON.stringify(['Ballina', 'Stafi', 'Jeta shkollore', 'Për prindërit']), labels.join(' | '));
   await p.screenshot({ path: 'work/shots/mobile-menu.png' });
   await p.close();
 }

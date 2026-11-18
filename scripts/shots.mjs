@@ -6,7 +6,7 @@ const browser = await chromium.launch();
 const jobs = [
   ['home', '/', [1280, 390]], ['staff', '/stafi', [1280, 390]], ['schedule-bells', '/oraret', [1280, 390]], ['schedule-classes', '/oraret#klasat', [1280, 390]],
   ['consultations', '/konsultimet', [1280, 390]], ['gallery', '/galeria', [1280, 390]], ['news', '/lajme', [1280, 390]], ['article', '/lajme/bashkepunim-per-cilesi-ne-mesimdhenie', [1280, 390]],
-  ['clubs', '/klubet', [1280, 390]], ['school', '/shkolla', [1280, 390]], ['activities', '/aktivitete', [1280, 390]], ['documents', '/dokumente', [1280, 390]], ['contact', '/kontakti', [1280, 390]],
+  ['clubs', '/klubet', [1280, 390]], ['activities', '/aktivitete', [1280, 390]], ['documents', '/dokumente', [1280, 390]], ['contact', '/kontakti', [1280, 390]],
   ['parents', '/per-prinder', [1280, 390]], ['festive', '/festat/28-nentori', [1280, 390]],
 ];
 for (const [name, path, widths] of jobs) {

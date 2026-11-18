@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/shkolla",
+      "destination": "/#shkolla",
+      "permanent": true
+    }
+  ]
+}

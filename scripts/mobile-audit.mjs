@@ -9,7 +9,7 @@ const ctx = await browser.newContext({ viewport: { width, height: 800 }, isMobil
 const p = await ctx.newPage();
 let fail = 0;
 const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fail++; };
-const pages = ['/', '/shkolla', '/stafi', '/aktivitete', '/lajme', '/klubet', '/galeria', '/per-prinder', '/konsultimet', '/oraret', '/dokumente', '/kontakti'];
+const pages = ['/', '/stafi', '/aktivitete', '/lajme', '/klubet', '/galeria', '/per-prinder', '/konsultimet', '/oraret', '/dokumente', '/kontakti'];
 
 for (const path of pages) {
   await p.goto(base + path, { waitUntil: 'networkidle' });
@@ -45,7 +45,7 @@ const toggle = p.locator('#nav-toggle');
 await toggle.tap();
 ok((await toggle.getAttribute('aria-expanded')) === 'true' && (await p.locator('#primary-nav').isVisible()), 'menu opens by touch');
 ok((await toggle.innerText()).includes('Mbyll') && (await toggle.locator('.t-close').isVisible()), 'open menu shows an obvious close control (Mbyll)');
-ok((await p.locator('#primary-nav .nav-list a').allInnerTexts()).join('|') === 'Ballina|Shkolla|Stafi|Jeta shkollore|Për prindërit', 'menu: exactly five primary links');
+ok((await p.locator('#primary-nav .nav-list a').allInnerTexts()).join('|') === 'Ballina|Stafi|Jeta shkollore|Për prindërit', 'menu: exactly four primary links');
 ok((await p.locator('#primary-nav .nav-list a[aria-current="page"]').innerText()) === 'Për prindërit', 'menu: active section is marked');
 ok((await p.locator('#primary-nav .nav-quick a').allInnerTexts()).join('|') === 'Orari|Konsultimet|Kontakti', 'menu: Orari, Konsultimet, Kontakti quick links');
 ok((await p.locator('#primary-nav a[href^="tel:"]').count()) >= 1 && (await p.locator('#primary-nav a[href^="mailto:"]').count()) === 1, 'menu: phone and email are actionable');
