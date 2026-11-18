@@ -21,79 +21,84 @@ const byId = new Map(staff.map((m) => [m.id, m]));
 const subjects = [...new Set(staff.flatMap((s) => s.subjects))].sort((a, b) => a.localeCompare(b, 'sq'));
 const hasPhoto = (id: string) => !!byId.get(id)!.portrait?.approved;
 const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.roles[0] }; };
+const num = (i: number) => String(i + 1).padStart(2, '0');
+const countOf = (s: Section) => s.blocks.reduce((n, b) => n + (b.ids?.length ?? 0), 0);
+const members = (n: number) => `${n} ${n === 1 ? 'anëtar' : 'anëtarë'}`;
 ---
-<Layout title="Stafi" description="Drejtoria, mësimdhënësit sipas lëndës, arsimi fillor dhe parashkollor dhe shërbimet mbështetëse të SHFMU “Mitrush Kuteli”, me kërkim sipas emrit, lëndës ose rolit."  crumbs={[{ label: 'Stafi' }]}>
-  <div class="page-head">
+<Layout title="Stafi" description="Drejtoria, mësimdhënësit sipas lëndës, arsimi fillor dhe parafillor, shërbimet mbështetëse dhe psikologia e SHFMU “Mitrush Kuteli”, me kërkim sipas emrit ose lëndës." crumbs={[{ label: 'Stafi' }]}>
+  <div class="page-head sd-head">
     <div class="container">
-      <span class="eyebrow">Stafi</span>
       <h1>Njerëzit e shkollës</h1>
-      <p class="lead">Kërkoni sipas emrit, lëndës ose rolit. Kartela tregon orarin e takimit me prindër, ku ka.</p>
     </div>
   </div>
 
-  <section class="section tight">
+  <div class="sd-bar" id="sd-bar">
     <div class="container">
-      <form class="filters filters-compact" id="staff-filters" method="get" action="/stafi" role="search" aria-label="Kërko në stafin">
-        <div>
-          <label for="f-q">Emri, lënda ose roli</label>
-          <input id="f-q" type="search" name="q" autocomplete="off" placeholder="p.sh. Shkelzen, gjerman, psikologe" />
+      <form class="sd-form" id="staff-filters" method="get" action="/stafi" role="search" aria-label="Kërko në stafin">
+        <div class="sd-q">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label class="sr-only" for="f-q">Kërko emër ose lëndë</label>
+          <input id="f-q" type="search" name="q" autocomplete="off" placeholder="Kërko emër ose lëndë" />
         </div>
-        <div>
+        <div class="sd-sel">
           <label for="f-lenda">Lënda</label>
           <select id="f-lenda" name="lenda">
             <option value="">Të gjitha</option>
             {subjects.map((s) => <option value={s}>{s}</option>)}
           </select>
         </div>
-        <div>
+        <div class="sd-sel">
           <label for="f-grupi">Kategoria</label>
           <select id="f-grupi" name="grupi">
             <option value="">Të gjitha</option>
-            {sections.map((s) => <option value={s.id}>{s.title}</option>)}
+            {sections.map((s, i) => <option value={s.id}>{num(i)} {s.title}</option>)}
           </select>
         </div>
-        <div class="filter-actions">
-          <button class="btn" type="submit">Kërko</button>
-          <button class="btn ghost" type="reset" id="f-reset">Pastro</button>
-        </div>
       </form>
+      <nav class="sd-chips" aria-label="Kategoritë e stafit">
+        {sections.map((s, i) => <a href={`#${s.id}`}><b>{num(i)}</b> {s.title}</a>)}
+      </nav>
+    </div>
+  </div>
 
-      <p class="count" id="staff-count-wrap"><span id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona.</span><button class="clear-link" type="button" id="staff-clear" hidden>Pastro filtrat</button></p>
+  <div class="container staff-dir">
+    <p class="count" id="staff-count-wrap"><span id="staff-count" aria-live="polite">Po shfaqen {staff.length} nga {staff.length} persona.</span><button class="clear-link" type="button" id="staff-clear" hidden>Pastro filtrat</button></p>
 
-      {sections.map((sec) => (
-        <div class="staff-group" data-group-section={sec.id}>
-          <h2>{sec.title}</h2>
-          {sec.note && <p class="muted staff-note" data-note>{sec.note}</p>}
-          <div class:list={['staff-blocks', { multi: sec.blocks.length > 1 }]}>
+    {sections.map((sec, i) => (
+      <section class="sd-sec" id={sec.id} data-group-section={sec.id} aria-labelledby={`${sec.id}-h`}>
+        <div class="sd-side">
+          <span class="sd-num" aria-hidden="true">{num(i)}</span>
+          <h2 id={`${sec.id}-h`}>{sec.title}</h2>
+          <p class="sd-count" data-sec-count>{members(countOf(sec))}</p>
+        </div>
+        <div class="sd-main">
+          {sec.note && <p class="muted sd-note" data-note>{sec.note}</p>}
           {sec.blocks.map((b) => (
-            <div class="staff-block" data-block>
-              {b.title && <h3 class="subject-h">{b.title}</h3>}
+            <div class="sd-block" data-block>
+              {b.title && <h3 class="sd-sub"><span>{b.title}</span>{b.ids && <small data-block-count>{b.ids.length}</small>}</h3>}
               {b.see ? (
                 <p class="see-also" data-see={b.see}>
                   <a href={`#${b.see}`}>{byId.get(b.see)!.displayName}</a> · shih kartën te {b.seeLabel}
                 </p>
               ) : (
-                <>
-                  <div class:list={['staff-grid', sec.id]}>
-                    {(b.ids ?? []).filter(hasPhoto).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} />)}
-                  </div>
-                  <div class="staff-compact">
-                    {(b.ids ?? []).filter((id) => !hasPhoto(id)).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} />)}
-                  </div>
-                </>
+                <div class="sd-grid">
+                  {(b.ids ?? []).filter(hasPhoto).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} tile />)}
+                </div>
+                <div class="sd-list">
+                  {(b.ids ?? []).filter((id) => !hasPhoto(id)).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} />)}
+                </div>
               )}
             </div>
           ))}
-          </div>
         </div>
-      ))}
+      </section>
+    ))}
 
-      <EmptyState title="Nuk u gjet asnjë person" id="staff-empty" hidden>
-        <p>Provoni një shkrim tjetër ose pastroni filtrat.</p>
-        <button class="btn" type="button" id="staff-empty-reset">Pastro filtrat</button>
-      </EmptyState>
-    </div>
-  </section>
+    <EmptyState title="Nuk u gjet asnjë person" id="staff-empty" hidden>
+      <p>Provoni një shkrim tjetër ose pastroni filtrat.</p>
+      <button class="btn" type="button" id="staff-empty-reset">Pastro filtrat</button>
+    </EmptyState>
+  </div>
 
   <script>
     import { normalize } from '../lib/format';
@@ -110,6 +115,19 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
     const blocks = Array.from(document.querySelectorAll<HTMLElement>('[data-block]'));
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-group-section]'));
     const total = new Set(people.map((p) => p.dataset.id)).size;
+    const plural = (n: number) => `${n} ${n === 1 ? 'anëtar' : 'anëtarë'}`;
+
+    // Keep anchor targets clear of the sticky header and filter bar.
+    function offsets() {
+      const h = document.querySelector('.site-header') as HTMLElement | null;
+      const bar = document.getElementById('sd-bar') as HTMLElement;
+      const stuck = window.matchMedia('(min-width: 900px)').matches;
+      const hh = h ? h.offsetHeight : 0;
+      document.documentElement.style.setProperty('--sd-top', `${hh}px`);
+      document.documentElement.style.setProperty('--sd-offset', `${hh + (stuck ? bar.offsetHeight : 0) + 16}px`);
+    }
+    offsets();
+    window.addEventListener('resize', offsets);
 
     function apply() {
       const terms = normalize(q.value).split(/\s+/).filter(Boolean);
@@ -123,15 +141,21 @@ const person = (id: string) => { const m = byId.get(id)!; return { m, role: m.ro
         p.hidden = !ok;
         if (ok) seen.add(p.dataset.id!);
       }
-      // A cross-reference (e.g. music teacher) shows only while the card it points to is shown and no group filter hides it.
+      // A cross-reference (e.g. music teacher) shows only while the card it points to is shown and no category filter hides it.
       for (const l of document.querySelectorAll<HTMLElement>('[data-see]')) {
         const target = document.getElementById(l.dataset.see!);
         l.hidden = !target || target.hidden || !!grupi.value;
       }
-      for (const b of blocks) b.hidden = !b.querySelector('[data-person]:not([hidden]), [data-see]:not([hidden])');
+      for (const b of blocks) {
+        b.hidden = !b.querySelector('[data-person]:not([hidden]), [data-see]:not([hidden])');
+        const c = b.querySelector('[data-block-count]');
+        if (c) c.textContent = String(b.querySelectorAll('[data-person]:not([hidden])').length);
+      }
       for (const s of sections) {
         const note = s.querySelector('[data-note]');
         s.hidden = note ? !!(terms.length || lenda.value || (grupi.value && grupi.value !== s.dataset.groupSection)) : !s.querySelector('[data-block]:not([hidden])');
+        const c = s.querySelector('[data-sec-count]');
+        if (c) c.textContent = plural(s.querySelectorAll('[data-person]:not([hidden])').length);
       }
       empty.hidden = seen.size > 0 || !sections.every((s) => s.hidden);
       clearBtn.hidden = seen.size === 0 || !(q.value || lenda.value || grupi.value);
