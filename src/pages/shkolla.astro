@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
 import { school } from '../lib/data';
 
 // Only values confirmed by the school are shown; set "confirmed": true in src/data/school.json -> facts once a value is verified.
@@ -14,6 +15,12 @@ const facts = school.facts.filter((f) => f.confirmed && f.value);
   </div>
 
   <section class="section" aria-labelledby="id-h">
+    <div class="container">
+      <figure class="building-fig">
+        <Photo id="school-building" crop sizes="(min-width: 1200px) 1200px, 100vw" widths={[480, 800, 1200, 1600]} />
+        <figcaption class="small muted">Objekti i shkollës në Matiçan.</figcaption>
+      </figure>
+    </div>
     <div class="container identity">
       <div class="stack">
         <h2 id="id-h">Identiteti i shkollës</h2>

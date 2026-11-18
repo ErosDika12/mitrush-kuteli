@@ -20,7 +20,7 @@ for (const mobile of [true, false]) {
   ok((await act()) === a, 'no auto-advance while paused');
   await p.locator('#rot-pause').click();
   await p.locator('.rot-stage').focus(); await p.keyboard.press('ArrowRight');
-  ok((await act()) === (a + 1) % 4, 'ArrowRight moves to next');
+  ok((await act()) === (a + 1) % 5, 'ArrowRight moves to next');
   await p.keyboard.press('ArrowLeft');
   ok((await act()) === a, 'ArrowLeft moves back');
   await p.locator('[data-dot="3"]').click();
@@ -29,7 +29,7 @@ for (const mobile of [true, false]) {
   if (mobile) {
     const box = await p.locator('.rot-stage').boundingBox();
     await p.evaluate(() => { const st = document.getElementById('rot-stage'); const mk = (t, x) => new TouchEvent(t, { bubbles: true, cancelable: true, touches: t === 'touchend' ? [] : [new Touch({ identifier: 1, target: st, clientX: x, clientY: 300 })], changedTouches: [new Touch({ identifier: 1, target: st, clientX: x, clientY: 300 })] }); st.dispatchEvent(mk('touchstart', 300)); st.dispatchEvent(mk('touchend', 120)); });
-    ok((await act()) === 0, 'swipe left goes to next (wraps to 1)');
+    ok((await act()) === 4, 'swipe left goes to next slide');
   }
   await c.close();
 }
