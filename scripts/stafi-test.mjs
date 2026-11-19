@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 const base = process.argv[2];
-const b = await chromium.launch();
+const ip0 = process.env.PUBLIC_CHECK_IP; const b = await chromium.launch(ip0 ? { args: [`--host-resolver-rules=MAP ${new URL(base).hostname} ${ip0}`] } : {});
 let fail = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fail++; };
 const c = await b.newContext({ viewport: { width: 1440, height: 900 } });
 const p = await c.newPage();

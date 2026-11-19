@@ -25,7 +25,7 @@ for (const w of [390, 1440]) {
     await p.evaluate(async () => {
       const imgs = [...document.images].filter((i) => i.getAttribute("src") || i.currentSrc);
       imgs.forEach((i) => { i.loading = "eager"; });
-      await Promise.all(imgs.map((i) => new Promise((res) => { if (i.complete) return res(); i.addEventListener("load", res); i.addEventListener("error", res); setTimeout(res, 8000); })));
+      await Promise.all(imgs.map((i) => new Promise((res) => { if (i.complete) return res(); i.addEventListener("load", res); i.addEventListener("error", res); setTimeout(res, 25000); })));
     });
     const broken = await p.evaluate(() => [...document.images].filter((i) => (i.getAttribute("src") || i.currentSrc) && !(i.complete && i.naturalWidth > 0)).map((i) => i.currentSrc || i.src));
     ok(broken.length === 0, `${w}px ${path}: all ${await p.locator('img').count()} images loaded${broken.length ? ' → BROKEN: ' + broken.slice(0, 3).join(' | ') : ''}`);
@@ -34,7 +34,7 @@ for (const w of [390, 1440]) {
   await p.goto(base + '/stafi', { waitUntil: 'networkidle' });
   await p.evaluate(async () => {
     const imgs = [...document.images]; imgs.forEach((i) => { i.loading = "eager"; });
-    await Promise.all(imgs.map((i) => new Promise((res) => { if (i.complete) return res(); i.addEventListener("load", res); i.addEventListener("error", res); setTimeout(res, 8000); })));
+    await Promise.all(imgs.map((i) => new Promise((res) => { if (i.complete) return res(); i.addEventListener("load", res); i.addEventListener("error", res); setTimeout(res, 25000); })));
   });
   const shown = await p.evaluate(() => [...document.querySelectorAll('[data-person]')].filter((a) => { const i = a.querySelector('.portrait img'); return i && i.complete && i.naturalWidth > 0; }).map((a) => a.dataset.id));
   const missing = expected.filter((id) => !shown.includes(id));

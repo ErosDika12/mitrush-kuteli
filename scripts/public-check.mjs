@@ -28,7 +28,7 @@ for (const [name, path] of pages) {
     heroBg: getComputedStyle(document.querySelector('.hero') || document.body).backgroundColor,
     title: document.title,
   }));
-  ok(info.nav === 'Ballina|Shkolla|Stafi|Jeta shkollore|Për prindërit', `${path}: five nav links (${info.nav})`);
+  ok(info.nav === 'Ballina|Stafi|Jeta shkollore|Për prindërit', `${path}: four nav links (${info.nav})`);
   ok(info.robots === 'index, follow', `${path}: robots meta = ${info.robots}`);
   ok(info.broken === 0 && !bad.length, `${path}: ${info.imgs} images, ${info.broken} broken, failed requests: ${bad.length ? bad.join(', ') : 'none'}`);
   if (name === 'home') ok(info.heroBg === 'rgb(255, 255, 255)', `home: white hero (new design), bg ${info.heroBg}`);
