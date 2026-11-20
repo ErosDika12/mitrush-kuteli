@@ -11,11 +11,12 @@ export const GOOGLE_SITE_VERIFICATION: string | undefined = /^[A-Za-z0-9_-]{20,1
 
 export interface NavItem { label: string; href: string; match: string[] }
 
-/** Exactly four primary entries (the school identity lives on the home page, #shkolla). Everything else lives under one of them (see sections below). */
+/** Five primary entries (the school identity lives on the home page, #shkolla). Everything else lives under one of them (see sections below). */
 export const nav: NavItem[] = [
   { label: 'Ballina', href: '/', match: ['/', '/festat'] },
   { label: 'Stafi', href: '/stafi', match: ['/stafi'] },
-  { label: 'Jeta shkollore', href: '/aktivitete', match: ['/aktivitete', '/lajme', '/klubet', '/galeria'] },
+  { label: 'Jeta shkollore', href: '/aktivitete', match: ['/aktivitete', '/lajme', '/klubet'] },
+  { label: 'Galeria', href: '/galeria', match: ['/galeria'] },
   { label: 'Për prindërit', href: '/per-prinder', match: ['/per-prinder', '/oraret', '/konsultimet', '/dokumente', '/kontakti'] },
 ];
 
@@ -27,7 +28,6 @@ export const sections: Record<SectionId, { title: string; items: { label: string
       { label: 'Përmbledhje', href: '/aktivitete', match: ['/aktivitete'] },
       { label: 'Lajme', href: '/lajme', match: ['/lajme'] },
       { label: 'Klubet', href: '/klubet', match: ['/klubet'] },
-      { label: 'Galeria', href: '/galeria', match: ['/galeria'] },
     ],
   },
   prindi: {

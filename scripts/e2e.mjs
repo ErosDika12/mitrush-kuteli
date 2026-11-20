@@ -54,7 +54,7 @@ for (const w of [360, 390, 768, 1280, 1440]) {
   ok('mobile: Escape closes menu and returns focus', (await toggle.getAttribute('aria-expanded')) === 'false' && (await p.evaluate(() => document.activeElement && document.activeElement.id)) === 'nav-toggle');
   await toggle.click();
   const labels = await p.locator('#primary-nav .nav-list a').allInnerTexts();
-  ok('mobile: menu lists exactly the four primary links', JSON.stringify(labels) === JSON.stringify(['Ballina', 'Stafi', 'Jeta shkollore', 'Për prindërit']), labels.join(' | '));
+  ok('mobile: menu lists exactly the five primary links', JSON.stringify(labels) === JSON.stringify(['Ballina', 'Stafi', 'Jeta shkollore', 'Galeria', 'Për prindërit']), labels.join(' | '));
   await p.screenshot({ path: 'work/shots/mobile-menu.png' });
   await p.close();
 }

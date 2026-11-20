@@ -1,42 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
-import { getImage } from 'astro:assets';
-import { photos, albums } from '../lib/photos';
+import { Picture, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { photos, albums, images } from '../lib/photos';
+import spaces from '../data/spaces.json';
 
-const full = await Promise.all(
-  photos.map(async (p) => ({ id: p.id, url: (await getImage({ src: p.src, width: 1600, format: 'webp' })).src })),
-);
-const fullUrl = new Map(full.map((f) => [f.id, f.url]));
-let index = -1;
+const spaceCats = spaces.categories.map((c) => ({
+  ...c,
+  photos: c.photos.map((p) => {
+    const src = images[p.id];
+    if (!src) throw new Error(`Space photo ${p.id} is listed in spaces.json but missing from src/assets/photos`);
+    return { ...p, src };
+  }),
+}));
+const fullOf = async (src: ImageMetadata) => (await getImage({ src, width: 1800, format: 'webp' })).src;
+const spaceFull = new Map<string, string>();
+for (const c of spaceCats) for (const p of c.photos) spaceFull.set(p.id, await fullOf(p.src));
+const albumFull = new Map<string, string>();
+for (const p of photos) albumFull.set(p.id, await fullOf(p.src));
+const total = spaceCats.reduce((n, c) => n + c.photos.length, 0);
 ---
-<Layout section="jeta" title="Galeria" description="Fotografi nga jeta e SHFMU “Mitrush Kuteli”: muzikë, sport dhe aktivitete në natyrë." crumbs={[{ label: 'Galeria' }]} ogPhoto="foto-4">
+<Layout title="Galeria" description="Ambientet e SHFMU “Mitrush Kuteli”: salla e sportit, kabinetet, laboratori i TIK-ut, biblioteka, korridoret dhe punimet e nxënësve." crumbs={[{ label: 'Galeria' }]} ogPhoto="amb-salla-sportit">
   <div class="page-head">
     <div class="container">
       <span class="eyebrow">Galeria</span>
-      <h1>Fotografi nga shkolla</h1>
-      <p class="lead">Klikoni mbi një fotografi për ta zmadhuar.</p>
+      <h1>{spaces.title}</h1>
+      <p class="lead">Njihuni me hapësirat ku mësojmë, krijojmë dhe zhvillojmë talentet tona.</p>
     </div>
   </div>
 
-  <section class="section">
+  <section class="section gal" aria-labelledby="amb-h">
     <div class="container">
+      <h2 id="amb-h" class="sr-only">Ambientet sipas hapësirës</h2>
+      <div class="gal-filter">
+        <label for="gal-cat">Shfaq hapësirën</label>
+        <select id="gal-cat">
+          <option value="all">Të gjitha ({total})</option>
+          {spaceCats.map((c) => <option value={c.id}>{c.title} ({c.photos.length})</option>)}
+        </select>
+      </div>
+
+      {spaceCats.map((c) => (
+        <div class="gal-cat" id={c.id} data-cat={c.id}>
+          <h3>{c.title}</h3>
+          <div class="gal-grid">
+            {c.photos.map((p) => (
+              <figure class="gal-item">
+                <button class="gal-thumb" type="button" data-lb data-space data-full={spaceFull.get(p.id)} data-alt={p.alt} data-caption={p.caption} aria-label={`Hap foton: ${p.caption}`}>
+                  <Picture src={p.src} alt={p.alt} widths={[400, 700, 1000]} sizes="(min-width: 1024px) 380px, (min-width: 600px) 46vw, 92vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" decoding="async" />
+                </button>
+                <figcaption>{p.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="jeta-h" id="jeta-ne-foto">
+    <div class="container">
+      <h2 id="jeta-h">Jeta shkollore në foto</h2>
       {albums.map((al) => {
         const list = photos.filter((p) => p.album === al.id);
         return (
           <div class="staff-group" id={al.id}>
-            <h2>{al.title}</h2>
+            <h3>{al.title}</h3>
             <p class="muted">{al.text}</p>
             <div class="gallery-grid">
-              {list.map((p) => {
-                index += 1;
-                return (
-                  <button class:list={['thumb', { wide: p.src.width / p.src.height > 1.7 }]} type="button" data-lb data-index={index} data-full={fullUrl.get(p.id)} data-alt={p.alt} data-caption={p.caption}>
-                    <span class="frame"><Photo id={p.id} sizes="(min-width: 900px) 320px, 50vw" widths={[320, 640]} /></span>
-                    <span>{p.caption}</span>
-                  </button>
-                );
-              })}
+              {list.map((p) => (
+                <button class:list={['thumb', { wide: p.src.width / p.src.height > 1.7 }]} type="button" data-lb data-full={albumFull.get(p.id)} data-alt={p.alt} data-caption={p.caption}>
+                  <span class="frame"><Photo id={p.id} sizes="(min-width: 900px) 320px, 50vw" widths={[320, 640]} /></span>
+                  <span>{p.caption}</span>
+                </button>
+              ))}
             </div>
           </div>
         );
@@ -49,7 +87,7 @@ let index = -1;
     <div class="lb-inner">
       <div class="lb-bar">
         <span id="lb-count" aria-live="polite"></span>
-        <button class="lb-btn" type="button" id="lb-close" aria-label="Mbyll fotografinë"><span aria-hidden="true">✕</span> Mbyll</button>
+        <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Mbyll fotografinë"><span aria-hidden="true">✕</span> Mbyll</button>
       </div>
       <div class="lb-stage" id="lb-stage">
         <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Fotografia e mëparshme">‹</button>
@@ -60,48 +98,81 @@ let index = -1;
     </div>
   </dialog>
 
+  <style>
+    .gal-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: var(--s4); }
+    .gal-filter label { margin: 0; }
+    .gal-filter select { min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--paper); color: var(--navy); font: inherit; }
+    .gal-cat + .gal-cat { margin-top: var(--s5); }
+    .gal-cat h3 { margin: 0 0 var(--s2); }
+    .gal-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 600px) { .gal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .gal-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .gal-item { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .gal-thumb { display: block; width: 100%; padding: 0; border: 0; background: #ecebe6; cursor: zoom-in; aspect-ratio: 4 / 3; }
+    .gal-thumb :global(img) { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .gal-item figcaption { padding: 12px 14px; font-size: 0.92rem; }
+    .lb-close { width: auto; padding: 0 16px; font-size: 1rem; gap: 6px; display: inline-flex; align-items: center; min-height: 44px; }
+    .gal-cat[hidden] { display: none; }
+  </style>
+
   <script>
+    const select = document.getElementById('gal-cat') as HTMLSelectElement;
+    const cats = Array.from(document.querySelectorAll<HTMLElement>('[data-cat]'));
+    function applyFilter() {
+      const v = select.value;
+      cats.forEach((c) => { c.hidden = v !== 'all' && c.dataset.cat !== v; });
+    }
+    select.addEventListener('change', () => {
+      applyFilter();
+      history.replaceState(null, '', select.value === 'all' ? location.pathname : `#${select.value}`);
+    });
+    const initial = location.hash.slice(1);
+    if (cats.some((c) => c.dataset.cat === initial)) { select.value = initial; applyFilter(); }
+
     const dlg = document.getElementById('lb') as HTMLDialogElement;
     const img = document.getElementById('lb-img') as HTMLImageElement;
     const cap = document.getElementById('lb-cap')!;
     const count = document.getElementById('lb-count')!;
     const stage = document.getElementById('lb-stage')!;
-    const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lb]'));
+    const all = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lb]'));
+    let list: HTMLButtonElement[] = [];
     let cur = 0;
     let trigger: HTMLElement | null = null;
+    let scrollY = 0;
 
     function show(i: number) {
-      cur = (i + thumbs.length) % thumbs.length;
-      const t = thumbs[cur];
+      cur = (i + list.length) % list.length;
+      const t = list[cur];
       img.src = t.dataset.full!;
       img.alt = t.dataset.alt!;
       cap.textContent = t.dataset.caption!;
-      count.textContent = `${cur + 1} / ${thumbs.length}`;
-      const next = new Image(); next.src = thumbs[(cur + 1) % thumbs.length].dataset.full!;
+      count.textContent = `${cur + 1} / ${list.length}`;
+      const next = new Image(); next.src = list[(cur + 1) % list.length].dataset.full!;
     }
-    function open(i: number, from: HTMLElement) {
-      trigger = from;
-      show(i);
+    all.forEach((t) => t.addEventListener('click', () => {
+      const group = t.hasAttribute('data-space');
+      list = all.filter((b) => b.hasAttribute('data-space') === group && !b.closest('[hidden]'));
+      trigger = t;
+      scrollY = window.scrollY;
+      show(list.indexOf(t));
       dlg.showModal();
       document.documentElement.classList.add('lock');
       (document.getElementById('lb-close') as HTMLElement).focus();
-    }
-    thumbs.forEach((t, i) => t.addEventListener('click', () => open(i, t)));
+    }));
     document.getElementById('lb-close')!.addEventListener('click', () => dlg.close());
     document.getElementById('lb-prev')!.addEventListener('click', () => show(cur - 1));
     document.getElementById('lb-next')!.addEventListener('click', () => show(cur + 1));
     dlg.addEventListener('close', () => {
       document.documentElement.classList.remove('lock');
       img.removeAttribute('src');
-      trigger?.focus();
+      trigger?.focus({ preventScroll: true });
+      window.scrollTo(0, scrollY);
     });
     dlg.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1); }
       if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1); }
     });
-    // Click on the dark backdrop closes the dialog.
     dlg.addEventListener('click', (e) => { if (e.target === dlg || (e.target as HTMLElement).classList.contains('lb-inner')) dlg.close(); });
-    // Swipe on touch screens.
     let x0 = 0;
     stage.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
     stage.addEventListener('pointerup', (e) => {

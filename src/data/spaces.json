@@ -1,0 +1,189 @@
+{
+  "title": "Ambientet e shkollës",
+  "categories": [
+    {
+      "id": "salla-sportit",
+      "title": "Salla e sportit",
+      "photos": [
+        {
+          "id": "amb-salla-sportit",
+          "caption": "Salla e edukatës fizike",
+          "alt": "Salla e sportit me dysheme blu, koshat e basketbollit, portat e hendbollit dhe shkallët suedeze përgjatë murit.",
+          "source": "photos-source/ambientet/salla-sportit.webp",
+          "width": 1337,
+          "height": 927
+        }
+      ]
+    },
+    {
+      "id": "biologji",
+      "title": "Kabineti i biologjisë",
+      "photos": [
+        {
+          "id": "amb-biologji-klasa",
+          "caption": "Klasa e biologjisë me posterat",
+          "alt": "Klasë me banka druri, dollapë metalikë shumëngjyrësh dhe postera biologjikë të varur në mur.",
+          "source": "photos-source/ambientet/biologji-klasa.webp",
+          "width": 1475,
+          "height": 677
+        },
+        {
+          "id": "amb-biologji-posterat",
+          "caption": "Posterat biologjikë",
+          "alt": "Postera mësimorë për mizën shtëpiake, skeletin e lakuriqit të natës dhe muskujt e trupit të njeriut.",
+          "source": "photos-source/ambientet/biologji-posterat.webp",
+          "width": 1043,
+          "height": 537
+        },
+        {
+          "id": "amb-biologji-modelet",
+          "caption": "Modelet anatomike dhe modeli i ADN-së",
+          "alt": "Raft me modele anatomike të trupit, zemrës, veshit dhe skeletit, një model i ADN-së dhe postera të punuar në mur.",
+          "source": "photos-source/ambientet/biologji-modelet.webp",
+          "width": 1005,
+          "height": 931
+        },
+        {
+          "id": "amb-biologji-murali-zemres",
+          "caption": "Murali i zemrës",
+          "alt": "Zemër e pikturuar në mur me ngjyra të kuqe, blu dhe të verdhë.",
+          "source": "photos-source/ambientet/biologji-murali-zemres.webp",
+          "width": 747,
+          "height": 935
+        }
+      ]
+    },
+    {
+      "id": "matematike",
+      "title": "Kabineti i matematikës",
+      "photos": [
+        {
+          "id": "amb-matematike-tabela",
+          "caption": "Tabela e matematikës",
+          "alt": "Tabelë e gjelbër me ekuacione, thyesa dhe Teoremën e Pitagorës, nën mbishkrimin “MATH” me forma gjeometrike.",
+          "source": "photos-source/ambientet/matematike-tabela.webp",
+          "width": 956,
+          "height": 651
+        }
+      ]
+    },
+    {
+      "id": "tik",
+      "title": "Laboratori i TIK-ut dhe robotika",
+      "photos": [
+        {
+          "id": "amb-tik-kompjuterat",
+          "caption": "Kompjuterët e laboratorit",
+          "alt": "Kompjuterë në tavolina druri me karrige, para një muri me fjalët “EDUCATION” dhe një robot të pikturuar.",
+          "source": "photos-source/ambientet/tik-kompjuterat.webp",
+          "width": 1187,
+          "height": 921
+        },
+        {
+          "id": "amb-tik-murali-computer-lab",
+          "caption": "Murali “Welcome to Computer Lab Room”",
+          "alt": "Mural blu e i zi me mbishkrimin “Welcome to Computer Lab Room”, një kompjuter, lule dhe libra.",
+          "source": "photos-source/ambientet/tik-murali-computer-lab.webp",
+          "width": 1472,
+          "height": 946
+        },
+        {
+          "id": "amb-tik-robonova",
+          "caption": "Murali “RoboNova & RoboMasters”",
+          "alt": "Mbishkrim në mur “RoboNova & RoboMasters” me vizatimin e një kompjuteri.",
+          "source": "photos-source/ambientet/tik-robonova.webp",
+          "width": 1457,
+          "height": 873
+        }
+      ]
+    },
+    {
+      "id": "muzike",
+      "title": "Kabineti i muzikës",
+      "photos": [
+        {
+          "id": "amb-muzike-instrumentet",
+          "caption": "Instrumentet muzikore dhe bateria",
+          "alt": "Bateri, cimbale dhe altoparlantë pranë tabelës së bardhë në kabinetin e muzikës.",
+          "source": "photos-source/ambientet/muzike-instrumentet.webp",
+          "width": 1210,
+          "height": 867
+        },
+        {
+          "id": "amb-muzike-kompozitoret",
+          "caption": "Periudhat muzikore dhe kompozitorët",
+          "alt": "Ekspozitë me stilet e barokut, klasicizmit, romantizmit dhe modernes, me portretet e kompozitorëve.",
+          "source": "photos-source/ambientet/muzike-kompozitoret.webp",
+          "width": 802,
+          "height": 677
+        },
+        {
+          "id": "amb-muzike-murali-pianos",
+          "caption": "Murali i pianos",
+          "alt": "Mural me një vajzë me fustan të kuq që i bie pianos, rrethuar me nota muzikore dhe fotografi të kompozitorëve kosovarë.",
+          "source": "photos-source/ambientet/muzike-murali-pianos.webp",
+          "width": 1235,
+          "height": 931
+        }
+      ]
+    },
+    {
+      "id": "biblioteka",
+      "title": "Biblioteka",
+      "photos": [
+        {
+          "id": "amb-biblioteka",
+          "caption": "Biblioteka e shkollës",
+          "alt": "Rafte me libra dhe një tavolinë e rrumbullakët leximi me karrige në bibliotekën e shkollës.",
+          "source": "photos-source/ambientet/biblioteka.webp",
+          "width": 1428,
+          "height": 838
+        }
+      ]
+    },
+    {
+      "id": "arti",
+      "title": "Arti dhe punimet e nxënësve",
+      "photos": [
+        {
+          "id": "amb-arti-murali-art",
+          "caption": "Murali “ART”",
+          "alt": "Mbishkrim i gjelbër “ART” i pikturuar në mur, me një paletë ngjyrash dhe furçë.",
+          "source": "photos-source/ambientet/arti-murali-art.webp",
+          "width": 1736,
+          "height": 702
+        },
+        {
+          "id": "amb-arti-vitrina",
+          "caption": "Vitrina me punime dhe trashëgimi kulturore",
+          "alt": "Vitrinë dhe rafte me punime të nxënësve dhe objekte të trashëgimisë kulturore.",
+          "source": "photos-source/ambientet/arti-vitrina.png",
+          "width": 577,
+          "height": 403
+        }
+      ]
+    },
+    {
+      "id": "korridoret",
+      "title": "Korridoret dhe hapësirat e përbashkëta",
+      "photos": [
+        {
+          "id": "amb-korridori-murali-vizatimor",
+          "caption": "Murali me personazhe vizatimorë",
+          "alt": "Mural i gjatë në korridor me personazhe vizatimorë, punim i nxënësve.",
+          "source": "photos-source/ambientet/korridori-murali-vizatimor.webp",
+          "width": 1440,
+          "height": 940
+        },
+        {
+          "id": "amb-korridori-globi",
+          "caption": "Murali me globin dhe siluetat e fëmijëve",
+          "alt": "Korridor me muralin “We are the future of the world”, një glob me duar shumëngjyrëshe dhe silueta fëmijësh.",
+          "source": "photos-source/ambientet/korridori-globi.webp",
+          "width": 1372,
+          "height": 925
+        }
+      ]
+    }
+  ]
+}
