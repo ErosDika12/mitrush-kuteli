@@ -32,12 +32,18 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "luljete-haxhijaj",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "fortesa-gashi",
-    "displayName": "Fortesa Gashi",
-    "aliases": [],
+    "displayName": "Fortesa Gashi Miftari",
+    "aliases": [
+      "Fortesa Gashi"
+    ],
     "subjects": [
       "Gjuhë shqipe"
     ],
@@ -48,7 +54,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "fortesa-gashi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "edona-novoberdaliu",
@@ -82,7 +92,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "kemal-islami",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "sebahat-gashi",
@@ -164,7 +178,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "arta-kllokoqi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "hikmete-limani",
@@ -202,7 +220,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "nora-vitija",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "albert-muslijaj",
@@ -240,7 +262,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "njomza-jetullahu",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "akter-imeri",
@@ -299,7 +325,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "shkelzen-asimi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "diellona-kabashi",
@@ -405,7 +435,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "taibe-morina",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "donjeta-rrashiti",
@@ -487,8 +521,8 @@
     "subjects": [],
     "roles": [
       {
-        "label": "Pozicioni nuk është specifikuar",
-        "group": "other"
+        "label": "Mësuese",
+        "group": "teaching"
       }
     ],
     "source": "owner-captions-2026-11-16",
@@ -528,7 +562,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null
+    "portrait": {
+      "file": "blinera-maliqi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "valbona-rapuca",
@@ -542,7 +580,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null
+    "portrait": {
+      "file": "valbona-rapuca",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "hatixhe-zogaj",
@@ -556,7 +598,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null
+    "portrait": {
+      "file": "hatixhe-zogaj",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "alban-mustafa",
@@ -570,7 +616,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null
+    "portrait": {
+      "file": "alban-mustafa",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "adelina-arifi",
@@ -584,7 +634,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null,
+    "portrait": {
+      "file": "adelina-arifi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    },
     "stage": "parashkollor"
   },
   {
@@ -599,7 +653,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null
+    "portrait": {
+      "file": "gentiana-mavriqi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "diturie-hajdini",
@@ -613,7 +671,11 @@
       }
     ],
     "source": "owner-captions-2026-11-16",
-    "portrait": null,
+    "portrait": {
+      "file": "diturie-hajdini",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    },
     "stage": "I–V"
   }
 ]
