@@ -12,7 +12,7 @@
       "title": "Klubi i futbollit — vajzat",
       "category": "Sport",
       "group": "vajzat",
-      "photo": "futboll-vajzat-existing"
+      "photo": "futboll-vajzat"
     },
     {
       "id": "basketboll-djemte",
@@ -26,7 +26,7 @@
       "title": "Klubi i hendbollit — djemtë",
       "category": "Sport",
       "group": "djemtë",
-      "photo": null
+      "photo": "hendboll-djemte"
     },
     {
       "id": "hendboll-vajzat",

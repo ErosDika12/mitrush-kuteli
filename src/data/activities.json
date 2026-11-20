@@ -10,12 +10,23 @@
     ]
   },
   {
+    "id": "aktivitete-shkollore",
+    "title": "Aktivitete shkollore",
+    "kind": "Shkolla",
+    "text": "Fushata ndërgjegjësimi dhe turne sportive të organizuara nga nxënësit dhe mësimdhënësit e shkollës.",
+    "photos": [
+      "kanceri-gjirit",
+      "turneu-futbollit"
+    ]
+  },
+  {
     "id": "sport",
     "title": "Sport",
     "kind": "Sport",
     "text": "Nxënësit dhe nxënëset luajnë futboll, basketboll dhe hendboll në klubet sportive të shkollës.",
     "photos": [
-      "futboll-vajzat-existing"
+      "futboll-vajzat",
+      "hendboll-djemte"
     ]
   },
   {

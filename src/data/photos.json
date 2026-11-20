@@ -61,6 +61,34 @@
       "caption": "Klubi i futbollit — vajzat",
       "album": "sport",
       "focus": "50% 70%"
+    },
+    {
+      "id": "hendboll-djemte",
+      "alt": "Tetë nxënës në fanella të kuqe dhe një në fanellë jeshile, disa në këmbë e dy të gjunjëzuar, me një mësimdhënëse dhe një mësimdhënës në një sallë sportive.",
+      "caption": "Ekipi i djemve i hendbollit",
+      "album": "sport",
+      "focus": "50% 50%"
+    },
+    {
+      "id": "kanceri-gjirit",
+      "alt": "Nxënëse dhe mësimdhënëse të veshura në rozë pozojnë në shkallët e shkollës gjatë aktivitetit për ndërgjegjësimin për kancerin e gjirit.",
+      "caption": "Aktivitet për ndërgjegjësimin për kancerin e gjirit",
+      "album": "aktivitete-shkollore",
+      "focus": "50% 50%"
+    },
+    {
+      "id": "turneu-futbollit",
+      "alt": "Dy ekipe nxënësish, njëri në fanella të bardha e tjetri në fanella blu-kuq, të radhitur me dy mësimdhënëse në një fushë sportive në oborr.",
+      "caption": "Turneu i futbollit në shkollë",
+      "album": "aktivitete-shkollore",
+      "focus": "50% 50%"
+    },
+    {
+      "id": "futboll-vajzat",
+      "alt": "Nxënëse në fanella të kuqe me medalje, me një trofe dhe top futbolli, bashkë me dy mësimdhënëse në fushën sportive të shkollës.",
+      "caption": "Klubi i futbollit — vajzat",
+      "album": "sport",
+      "focus": "50% 50%"
     }
   ],
   "albums": [
@@ -83,6 +111,11 @@
       "id": "natyre",
       "title": "Në natyrë",
       "text": "Aktivitete jashtë klasës."
+    },
+    {
+      "id": "aktivitete-shkollore",
+      "title": "Aktivitete shkollore",
+      "text": "Aktivitete, fushata dhe turne të organizuara në shkollë."
     }
   ]
 }
