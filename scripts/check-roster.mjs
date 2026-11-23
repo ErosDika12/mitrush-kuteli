@@ -7,7 +7,7 @@ const T = [
  ['remzije-racaj','Remzije Racaj','leadership','Drejtoreshë','',null,1],
  ['besnik-mehmeti','Besnik Mehmeti','leadership','Sekretar i shkollës','',null,1],
  ['hasime-mehmeti','Hasime Mehmeti','leadership','Koordinatore','Art muzikor',null,1],
- ['bukurije-kameri','Bukurije Kameri','teaching','Mësimdhënës/e','Gjuhë shqipe',null,0],
+ ['bukurije-kameri','Bukurije Kameri','teaching','Mësimdhënës/e','Gjuhë shqipe',null,1],
  ['luljete-haxhijaj','Luljeta Haxhiaj','teaching','Mësimdhënëse','Gjuhë shqipe',null,1],
  ['fortesa-gashi','Fortesa Gashi Miftari','teaching','Mësimdhënëse','Gjuhë shqipe',null,1],
  ['edona-novoberdaliu','Edona Novobërdaliu','teaching','Mësimdhënës/e','Gjuhë angleze',null,1],

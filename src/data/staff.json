@@ -13,7 +13,11 @@
       }
     ],
     "source": "consultations",
-    "portrait": null
+    "portrait": {
+      "file": "bukurije-kameri",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "luljete-haxhijaj",
