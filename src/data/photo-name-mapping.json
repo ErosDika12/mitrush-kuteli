@@ -182,6 +182,36 @@
       "packageOriginalFile": null,
       "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
       "status": "resolved"
+    },
+    {
+      "personId": "edona-novoberdaliu",
+      "displayName": "Edona Novobërdaliu",
+      "photoId": "edona-novoberdaliu",
+      "webFile": "src/assets/staff/edona-novoberdaliu.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "merita-sejdiu",
+      "displayName": "Merita Sejdiu",
+      "photoId": "merita-sejdiu",
+      "webFile": "src/assets/staff/merita-sejdiu.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "diellona-kabashi",
+      "displayName": "Diellona Kabashi",
+      "photoId": "diellona-kabashi",
+      "webFile": "src/assets/staff/diellona-kabashi.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
+      "status": "resolved"
     }
   ],
   "unassigned": [
