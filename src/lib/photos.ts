@@ -13,7 +13,7 @@ for (const [path, mod] of Object.entries(staffFiles)) {
   images[path.split('/').pop()!.replace(/.webp$/, '')] = mod.default;
 }
 
-export interface Photo { id: string; alt: string; caption: string; album: string; focus?: string; ratio?: string; src: ImageMetadata }
+export interface Photo { id: string; alt: string; caption: string; album: string; focus?: string; ratio?: string; fit?: 'contain' | 'cover'; src: ImageMetadata }
 
 export const photos: Photo[] = photosData.photos.map((p) => {
   const src = images[p.id];

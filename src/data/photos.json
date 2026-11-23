@@ -49,11 +49,12 @@
     },
     {
       "id": "futboll-djemte",
-      "alt": "Ekip nxënësish në fanella të kuqe, disa në këmbë e disa të gjunjëzuar, bashkë me një mësimdhënëse në një sallë sporti.",
-      "caption": "Klubi i futbollit — djemtë",
+      "alt": "Ekipi i futbollit të shkollës Mitrush Kuteli në sallën sportive.",
+      "caption": "Futbolli në sallë",
       "album": "sport",
-      "focus": "50% 100%",
-      "ratio": "5 / 4"
+      "focus": "50% 50%",
+      "ratio": "1135 / 697",
+      "fit": "contain"
     },
     {
       "id": "futboll-vajzat-existing",
