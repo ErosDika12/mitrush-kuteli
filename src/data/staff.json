@@ -691,7 +691,11 @@
       }
     ],
     "source": "owner-update-2026-11-23",
-    "portrait": null
+    "portrait": {
+      "file": "bardha-muharremi",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   },
   {
     "id": "modesta-noci",
@@ -705,6 +709,10 @@
       }
     ],
     "source": "owner-update-2026-11-23",
-    "portrait": null
+    "portrait": {
+      "file": "modesta-noci",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
+      "approved": true
+    }
   }
 ]

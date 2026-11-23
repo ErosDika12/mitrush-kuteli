@@ -162,6 +162,26 @@
       "packageOriginalFile": "originals/image(20261116-103406).png",
       "basis": "owner_captioned (name supplied by the owner with the photograph)",
       "status": "resolved"
+    },
+    {
+      "personId": "bardha-muharremi",
+      "displayName": "Bardha Muharremi",
+      "photoId": "bardha-muharremi",
+      "webFile": "src/assets/staff/bardha-muharremi.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "modesta-noci",
+      "displayName": "Modesta Noci",
+      "photoId": "modesta-noci",
+      "webFile": "src/assets/staff/modesta-noci.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
+      "status": "resolved"
     }
   ],
   "unassigned": [
