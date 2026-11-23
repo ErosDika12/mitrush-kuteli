@@ -107,18 +107,13 @@
   },
   {
     "id": "fillor",
-    "title": "Arsimi fillor",
+    "title": "Arsimi fillor – Mësueset",
     "blocks": [
       {
-        "title": "Klasat I–V",
         "ids": [
           "donjeta-rrashiti",
-          "diturie-hajdini"
-        ]
-      },
-      {
-        "title": "Mësuese dhe mësues të tjerë",
-        "ids": [
+          "diturie-hajdini",
+          "fitore-sherifi",
           "linda-veseli",
           "merita-hoti",
           "blinera-maliqi",
@@ -128,9 +123,14 @@
           "bardha-muharremi",
           "modesta-noci"
         ]
-      },
+      }
+    ]
+  },
+  {
+    "id": "parashkollor",
+    "title": "Arsimi parashkollor",
+    "blocks": [
       {
-        "title": "Arsimi parashkollor",
         "ids": [
           "adelina-arifi",
           "ardita-sherifi"
@@ -153,12 +153,6 @@
         "ids": [
           "yllka-zubaku",
           "hatixhe-zogaj"
-        ]
-      },
-      {
-        "title": "Stafi i shkollës",
-        "ids": [
-          "fitore-sherifi"
         ]
       }
     ]
