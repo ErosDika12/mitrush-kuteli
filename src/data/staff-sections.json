@@ -119,19 +119,21 @@
       {
         "title": "Mësuese dhe mësues të tjerë",
         "ids": [
-          "ardita-sherifi",
           "linda-veseli",
           "merita-hoti",
           "blinera-maliqi",
           "valbona-rapuca",
           "alban-mustafa",
-          "gentiana-mavriqi"
+          "gentiana-mavriqi",
+          "bardha-muharremi",
+          "modesta-noci"
         ]
       },
       {
-        "title": "Arsimi parafillor",
+        "title": "Arsimi parashkollor",
         "ids": [
-          "adelina-arifi"
+          "adelina-arifi",
+          "ardita-sherifi"
         ]
       }
     ]

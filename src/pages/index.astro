@@ -8,7 +8,7 @@ import { school, staff } from '../lib/data';
 import { absoluteUrl } from '../lib/site';
 import { photoById } from '../lib/photos';
 
-// Real photograph of the school building (Matiçan). Shown only once supplied: add src/assets/photos/school-building.jpg
+// Real photograph of the school building (Matiqan). Shown only once supplied: add src/assets/photos/school-building.jpg
 // and its entry {"id":"school-building", ...} in src/data/photos.json. Until then the hero is a plain navy block.
 const hasBuilding = photoById.has('school-building');
 
@@ -30,13 +30,13 @@ const jsonLd = {
   sameAs: [school.facebook],
 };
 ---
-<Layout title={school.name} description="SHFMU “Mitrush Kuteli”, shkollë fillore dhe e mesme e ulët në Matiçan, Prishtinë: jeta shkollore, udhëheqja, stafi dhe informacione për prindërit." jsonLd={jsonLd}>
+<Layout title={school.name} description="SHFMU “Mitrush Kuteli”, shkollë fillore dhe e mesme e ulët në Matiqan, Prishtinë: jeta shkollore, udhëheqja, stafi dhe informacione për prindërit." jsonLd={jsonLd}>
   <section class:list={['hero-wide', { 'has-photo': hasBuilding }]}>
     {hasBuilding && <Photo id="school-building" priority class="hero-bg" sizes="100vw" widths={[640, 960, 1440, 1920]} alt="Objekti i SHFMU “Mitrush Kuteli”" />}
     <div class="container hero-wide-inner">
       <h1>{school.name}</h1>
       <p class="tagline">{school.tagline}</p>
-      <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiçan të Prishtinës, ku mësimi, muzika dhe sporti bashkohen në një komunitet të vogël.</p>
+      <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiqan të Prishtinës, ku mësimi, muzika dhe sporti bashkohen në një komunitet të vogël.</p>
       <div class="hero-actions"><a class="btn" href="#shkolla">Njihuni me shkollën</a></div>
     </div>
   </section>
@@ -72,7 +72,7 @@ const jsonLd = {
           <h2 id="id-h">Identiteti i shkollës</h2>
           <p>{school.expandedName} ndodhet në {school.street}, {school.location}. Motoja jonë, <em>{school.tagline}</em>, përmbledh atë që synojmë çdo ditë: nxënës që nxënë me kënaqësi, krijojnë me guxim dhe e gjejnë vendin e vet.</p>
           <p>Misioni ynë: <strong>{school.mission.text}</strong></p>
-          <p>Sipas raportimit publik të marsit 2026, shkolla ka edhe një <a href="/lajme/dhoma-burimore-arsim-gjitheperfshires">dhomë burimore</a> për mbështetjen e arsimit gjithëpërfshirës.</p>
+          <p>Shkolla ka edhe një <a href="/lajme/dhoma-burimore-arsim-gjitheperfshires">dhomë burimore</a> për mbështetjen e arsimit gjithëpërfshirës.</p>
         </div>
         <aside class="facts" aria-labelledby="facts-h">
           <h3 id="facts-h">Të dhëna kryesore</h3>
@@ -100,12 +100,11 @@ const jsonLd = {
 
     <section class="section" aria-labelledby="name-h">
       <div class="container prose">
-        <span class="eyebrow">Emri i shkollës</span>
-        <h2 id="name-h">Mitrush Kuteli, shkrimtari</h2>
-        <p>“Mitrush Kuteli” është pseudonimi letrar i <strong>Dhimitër Paskos</strong>, i lindur më 13 shtator 1907 në Pogradec dhe i ndarë nga jeta në Tiranë në vitin 1967. Ishte shkrimtar, përkthyes dhe ekonomist. Ai konsiderohet, bashkë me Ernest Koliqin, themelues i prozës moderne shqipe.</p>
-        <p>Ndër veprat e tij janë <em>“Netë shqiptare”</em> (1938) dhe <em>“Tregime të moçme shqiptare”</em> (1965), me të cilat u dha një formë letrare rrëfimeve popullore e historike shqiptare.</p>
-        <p>Shkolla jonë e mban emrin e tij që nga <strong>20 qershori 1992</strong>, sipas vendimit nr. 8 (plani zhvillimor i shkollës).</p>
-        <p class="small muted">Burime: <a href="https://en.wikipedia.org/wiki/Mitrush_Kuteli" rel="noopener noreferrer" target="_blank">Wikipedia, “Mitrush Kuteli”</a> (hapet në skedë të re) dhe plani zhvillimor i shkollës. Data e saktë e vdekjes ndryshon midis burimeve, ndaj shkruhet vetëm viti.</p>
+        <h2 id="name-h">Emri i shkollës – Mitrush Kuteli</h2>
+        <p>Shkolla jonë mban me krenari emrin e një prej figurave më të rëndësishme të letërsisë shqipe, Mitrush Kutelit, pseudonim letrar i Dhimitër Paskos (1907–1967), shkrimtar, përkthyes dhe ekonomist i shquar shqiptar.</p>
+        <p>Mitrush Kuteli zë një vend të veçantë në historinë e letërsisë shqiptare dhe konsiderohet një ndër themeluesit e prozës moderne shqipe. Përmes veprave të tij, si “Netë shqiptare” dhe “Tregime të moçme shqiptare”, ai ruajti dhe pasuroi traditën, kulturën, gjuhën dhe trashëgiminë tonë kombëtare.</p>
+        <p>Që nga 20 qershori 1992, shkolla jonë mban emrin e tij, duke e konsideruar këtë emërtim jo vetëm si një nderim për figurën e tij, por edhe si një vlerë dhe përgjegjësi për brezat që edukohen në këtë institucion.</p>
+        <p>Emri i Mitrush Kutelit na frymëzon të kultivojmë te nxënësit dashurinë për gjuhën shqipe, leximin, dijen, kulturën dhe identitetin kombëtar. Shkolla jonë synon që, krahas edukimit dhe arsimimit cilësor, të përcjellë te çdo brez vlerat që përfaqëson figura e këtij personaliteti të shquar shqiptar.</p>
       </div>
     </section>
   </div>

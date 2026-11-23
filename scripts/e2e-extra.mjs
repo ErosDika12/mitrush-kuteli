@@ -38,7 +38,7 @@ ok('skip link is first focus stop', (await page.evaluate(() => document.activeEl
 
 // --- Staff placement
 await page.goto(base + '/stafi', { waitUntil: 'networkidle' });
-ok('staff: 35 cards, one per person (Hasime once)', (await page.locator('[data-person]').count()) === 35 && (await page.locator('[data-person][data-id="hasime-mehmeti"]').count()) === 1);
+ok('staff: 37 cards, one per person (Hasime once)', (await page.locator('[data-person]').count()) === 37 && (await page.locator('[data-person][data-id="hasime-mehmeti"]').count()) === 1);
 ok('staff: Hasime sits in administration with both roles', (await page.locator('[data-group-section="udheheqja"] [data-id="hasime-mehmeti"]').innerText()).includes('Koordinatore') && (await page.locator('[data-group-section="udheheqja"] [data-id="hasime-mehmeti"]').innerText()).includes('Mësimdhënëse e muzikës'));
 await page.goto(base + '/stafi?lenda=' + encodeURIComponent('Art muzikor'), { waitUntil: 'networkidle' });
 ok('staff: music subject filter finds Hasime', (await page.locator('[data-person]:visible').count()) === 1 && (await page.locator('[data-person]:visible').innerText()).includes('Hasime'));

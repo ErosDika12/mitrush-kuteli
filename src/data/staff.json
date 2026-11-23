@@ -467,7 +467,7 @@
     "subjects": [],
     "roles": [
       {
-        "label": "Mësuese",
+        "label": "Mësuese parashkollore",
         "group": "teaching"
       }
     ],
@@ -476,7 +476,8 @@
       "file": "ardita-sherifi",
       "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
       "approved": true
-    }
+    },
+    "stage": "parashkollor"
   },
   {
     "id": "linda-veseli",
@@ -677,5 +678,33 @@
       "approved": true
     },
     "stage": "I–V"
+  },
+  {
+    "id": "bardha-muharremi",
+    "displayName": "Bardha Muharremi",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-update-2026-11-23",
+    "portrait": null
+  },
+  {
+    "id": "modesta-noci",
+    "displayName": "Modesta Noci",
+    "aliases": [],
+    "subjects": [],
+    "roles": [
+      {
+        "label": "Mësuese",
+        "group": "teaching"
+      }
+    ],
+    "source": "owner-update-2026-11-23",
+    "portrait": null
   }
 ]

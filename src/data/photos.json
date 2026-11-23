@@ -2,8 +2,8 @@
   "photos": [
     {
       "id": "school-building",
-      "alt": "Objekti i SHFMU “Mitrush Kuteli” në Matiçan: ndërtesë dykatëshe me çati të kuqe dhe oborr të shtruar",
-      "caption": "Objekti i shkollës në Matiçan",
+      "alt": "Objekti i SHFMU “Mitrush Kuteli” në Matiqan: ndërtesë dykatëshe me çati të kuqe dhe oborr të shtruar",
+      "caption": "Objekti i shkollës në Matiqan",
       "album": "objekti",
       "focus": "58% 50%",
       "ratio": "2048 / 768"
@@ -95,7 +95,7 @@
     {
       "id": "objekti",
       "title": "Objekti i shkollës",
-      "text": "Ndërtesa e shkollës në Matiçan."
+      "text": "Ndërtesa e shkollës në Matiqan."
     },
     {
       "id": "muzike",

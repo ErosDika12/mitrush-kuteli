@@ -106,7 +106,7 @@ export interface SearchEntry { type: string; title: string; text: string; url: s
 export function buildSearchIndex(): SearchEntry[] {
   const entries: SearchEntry[] = [];
   const pages: [string, string, string][] = [
-    ['Ballina', '/', 'Shkolla Fillore dhe e Mesme e Ulët Mitrush Kuteli Matiçan Prishtinë'],
+    ['Ballina', '/', 'Shkolla Fillore dhe e Mesme e Ulët Mitrush Kuteli Matiqan Prishtinë'],
     ['Rreth shkollës', '/#shkolla', 'histori identitet vlera shkallët e arsimit Mitrush Kuteli shkrimtari'],
     ['Stafi', '/stafi', 'mësimdhënës drejtoria administrata psikologe sekretar koordinatore'],
     ['Lajme', '/lajme', 'lajme njoftime arkiv'],
