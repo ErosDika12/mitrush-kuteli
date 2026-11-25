@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
 import StaffEntry from '../components/StaffEntry.astro';
 import LifeRotator from '../components/LifeRotator.astro';
-import VideoBox from '../components/VideoBox.astro';
 import { school, staff } from '../lib/data';
 import { absoluteUrl } from '../lib/site';
 import { photoById } from '../lib/photos';
@@ -50,8 +49,6 @@ const jsonLd = {
       <LifeRotator />
     </div>
   </section>
-
-  <VideoBox />
 
   <section class="section alt" aria-labelledby="staff-h">
     <div class="container">
