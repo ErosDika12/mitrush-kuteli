@@ -3,7 +3,7 @@
   "categories": [
     {
       "id": "salla-sportit",
-      "title": "Salla e sportit",
+      "title": "Salla e sportit dhe edukata fizike",
       "photos": [
         {
           "id": "amb-salla-sportit",
@@ -12,6 +12,22 @@
           "source": "photos-source/ambientet/salla-sportit.webp",
           "width": 1337,
           "height": 927
+        },
+        {
+          "id": "amb-edukata-fizike-trofete-1",
+          "caption": "Trofetë dhe medaljet e shkollës",
+          "alt": "Tavolinë me kupa, medalje me shirita blu e trengjyrësh, një top hendbolli dhe mirënjohje, të fituara nga nxënësit në gara sportive.",
+          "source": "photos-source/ambientet/edukata-fizike-trofete-1.webp",
+          "width": 603,
+          "height": 711
+        },
+        {
+          "id": "amb-edukata-fizike-trofete-2",
+          "caption": "Kupat dhe medaljet e garave sportive",
+          "alt": "Pamje e afërt e kupave të arta, medaljeve dhe një topi hendbolli të ekspozuara në një tavolinë.",
+          "source": "photos-source/ambientet/edukata-fizike-trofete-2.webp",
+          "width": 516,
+          "height": 693
         }
       ]
     },
