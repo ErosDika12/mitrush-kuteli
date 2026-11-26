@@ -184,16 +184,6 @@
       "status": "resolved"
     },
     {
-      "personId": "bukurije-kameri",
-      "displayName": "Bukurije Kameri",
-      "photoId": "bukurije-kameri",
-      "webFile": "src/assets/staff/bukurije-kameri.webp",
-      "packageEditedFile": null,
-      "packageOriginalFile": null,
-      "basis": "Caktim i konfirmuar nga pronari më 23.11.2026",
-      "status": "resolved"
-    },
-    {
       "personId": "hasime-mehmeti",
       "displayName": "Hasime Mehmeti",
       "photoId": "hasime-mehmeti",
@@ -301,6 +291,16 @@
       "packageEditedFile": null,
       "packageOriginalFile": null,
       "basis": "Caktim i konfirmuar nga pronari më 27.11.2026 (korrigjim)",
+      "status": "resolved"
+    },
+    {
+      "personId": "bukurije-kameri",
+      "displayName": "Bukurije Kameri",
+      "photoId": "bukurije-kameri",
+      "webFile": "src/assets/staff/bukurije-kameri.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026 (foto e re)",
       "status": "resolved"
     }
   ],
