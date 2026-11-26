@@ -15,3 +15,6 @@ dist/
 /work/
 /screenshots/
 *.zip
+
+# Astro project: kept on disk only (contains private staff review notes)
+/astro-site/
