@@ -833,7 +833,11 @@
       }
     ],
     "source": "owner-update-2026-11-26",
-    "portrait": null,
+    "portrait": {
+      "file": "arta-berisha",
+      "mapping": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "approved": true
+    },
     "stage": "IV"
   },
   {

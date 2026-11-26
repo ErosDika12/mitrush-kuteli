@@ -5,12 +5,12 @@ import EmptyState from '../components/EmptyState.astro';
 import { staff } from '../lib/data';
 import sectionData from '../data/staff-sections.json';
 
-interface Block { title?: string; ids?: string[]; see?: string; seeLabel?: string }
+interface Block { title?: string; ids?: string[]; see?: string; seeLabel?: string; secondary?: string[] }
 interface Section { id: string; title: string; note?: string; blocks: Block[] }
 const sections = sectionData as Section[];
 
-// Every person must appear in exactly one card of the directory.
-const placed = sections.flatMap((s) => s.blocks.flatMap((b) => b.ids ?? []));
+// Every person must appear in exactly one primary card; `secondary` marks an extra card (e.g. Hasime under Art muzikor).
+const placed = sections.flatMap((s) => s.blocks.flatMap((b) => (b.ids ?? []).filter((id) => !(b.secondary ?? []).includes(id))));
 const missing = staff.filter((m) => !placed.includes(m.id)).map((m) => m.id);
 const dupes = placed.filter((id, i) => placed.indexOf(id) !== i);
 const unknown = placed.filter((id) => !staff.some((m) => m.id === id));
@@ -82,10 +82,10 @@ const members = (n: number) => `${n} ${n === 1 ? 'anëtar' : 'anëtarë'}`;
                 </p>
               ) : (
                 <div class="sd-grid">
-                  {(b.ids ?? []).filter(hasPhoto).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} tile />)}
+                  {(b.ids ?? []).filter(hasPhoto).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} anchor={!(b.secondary ?? []).includes(id)} tile />)}
                 </div>
                 <div class="sd-list">
-                  {(b.ids ?? []).filter((id) => !hasPhoto(id)).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} />)}
+                  {(b.ids ?? []).filter((id) => !hasPhoto(id)).map((id) => <StaffEntry member={person(id).m} role={person(id).role} section={sec.id} hideSubject={!!b.title} anchor={!(b.secondary ?? []).includes(id)} />)}
                 </div>
               )}
             </div>

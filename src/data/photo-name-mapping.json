@@ -282,6 +282,16 @@
       "packageOriginalFile": null,
       "basis": "Foto origjinale me emër nga paketa e pronarit (16.11.2026), rikthyer më 27.11.2026",
       "status": "resolved"
+    },
+    {
+      "personId": "arta-berisha",
+      "displayName": "Arta Berisha",
+      "photoId": "arta-berisha",
+      "webFile": "src/assets/staff/arta-berisha.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "status": "resolved"
     }
   ],
   "unassigned": [

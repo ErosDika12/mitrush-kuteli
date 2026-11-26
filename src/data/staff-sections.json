@@ -89,8 +89,12 @@
       },
       {
         "title": "Art muzikor",
-        "see": "hasime-mehmeti",
-        "seeLabel": "Udhëheqja dhe administrata"
+        "ids": [
+          "hasime-mehmeti"
+        ],
+        "secondary": [
+          "hasime-mehmeti"
+        ]
       },
       {
         "title": "Edukatë fizike dhe sport",

@@ -32,7 +32,7 @@ const T = [
  ['ganimete-latifi','Ganimete Latifi','teaching','Mësuese','','II',1],
  ['nora-haliti','Nora Haliti','teaching','Mësuese','','III',1],
  ['dorentina-zekaj','Dorentina Zekaj','teaching','Mësuese','','IV',1],
- ['arta-berisha','Arta Berisha','teaching','Mësuese','','IV',0],
+ ['arta-berisha','Arta Berisha','teaching','Mësuese','','IV',1],
  ['edona-hyseni','Edona Hyseni','teaching','Mësuese','','V',1],
  ['mimoza-ramadani','Mimoza Ramadani','teaching','Mësuese','','V',1],
  ['linda-veseli','Linda Veseli','teaching','Mësimdhënëse','Gjuhë angleze',null,1],
