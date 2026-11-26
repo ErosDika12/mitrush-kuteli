@@ -184,16 +184,6 @@
       "status": "resolved"
     },
     {
-      "personId": "diellona-kabashi",
-      "displayName": "Diellona Kabashi",
-      "photoId": "diellona-kabashi",
-      "webFile": "src/assets/staff/diellona-kabashi.webp",
-      "packageEditedFile": null,
-      "packageOriginalFile": null,
-      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026 (foto e re)",
-      "status": "resolved"
-    },
-    {
       "personId": "bukurije-kameri",
       "displayName": "Bukurije Kameri",
       "photoId": "bukurije-kameri",
@@ -291,6 +281,26 @@
       "packageEditedFile": null,
       "packageOriginalFile": null,
       "basis": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "blinera-maliqi",
+      "displayName": "Blinera Maliqi",
+      "photoId": "blinera-maliqi",
+      "webFile": "src/assets/staff/blinera-maliqi.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026 (korrigjim)",
+      "status": "resolved"
+    },
+    {
+      "personId": "diellona-kabashi",
+      "displayName": "Diellona Kabashi",
+      "photoId": "diellona-kabashi",
+      "webFile": "src/assets/staff/diellona-kabashi.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026 (korrigjim)",
       "status": "resolved"
     }
   ],
