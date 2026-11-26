@@ -499,10 +499,12 @@
     "id": "linda-veseli",
     "displayName": "Linda Veseli",
     "aliases": [],
-    "subjects": [],
+    "subjects": [
+      "Gjuhë angleze"
+    ],
     "roles": [
       {
-        "label": "Mësuese",
+        "label": "Mësimdhënëse",
         "group": "teaching"
       }
     ],
