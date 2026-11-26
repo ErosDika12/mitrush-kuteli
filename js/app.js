@@ -194,7 +194,7 @@
         <div class="container d-flex align-items-center gap-3">
           <a class="brand" href="index.html" aria-label="${esc(S.name)} — Ballina">
             <img class="brand-logo" src="img/stema.webp" width="44" height="44" alt="">
-            <span class="brand-text"><span class="brand-name">${brandName}</span><span class="brand-sub">Matiqan, Prishtinë</span></span>
+            <span class="brand-text"><span class="brand-name">${brandName}</span><span class="brand-sub">Prishtinë</span></span>
           </a>
           <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
             <div class="offcanvas-header d-lg-none">

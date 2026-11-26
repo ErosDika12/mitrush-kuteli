@@ -9,7 +9,7 @@
 
   /* Static pages: [title, Astro route, search words]. Same list as src/lib/data.ts buildSearchIndex. */
   const PAGES = [
-    ['Ballina', '/', 'Shkolla Fillore dhe e Mesme e Ulët Mitrush Kuteli Matiqan Prishtinë'],
+    ['Ballina', '/', 'Shkolla Fillore dhe e Mesme e Ulët Mitrush Kuteli Prishtinë'],
     ['Rreth shkollës', '/#shkolla', 'histori identitet vlera shkallët e arsimit Mitrush Kuteli shkrimtari'],
     ['Stafi', '/stafi', 'mësimdhënës drejtoria administrata psikologe sekretar koordinatore'],
     ['Lajme', '/lajme', 'lajme njoftime arkiv'],
