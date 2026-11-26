@@ -26,16 +26,24 @@ const T = [
  ['fahrije-korca','Fahrije Korça','teaching','Mësimdhënëse','Edukatë fizike dhe sport',null,1],
  ['donjeta-rrashiti','Donjeta Rrashiti','teaching','Mësuese','','I–V',1],
  ['ardita-sherifi','Ardita Sherifi','teaching','Mësuese parashkollore','','parashkollor',1],
- ['bardha-muharremi','Bardha Muharremi','teaching','Mësuese','',null,1],
- ['modesta-noci','Modesta Noci','teaching','Mësuese','',null,1],
+ ['bardha-muharremi','Bardha Muharremi','teaching','Mësuese','','I',1],
+ ['modesta-noci','Modesta Noci','teaching','Mësuese','','II',1],
+ ['arta-fetoshi','Arta Fetoshi','teaching','Mësuese','','I',0],
+ ['ganimete-latifi','Ganimete Latifi','teaching','Mësuese','','II',0],
+ ['nora-haliti','Nora Haliti','teaching','Mësuese','','III',0],
+ ['dorentina-zekaj','Dorentina Zekaj','teaching','Mësuese','','IV',0],
+ ['arta-berisha','Arta Berisha','teaching','Mësuese','','IV',0],
+ ['fitore-ajeti','Fitore Ajeti','teaching','Mësuese','','V',0],
+ ['edona-hyseni','Edona Hyseni','teaching','Mësuese','','V',1],
+ ['mimoza-ramadani','Mimoza Ramadani','teaching','Mësuese','','V',0],
  ['linda-veseli','Linda Veseli','teaching','Mësuese','',null,1],
- ['merita-hoti','Merita Hoti','teaching','Mësuese','',null,1],
- ['blinera-maliqi','Blinera Maliqi','teaching','Mësuese','',null,1],
- ['valbona-rapuca','Valbona Rapuca','teaching','Mësuese','',null,1],
- ['alban-mustafa','Alban Mustafa','teaching','Mësues','',null,1],
+ ['merita-hoti','Merita Hoti','teaching','Mësuese','','III',1],
+ ['blinera-maliqi','Blinera Maliqi','teaching','Mësuese','','I',1],
+ ['valbona-rapuca','Valbona Rapuca','teaching','Mësuese','','IV',1],
+ ['alban-mustafa','Alban Mustafa','teaching','Mësues','','II',1],
  ['adelina-arifi','Adelina Arifi','teaching','Mësuese parashkollore','','parashkollor',1],
  ['gentiana-mavriqi','Gentiana Mavriqi','teaching','Mësuese','',null,1],
- ['diturie-hajdini','Diturie Hajdini','teaching','Mësuese e ciklit fillor','','I–V',1],
+ ['diturie-hajdini','Diturie Hajdini','teaching','Mësuese','','III',1],
  ['taibe-morina','Taibe Morina','support','Psikologe','',null,1],
  ['merita-sejdiu','Merita Sejdiu','support','Mësuese mbështetëse','',null,1],
  ['yllka-zubaku','Yllka Zubaku','support','Asistente për fëmijët me nevoja të veçanta','',null,1],
@@ -61,4 +69,4 @@ const aliasExpect = { 'akter-imeri': ['Akter Imeri', 'Akter Ymeri'], 'sebahat-ga
 for (const [id, al] of Object.entries(aliasExpect)) for (const a of al) if (!by.get(id).aliases.includes(a)) bad.push(`${id}: alias "${a}" missing`);
 console.log(`table rows: ${T.length}; records in data: ${staff.length}; portraits published: ${staff.filter((s) => s.portrait).length}; extra records not in table: ${extra.join(', ') || 'none'}`);
 if (bad.length) { console.log('MISMATCH:\n' + bad.join('\n')); process.exit(1); }
-console.log('ROSTER OK: all 37 identities match the placement table exactly once');
+console.log('ROSTER OK: all 45 identities match the placement table exactly once');

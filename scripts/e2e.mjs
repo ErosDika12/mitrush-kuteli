@@ -83,7 +83,7 @@ ok('staff: "gjerman" finds Sebahate Gashi', vis.length === 1 && vis[0].includes(
 await page.goto(base + '/stafi?q=zzzz', { waitUntil: 'networkidle' });
 ok('staff: no-result state shown', await page.locator('#staff-empty').isVisible());
 await page.click('#staff-empty-reset');
-ok('staff: reset restores all 37 people', (await page.locator('#staff-count').innerText()).includes('37 nga 37'));
+ok('staff: reset restores all 45 people', (await page.locator('#staff-count').innerText()).includes('45 nga 45'));
 await page.goto(base + '/stafi', { waitUntil: 'networkidle' });
 await page.selectOption('#f-lenda', 'Matematikë');
 ok('staff: subject filter -> 2 math teachers', (await page.locator('[data-person]:visible').count()) === 2);

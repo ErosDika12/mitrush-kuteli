@@ -107,21 +107,55 @@
   },
   {
     "id": "fillor",
-    "title": "Arsimi fillor – Mësuesit",
+    "title": "Arsimi fillor",
     "blocks": [
       {
+        "title": "Klasa I",
+        "ids": [
+          "bardha-muharremi",
+          "arta-fetoshi",
+          "blinera-maliqi"
+        ]
+      },
+      {
+        "title": "Klasa II",
+        "ids": [
+          "modesta-noci",
+          "ganimete-latifi",
+          "alban-mustafa"
+        ]
+      },
+      {
+        "title": "Klasa III",
+        "ids": [
+          "merita-hoti",
+          "nora-haliti",
+          "diturie-hajdini"
+        ]
+      },
+      {
+        "title": "Klasa IV",
+        "ids": [
+          "dorentina-zekaj",
+          "valbona-rapuca",
+          "arta-berisha"
+        ]
+      },
+      {
+        "title": "Klasa V",
+        "ids": [
+          "fitore-ajeti",
+          "edona-hyseni",
+          "mimoza-ramadani"
+        ]
+      },
+      {
+        "title": "Mësues të tjerë të ciklit fillor",
         "ids": [
           "donjeta-rrashiti",
-          "diturie-hajdini",
           "fitore-sherifi",
           "linda-veseli",
-          "merita-hoti",
-          "blinera-maliqi",
-          "valbona-rapuca",
-          "alban-mustafa",
-          "gentiana-mavriqi",
-          "bardha-muharremi",
-          "modesta-noci"
+          "gentiana-mavriqi"
         ]
       }
     ]
