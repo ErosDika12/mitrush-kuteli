@@ -151,11 +151,10 @@
   function renderIdentity() {
     const text = $('#identity-text');
     if (text) {
-      const burimore = link('/lajme/dhoma-burimore-arsim-gjitheperfshires');
       text.innerHTML = `
         <p>${esc(S.expandedName)} ndodhet në ${esc(S.street)}, ${esc(S.location)}. Motoja jonë, <em>${esc(S.tagline)}</em>, përmbledh atë që synojmë çdo ditë: nxënës që nxënë me kënaqësi, krijojnë me guxim dhe e gjejnë vendin e vet.</p>
         <p class="identity-mission">Misioni ynë: <strong>${esc(S.mission.text)}</strong></p>
-        <p>Shkolla ka edhe një <a href="${esc(burimore)}">dhomë burimore</a> për mbështetjen e arsimit gjithëpërfshirës.</p>`;
+        <p>Shkolla ka edhe një dhomë burimore për mbështetjen e arsimit gjithëpërfshirës.</p>`;
     }
     const facts = (S.facts || []).filter((f) => f.confirmed && f.value);
     const list = $('#facts-list');
