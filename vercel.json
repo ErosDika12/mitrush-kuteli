@@ -1,4 +1,8 @@
 {
+  "framework": null,
+  "installCommand": "echo \"static site: nothing to install\"",
+  "buildCommand": "echo \"static site: nothing to build\"",
+  "outputDirectory": ".",
   "redirects": [
     {
       "source": "/shkolla",
