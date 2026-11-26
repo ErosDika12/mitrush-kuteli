@@ -105,4 +105,15 @@ const jsonLd = {
       </div>
     </section>
   </div>
+  <style is:global>
+    /* Homepage beige theme (owner request 27.11.2026), based on the warm grey-beige reference photo. Other pages stay white. */
+    body:has(#life-rotator) {
+      --ivory: #f3eee6; --paper: #fbf8f3; --alt: #e9e2d6; --line: #d9cfbf;
+      background: #f3eee6;
+    }
+    body:has(#life-rotator) .site-header,
+    body:has(#life-rotator) .banner,
+    body:has(#life-rotator) .hero { background: #f3eee6; }
+    body:has(#life-rotator) .section.alt { background: #e9e2d6; }
+  </style>
 </Layout>
