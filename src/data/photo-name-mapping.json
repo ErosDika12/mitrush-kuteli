@@ -232,6 +232,16 @@
       "packageOriginalFile": null,
       "basis": "Caktim i konfirmuar nga pronari më 26.11.2026",
       "status": "resolved"
+    },
+    {
+      "personId": "mimoza-ramadani",
+      "displayName": "Mimoza Ramadani",
+      "photoId": "mimoza-ramadani",
+      "webFile": "src/assets/staff/mimoza-ramadani.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 26.11.2026",
+      "status": "resolved"
     }
   ],
   "unassigned": [

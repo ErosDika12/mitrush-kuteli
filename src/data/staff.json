@@ -474,7 +474,7 @@
       "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
       "approved": true
     },
-    "stage": "I–V"
+    "stage": "II"
   },
   {
     "id": "ardita-sherifi",
@@ -537,7 +537,9 @@
   {
     "id": "fitore-sherifi",
     "displayName": "Fitore Sherifi",
-    "aliases": [],
+    "aliases": [
+      "Fitore Ajeti"
+    ],
     "subjects": [],
     "roles": [
       {
@@ -550,7 +552,8 @@
       "file": "fitore-sherifi",
       "mapping": "Lidhje e konfirmuar nga pronari (emër i shkruar te fotoja)",
       "approved": true
-    }
+    },
+    "stage": "V"
   },
   {
     "id": "yllka-zubaku",
@@ -682,7 +685,8 @@
       "file": "gentiana-mavriqi",
       "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër)",
       "approved": true
-    }
+    },
+    "stage": "II"
   },
   {
     "id": "diturie-hajdini",
@@ -817,21 +821,6 @@
     "stage": "IV"
   },
   {
-    "id": "fitore-ajeti",
-    "displayName": "Fitore Ajeti",
-    "aliases": [],
-    "subjects": [],
-    "roles": [
-      {
-        "label": "Mësuese",
-        "group": "teaching"
-      }
-    ],
-    "source": "owner-update-2026-11-26",
-    "portrait": null,
-    "stage": "V"
-  },
-  {
     "id": "edona-hyseni",
     "displayName": "Edona Hyseni",
     "aliases": [],
@@ -862,7 +851,11 @@
       }
     ],
     "source": "owner-update-2026-11-26",
-    "portrait": null,
+    "portrait": {
+      "file": "mimoza-ramadani",
+      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër, 26.11.2026)",
+      "approved": true
+    },
     "stage": "V"
   }
 ]

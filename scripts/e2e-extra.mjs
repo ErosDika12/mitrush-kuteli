@@ -38,11 +38,11 @@ ok('skip link is first focus stop', (await page.evaluate(() => document.activeEl
 
 // --- Staff placement
 await page.goto(base + '/stafi', { waitUntil: 'networkidle' });
-ok('staff: 45 cards, one per person (Hasime once)', (await page.locator('[data-person]').count()) === 45 && (await page.locator('[data-person][data-id="hasime-mehmeti"]').count()) === 1);
+ok('staff: 44 cards, one per person (Hasime once)', (await page.locator('[data-person]').count()) === 44 && (await page.locator('[data-person][data-id="hasime-mehmeti"]').count()) === 1);
 ok('staff: Hasime sits in administration with both roles', (await page.locator('[data-group-section="udheheqja"] [data-id="hasime-mehmeti"]').innerText()).includes('Koordinatore') && (await page.locator('[data-group-section="udheheqja"] [data-id="hasime-mehmeti"]').innerText()).includes('Mësimdhënëse e muzikës'));
 await page.goto(base + '/stafi?lenda=' + encodeURIComponent('Art muzikor'), { waitUntil: 'networkidle' });
 ok('staff: music subject filter finds Hasime', (await page.locator('[data-person]:visible').count()) === 1 && (await page.locator('[data-person]:visible').innerText()).includes('Hasime'));
-for (const [g, n] of [['udheheqja', 3], ['lendore', 18], ['fillor', 18], ['parashkollor', 2], ['mbeshtetese', 3], ['psikologia', 1], ['teknik', 0]]) ok('staff section ' + g + ' has ' + n, (await page.locator('[data-group-section="' + g + '"] [data-person]').count()) === n);
+for (const [g, n] of [['udheheqja', 3], ['lendore', 18], ['fillor', 17], ['parashkollor', 2], ['mbeshtetese', 3], ['psikologia', 1]]) ok('staff section ' + g + ' has ' + n, (await page.locator('[data-group-section="' + g + '"] [data-person]').count()) === n);
 await page.goto(base + '/stafi?q=muzik', { waitUntil: 'networkidle' });
 ok('staff: searching "muzik" finds Hasime once and shows the music cross-reference', (await page.locator('[data-person]:visible').count()) === 1 && (await page.locator('[data-see]:visible').count()) === 1);
 await page.goto(base + '/stafi?q=psikolog', { waitUntil: 'networkidle' });

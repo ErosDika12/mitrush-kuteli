@@ -123,7 +123,9 @@
         "ids": [
           "modesta-noci",
           "ganimete-latifi",
-          "alban-mustafa"
+          "alban-mustafa",
+          "donjeta-rrashiti",
+          "gentiana-mavriqi"
         ]
       },
       {
@@ -145,17 +147,9 @@
       {
         "title": "Klasa V",
         "ids": [
-          "fitore-ajeti",
+          "fitore-sherifi",
           "edona-hyseni",
           "mimoza-ramadani"
-        ]
-      },
-      {
-        "title": "Mësues të tjerë të ciklit fillor",
-        "ids": [
-          "donjeta-rrashiti",
-          "fitore-sherifi",
-          "gentiana-mavriqi"
         ]
       }
     ]
@@ -201,11 +195,5 @@
         ]
       }
     ]
-  },
-  {
-    "id": "teknik",
-    "title": "Stafi teknik",
-    "note": "Emrat e stafit teknik do të shtohen pasi të konfirmohen nga shkolla.",
-    "blocks": []
   }
 ]
