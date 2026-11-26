@@ -214,16 +214,6 @@
       "status": "resolved"
     },
     {
-      "personId": "merita-hoti",
-      "displayName": "Merita Hoti",
-      "photoId": "merita-hoti",
-      "webFile": "src/assets/staff/merita-hoti.webp",
-      "packageEditedFile": null,
-      "packageOriginalFile": null,
-      "basis": "Caktim i konfirmuar nga pronari më 26.11.2026",
-      "status": "resolved"
-    },
-    {
       "personId": "edona-hyseni",
       "displayName": "Edona Hyseni",
       "photoId": "edona-hyseni",
@@ -241,6 +231,56 @@
       "packageEditedFile": null,
       "packageOriginalFile": null,
       "basis": "Caktim i konfirmuar nga pronari më 26.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "nora-haliti",
+      "displayName": "Nora Haliti",
+      "photoId": "nora-haliti",
+      "webFile": "src/assets/staff/nora-haliti.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "arta-fetoshi",
+      "displayName": "Arta Fetoshi",
+      "photoId": "arta-fetoshi",
+      "webFile": "src/assets/staff/arta-fetoshi.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "ganimete-latifi",
+      "displayName": "Ganimete Latifi",
+      "photoId": "ganimete-latifi",
+      "webFile": "src/assets/staff/ganimete-latifi.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "dorentina-zekaj",
+      "displayName": "Dorentina Zekaj",
+      "photoId": "dorentina-zekaj",
+      "webFile": "src/assets/staff/dorentina-zekaj.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "status": "resolved"
+    },
+    {
+      "personId": "merita-hoti",
+      "displayName": "Merita Hoti",
+      "photoId": "merita-hoti",
+      "webFile": "src/assets/staff/merita-hoti.webp",
+      "packageEditedFile": null,
+      "packageOriginalFile": null,
+      "basis": "Foto origjinale me emër nga paketa e pronarit (16.11.2026), rikthyer më 27.11.2026",
       "status": "resolved"
     }
   ],

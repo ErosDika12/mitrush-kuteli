@@ -529,7 +529,7 @@
     "source": "owner-captions-2026-11-16",
     "portrait": {
       "file": "merita-hoti",
-      "mapping": "Lidhje e konfirmuar nga pronari (foto e dërguar me emër, 26.11.2026)",
+      "mapping": "Foto origjinale me emër nga paketa e pronarit (16.11.2026), rikthyer më 27.11.2026",
       "approved": true
     },
     "stage": "III"
@@ -757,7 +757,11 @@
       }
     ],
     "source": "owner-update-2026-11-26",
-    "portrait": null,
+    "portrait": {
+      "file": "arta-fetoshi",
+      "mapping": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "approved": true
+    },
     "stage": "I"
   },
   {
@@ -772,7 +776,11 @@
       }
     ],
     "source": "owner-update-2026-11-26",
-    "portrait": null,
+    "portrait": {
+      "file": "ganimete-latifi",
+      "mapping": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "approved": true
+    },
     "stage": "II"
   },
   {
@@ -787,7 +795,11 @@
       }
     ],
     "source": "owner-update-2026-11-26",
-    "portrait": null,
+    "portrait": {
+      "file": "nora-haliti",
+      "mapping": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "approved": true
+    },
     "stage": "III"
   },
   {
@@ -802,7 +814,11 @@
       }
     ],
     "source": "owner-update-2026-11-26",
-    "portrait": null,
+    "portrait": {
+      "file": "dorentina-zekaj",
+      "mapping": "Caktim i konfirmuar nga pronari më 27.11.2026",
+      "approved": true
+    },
     "stage": "IV"
   },
   {
