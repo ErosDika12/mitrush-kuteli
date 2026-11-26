@@ -1,0 +1,17 @@
+/* ========================================================================
+   Konsultimet me prindër (konsultimet.html). Shared rules live in styles.css.
+   The explorer itself is shared code in app.js.
+   ======================================================================== */
+
+/* The shared off-canvas menu sits off-screen to the right on phones; without this it adds
+   horizontal scroll. "clip" hides the overflow without creating a scroll container. */
+body { overflow-x: hidden; overflow-x: clip; }
+
+/* Breathing room between the result count and the first group of cards. */
+#consult-root .count-line { margin-bottom: 1.5rem; }
+
+/* Touch targets: the reset, clear and print/download buttons are at least 44px tall. */
+#cx-reset,
+#c-print,
+#c-doc { min-height: 44px; }
+#cx-clear { min-height: 44px; display: inline-flex; align-items: center; }

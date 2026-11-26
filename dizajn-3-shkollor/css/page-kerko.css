@@ -1,0 +1,38 @@
+/* =========================================================================
+   Kërko (kerko.html): rezultatet e kërkimit dhe lidhjet e shfletimit.
+   ========================================================================= */
+
+/* Fusha e kërkimit dhe butoni: lartësi e njëjtë (48px, prekshme në telefon). */
+#s-form .btn { min-height: 48px; }
+
+/* Rruga e faqes: lidhja prekëse më e lartë, pa e zhvendosur tekstin. */
+.page-hero .breadcrumb-item a { display: inline-block; padding-block: .45rem; margin-block: -.45rem; }
+@media (max-width: 575.98px) { .page-hero .breadcrumb-item a { padding-block: .72rem; margin-block: -.72rem; } }
+
+/* Rezultati: e tërë karta shkon te faqja (titulli mbulon kartën, si te lajmet). */
+.result-card { position: relative; }
+.result-card .card-body { padding: 1.05rem 1.25rem 1.1rem; }
+.result-title {
+  font-family: var(--font); font-weight: 800; font-size: 1.1rem; line-height: 1.3;
+  margin: .55rem 0 .2rem;
+}
+.result-title a { color: var(--ink); text-decoration: none; }
+.result-title a::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.result-title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.result-card:has(.result-title a:focus-visible) { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* Shfletimi (kur nuk ka kërkim): lidhje të shpejta me ikona */
+.browse { margin-top: 2.75rem; }
+.browse-title { font-family: var(--font); font-weight: 800; font-size: 1rem; margin: 0 0 1rem; }
+.browse-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 576px) { .browse-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* Numri tek në telefon: elementi i fundit zë rreshtin e plotë, pa vend bosh. */
+@media (max-width: 575.98px) { .browse-grid > li:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+.browse-link {
+  display: flex; align-items: center; gap: .75rem; min-height: 56px; padding: .7rem .9rem;
+  border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--surface);
+  color: var(--ink); font-weight: 700; text-decoration: none;
+  transition: border-color .25s, transform .25s var(--ease);
+}
+.browse-link i { font-size: 1.2rem; color: var(--gold); flex: none; }
+.browse-link:hover { border-color: var(--gold); transform: translateY(-2px); color: var(--ink); }

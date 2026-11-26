@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHFMU “Mitrush Kuteli”</title>
+  <meta name="description" content="SHFMU “Mitrush Kuteli”, shkollë fillore dhe e mesme e ulët në Matiqan, Prishtinë: jeta shkollore, udhëheqja, stafi dhe informacione për prindërit.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#17243b">
+  <link rel="icon" type="image/jpeg" href="favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/page-index.css">
+  <script>
+    try { var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-bs-theme', t); } catch (e) {}
+    document.documentElement.classList.add('js');
+  </script>
+</head>
+<body data-active="ballina">
+  <a class="visually-hidden-focusable" href="#main">Kalo te përmbajtja</a>
+  <div id="site-header"></div>
+  <main id="main" tabindex="-1">
+    <section class="hero" id="hero" aria-labelledby="hero-h">
+      <div class="hero-inner">
+        <div class="container">
+          <h1 id="hero-h">SHFMU “Mitrush Kuteli”</h1>
+          <p class="hero-tagline">Mëso. Krijo. Shkëlqe.</p>
+          <p class="lead">Shkollë fillore dhe e mesme e ulët në Matiqan të Prishtinës, ku mësimi, muzika dhe sporti bashkohen në një komunitet të vogël.</p>
+          <div class="hero-actions">
+            <a class="btn btn-brand btn-lg-pill" href="#shkolla">Njihuni me shkollën</a>
+            <a class="btn btn-outline-brand btn-lg-pill" href="aktivitete.html">Jeta shkollore</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="shortcut-strip" aria-label="Lidhje të shpejta">
+      <div class="container">
+        <ul class="shortcut-grid">
+          <li><a class="card-soft is-hoverable shortcut" href="oraret.html"><span class="shortcut-icon" aria-hidden="true"><i class="bi bi-clock"></i></span><span>Orari</span><i class="bi bi-arrow-right shortcut-go" aria-hidden="true"></i></a></li>
+          <li><a class="card-soft is-hoverable shortcut" href="konsultimet.html"><span class="shortcut-icon" aria-hidden="true"><i class="bi bi-chat-dots"></i></span><span>Konsultimet</span><i class="bi bi-arrow-right shortcut-go" aria-hidden="true"></i></a></li>
+          <li><a class="card-soft is-hoverable shortcut" href="dokumente.html"><span class="shortcut-icon" aria-hidden="true"><i class="bi bi-file-earmark-text"></i></span><span>Dokumentet</span><i class="bi bi-arrow-right shortcut-go" aria-hidden="true"></i></a></li>
+          <li><a class="card-soft is-hoverable shortcut" href="kontakti.html"><span class="shortcut-icon" aria-hidden="true"><i class="bi bi-telephone"></i></span><span>Kontakti</span><i class="bi bi-arrow-right shortcut-go" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="section" aria-labelledby="life-h">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <h2 id="life-h">Jeta shkollore</h2>
+          <a class="link-arrow" href="aktivitete.html">Të gjitha aktivitetet</a>
+        </div>
+        <!-- Filled by js/page-index.js (the rotator markup is built from data.home.slides) -->
+        <section class="rot" id="life-rotator" aria-roledescription="karusel" aria-label="Pamje nga aktivitetet"></section>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="staff-h">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <h2 id="staff-h">Udhëheqja</h2>
+          <a class="link-arrow" href="stafi.html">I gjithë stafi</a>
+        </div>
+        <div class="staff-grid is-leadership" id="staff-preview"></div>
+      </div>
+    </section>
+
+    <div id="shkolla">
+      <section class="section" aria-labelledby="id-h">
+        <div class="container identity">
+          <div class="identity-main" data-reveal>
+            <h2 id="id-h">Identiteti i shkollës</h2>
+            <div class="identity-text" id="identity-text"></div>
+          </div>
+          <aside class="card-soft" aria-labelledby="facts-h" id="facts-card" data-reveal>
+            <div class="card-body">
+              <h3 id="facts-h">Të dhëna kryesore</h3>
+              <dl class="fact-list mb-0" id="facts-list"></dl>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-alt" aria-labelledby="stages-h">
+        <div class="container">
+          <h2 id="stages-h">Shkallët e arsimit</h2>
+          <div class="stage-list" id="stage-list"></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="name-h">
+        <div class="container">
+          <div class="row g-4 g-lg-5">
+            <div class="col-lg-4">
+              <h2 id="name-h">Emri i shkollës –&nbsp;Mitrush Kuteli</h2>
+            </div>
+            <div class="col-lg-7 offset-lg-1 name-text">
+              <p>Shkolla jonë mban me krenari emrin e një prej figurave më të rëndësishme të letërsisë shqipe, Mitrush Kutelit, pseudonim letrar i Dhimitër Paskos (1907–1967), shkrimtar, përkthyes dhe ekonomist i shquar shqiptar.</p>
+              <p>Mitrush Kuteli zë një vend të veçantë në historinë e letërsisë shqiptare dhe konsiderohet një ndër themeluesit e prozës moderne shqipe. Përmes veprave të tij, si “Netë shqiptare” dhe “Tregime të moçme shqiptare”, ai ruajti dhe pasuroi traditën, kulturën, gjuhën dhe trashëgiminë tonë kombëtare.</p>
+              <p>Që nga 20 qershori 1992, shkolla jonë mban emrin e tij, duke e konsideruar këtë emërtim jo vetëm si një nderim për figurën e tij, por edhe si një vlerë dhe përgjegjësi për brezat që edukohen në këtë institucion.</p>
+              <p>Emri i Mitrush Kutelit na frymëzon të kultivojmë te nxënësit dashurinë për gjuhën shqipe, leximin, dijen, kulturën dhe identitetin kombëtar. Shkolla jonë synon që, krahas edukimit dhe arsimimit cilësor, të përcjellë te çdo brez vlerat që përfaqëson figura e këtij personaliteti të shquar shqiptar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/page-index.js" defer></script>
+</body>
+</html>

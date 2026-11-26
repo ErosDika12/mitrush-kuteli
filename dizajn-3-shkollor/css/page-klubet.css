@@ -1,0 +1,53 @@
+/* Klubet (klubet.html): kartat e sportit me foto, dhe lista kompakte e klubeve të tjera.
+   Stilet e përbashkëta (.card-soft, .club-card) janë në styles.css. */
+
+.page-hero .breadcrumb-item a { display: inline-block; padding-block: .45rem; margin-block: -.45rem; }
+@media (max-width: 575.98px) { .page-hero .breadcrumb-item a { padding-block: .72rem; margin-block: -.72rem; } }
+
+/* Sporti: kartat kanë foto 4:3 (ose ikonë), të njëjtën lartësi në rresht; dy kolona në telefon. */
+.club-grid { display: grid; gap: .9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 991.98px) {
+  /* Karta e fundit, kur numri është tek, zë rreshtin e plotë (pa vend bosh). */
+  .club-grid > .club-card:last-child:nth-child(2n + 1) { grid-column: 1 / -1; }
+  .club-grid > .club-card:last-child:nth-child(2n + 1) .club-media { aspect-ratio: 16 / 9; }
+}
+@media (min-width: 768px) { .club-grid { gap: 1.25rem; } }
+@media (min-width: 992px) { .club-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.club-card { position: relative; }
+.club-card .card-body { padding: 1rem 1.05rem 1.15rem; }
+.club-card h3 { font-size: 1.02rem; line-height: 1.3; overflow-wrap: anywhere; }
+.club-card .club-cat { margin: .25rem 0 0; }
+.club-card .club-media { position: relative; aspect-ratio: 4 / 3; }
+.club-card .club-media img.is-contain { position: relative; object-fit: contain; background: none; }
+.club-card .club-media .fill-bg {
+  position: absolute; top: -15%; left: -15%; width: 130%; height: 130%;
+  object-fit: cover; filter: blur(16px) saturate(1.05);
+}
+/* Placeholder tiles (no photo) take a pastel in turn, with a matching icon colour. */
+.club-card .club-media.is-placeholder { display: grid; place-items: center; background: var(--butter); color: var(--butter-ink); }
+.club-card:nth-child(3n+1) .club-media.is-placeholder { background: var(--mint); color: var(--mint-ink); }
+.club-card:nth-child(3n+2) .club-media.is-placeholder { background: var(--sky); color: var(--sky-ink); }
+.club-card:nth-child(3n) .club-media.is-placeholder { background: var(--peach); color: var(--peach-ink); }
+.club-card .club-media.is-placeholder i { font-size: 2.8rem; line-height: 1; }
+
+/* Klubet e tjera: rreshta kompakt (miniaturë + emri), 1 kolonë në telefon, deri në 3 në desktop. */
+.club-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: .85rem; grid-template-columns: 1fr;
+}
+@media (min-width: 576px) { .club-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 992px) { .club-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.club-row { display: flex; align-items: center; gap: 1rem; padding: .8rem; height: 100%; box-shadow: var(--shadow-sm); }
+.club-thumb {
+  position: relative; flex: none; width: 72px; height: 72px; border-radius: 14px; overflow: hidden;
+  display: grid; place-items: center; background: var(--sky); color: var(--sky-ink); font-size: 1.55rem;
+}
+.club-list > li:nth-child(3n+1) .club-thumb { background: var(--butter); color: var(--butter-ink); }
+.club-list > li:nth-child(3n+2) .club-thumb { background: var(--sky); color: var(--sky-ink); }
+.club-list > li:nth-child(3n) .club-thumb { background: var(--peach); color: var(--peach-ink); }
+.club-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.club-row-body { min-width: 0; }
+.club-row h3 { font-family: var(--font); font-weight: 800; font-size: 1rem; line-height: 1.3; margin: 0 0 .15rem; overflow-wrap: anywhere; }
+.club-row .club-cat { margin: 0; font-size: .88rem; color: var(--muted); }

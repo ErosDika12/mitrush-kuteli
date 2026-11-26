@@ -1,0 +1,23 @@
+/* =========================================================================
+   Kontakti only. Loaded after css/styles.css on kontakti.html.
+   ========================================================================= */
+
+/* Every button in the contact area: centred label, touch-sized. */
+#contact-root .btn {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
+}
+#contact-root .btn-lg-pill { min-height: 52px; }
+
+/* Top action row: one wide button per line on phones, a row on larger screens. */
+@media (max-width: 575.98px) {
+  #contact-root .contact-actions { flex-direction: column; align-items: stretch; }
+}
+
+/* Contact cards are revealed on scroll. Their hover lift must not wait for the stagger delay. */
+#contact-root .card-soft {
+  transition: opacity .8s var(--ease), translate .8s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+  transition-delay: 0s;
+}
+
+/* Long addresses (e-mail, links) wrap instead of pushing the card wider. */
+#contact-root a { overflow-wrap: anywhere; }

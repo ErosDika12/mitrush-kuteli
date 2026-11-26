@@ -1,0 +1,64 @@
+/* ========================================================================
+   Staff directory (stafi.html). Layout and filter-bar behaviour that mirror
+   the Astro page. Shared rules live in styles.css.
+   ======================================================================== */
+
+/* The shared off-canvas menu sits off-screen to the right on phones; without this it adds
+   horizontal scroll. "clip" hides the overflow without creating a scroll container, so sticky still works. */
+body { overflow-x: hidden; overflow-x: clip; }
+
+/* Anchor targets land below the sticky header and, on desktop, below the filter bar.
+   js/page-stafi.js sets --sd-offset. */
+.sd-sec,
+.staff-dir [id] { scroll-margin-top: var(--sd-offset, 96px); }
+
+/* The filter bar sticks only from 900px wide; below that it scrolls away.
+   On desktop it is kept compact so it covers as little of the list as possible. */
+.filter-bar { position: static; }
+@media (min-width: 900px) {
+  .filter-bar { position: sticky; top: var(--header-h); box-shadow: 0 6px 16px rgb(14 22 41 / .06); padding-block: .75rem; }
+}
+
+/* Category chips appear from 900px; smaller screens use the Kategoria select. */
+.sd-chips { display: none; }
+@media (min-width: 900px) {
+  .sd-chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .6rem; }
+  .sd-chips .chip-btn { min-height: 38px; padding: .3rem .7rem; font-size: .86rem; }
+}
+
+/* Categories */
+.sd-sec + .sd-sec { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.sd-sec h2 { font-size: clamp(1.35rem, 1.15rem + .6vw, 1.85rem); margin: 0; }
+/* The category column is a container, so the card grid adapts to the space it really has. */
+.sd-main { min-width: 0; container: sd-main / inline-size; }
+.sd-note { margin: 0 0 1.25rem; }
+.sd-block + .sd-block { margin-top: 2.25rem; }
+.sd-block .subject-title { margin-bottom: 1rem; }
+.sd-block .see-also { margin-bottom: .5rem; }
+.staff-grid + .staff-list { margin-top: 1.5rem; }
+
+/* Person cards: 2 per row in a narrow column, 3 once the column is wide enough.
+   The side label column takes 250px on desktop, so the viewport width is a poor guide here. */
+.staff-dir .staff-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+@container sd-main (min-width: 520px) {
+  .staff-dir .staff-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+}
+.staff-dir .staff-list { grid-template-columns: 1fr; }
+@container sd-main (min-width: 520px) {
+  .staff-dir .staff-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Touch targets: the clear links and the empty-state button are at least 44px tall. */
+.count-line .clear-link { min-height: 44px; display: inline-flex; align-items: center; }
+#staff-empty-reset { min-height: 44px; }
+
+@media (min-width: 900px) {
+  .sd-sec { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  /* The category name stays in view while a long category is scrolled. */
+  .sd-side {
+    flex-direction: column; align-items: flex-start; gap: .35rem; margin: 0; padding: 0; border: 0;
+    position: sticky; top: calc(var(--sd-offset, 96px) + .5rem); align-self: start;
+  }
+  .sd-side .num { display: block; font-size: 3rem; line-height: 1; margin-bottom: .3rem; }
+  .sd-side h2 { font-size: 1.8rem; }
+}

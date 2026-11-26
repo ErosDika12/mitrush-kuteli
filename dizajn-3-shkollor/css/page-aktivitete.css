@@ -1,0 +1,33 @@
+/* Jeta shkollore: rregulla vetëm për këtë faqe (stilet e përbashkëta janë në styles.css). */
+
+.page-hero .breadcrumb-item a { display: inline-block; padding-block: .45rem; margin-block: -.45rem; }
+@media (max-width: 575.98px) { .page-hero .breadcrumb-item a { padding-block: .72rem; margin-block: -.72rem; } }
+
+/* Teksti i aktivitetit: vertikalisht në mes të fotove, me ritëm të qartë. */
+.activity-text { display: grid; gap: .6rem; align-content: center; }
+.activity-text h2 { margin: 0; }
+.activity-text .lead { margin: 0; }
+.activity-text .link-arrow { justify-self: start; margin-top: .35rem; }
+@media (max-width: 575.98px) {
+  .activity-text .link-arrow { min-height: 44px; align-items: center; }
+}
+
+/* Fotot e aktivitetit: lartësia sipas raportit (4:3, ose 16:9 për panoramat), pa shtrembërim.
+   Pa "overflow: hidden" te figure, që titulli i fotos të dalë poshtë saj, jashtë kornizës. */
+.activity-media { gap: 1rem; }
+.activity-media figure { margin: 0; background: none; border-radius: 0; overflow: visible; }
+.activity-media figure img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: cover; border-radius: var(--radius); background: var(--surface-2);
+}
+.activity-media figure.wide img { aspect-ratio: 16 / 9; }
+.activity-media figcaption { font-size: .88rem; color: var(--muted); padding: .5rem .2rem 0; }
+
+/* Shiriti i klubeve (fotot e skuadrave) */
+.photo-band { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.photo-band .gallery-tile { cursor: pointer; text-decoration: none; }
+.photo-band img.is-contain { position: relative; object-fit: contain; background: none; }
+.photo-band .fill-bg {
+  position: absolute; top: -15%; left: -15%; width: 130%; height: 130%;
+  object-fit: cover; filter: blur(16px) saturate(1.05);
+}

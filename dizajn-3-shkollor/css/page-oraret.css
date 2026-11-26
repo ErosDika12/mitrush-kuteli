@@ -1,0 +1,108 @@
+/* =========================================================================
+   oraret.html: timetable and bell schedule. Shared tokens and components
+   (tables, callouts, chips, buttons) are in styles.css.
+   ========================================================================= */
+
+/* The shared off-canvas menu sits off-screen to the right on phones; clip it so the page
+   itself never scrolls sideways. Wide timetables scroll inside their own wrapper instead. */
+body { overflow-x: hidden; overflow-x: clip; }
+
+/* ---------- Tabs and panels ---------- */
+.oraret-tabs { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 2.25rem; }
+.oraret-tabs .chip-btn { font-size: .92rem; }
+/* Phones: the four views form an even 2 x 2 grid of touch-sized buttons. */
+@media (max-width: 575.98px) {
+  .oraret-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .oraret-tabs .chip-btn { justify-content: center; text-align: center; line-height: 1.25; min-height: 44px; padding-inline: .6rem; }
+}
+.oraret-panel h2 { margin-bottom: 1.1rem; }
+/* With JavaScript only one panel is shown. Without it the panels stack, so keep them apart. */
+html:not(.js) .oraret-panel + .oraret-panel { margin-top: 3.5rem; }
+.oraret-narrow { max-width: 36rem; }
+
+/* Touch targets on phones: panel buttons and links are at least 44px tall. */
+@media (max-width: 575.98px) {
+  .oraret-panel .btn,
+  #orig-open,
+  #orig-download { min-height: 44px; }
+}
+
+/* ---------- Scrollable table wrappers (the table scrolls, the page does not) ---------- */
+.oraret-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  /* Keeps a wide table from widening the whole page (Chrome counts it toward the document width). */
+  contain: paint;
+}
+.oraret-scroll > .table { margin: 0; width: 100%; }
+
+/* ---------- Teacher and class timetables ---------- */
+.tt > :not(caption) > * > * { padding: .55rem .6rem; }
+.tt th, .tt td { min-width: 110px; vertical-align: top; }
+.tt thead th { white-space: nowrap; }
+.tt th[scope="row"] { min-width: 3.5rem; width: 3.5rem; text-align: center; font-variant-numeric: tabular-nums; }
+.tt-teacher th[scope="row"] { min-width: 110px; width: 110px; text-align: start; white-space: nowrap; }
+.tt-teacher td { text-align: center; }
+/* The row labels (period or day) stay visible while the table scrolls sideways inside its wrapper. */
+.tt th[scope="row"] { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.tt thead th:first-child { position: sticky; left: 0; z-index: 2; background: var(--surface-2); }
+.tt td span { display: block; }
+.tt td span + span { margin-top: .4rem; padding-top: .4rem; border-top: 1px dashed var(--line); }
+.tt small { display: block; color: var(--muted); font-size: .8rem; line-height: 1.25; margin-top: .1rem; }
+.tt-class-id { font-weight: 800; font-size: 1rem; font-variant-numeric: tabular-nums; }
+
+.tt td.free { background: var(--surface-2); color: var(--muted); text-align: center; }
+.tt td.conflict { background: var(--warn-bg); box-shadow: inset 4px 0 0 var(--warn-line); }
+
+.cell-conflict {
+  display: inline-block; margin-top: .4rem; padding: .05rem .45rem;
+  border: 1px solid var(--warn-line); border-radius: 999px;
+  background: var(--surface); color: var(--ink);
+  font-size: .74rem; font-weight: 800; line-height: 1.45;
+}
+.cell-conflict.is-review {
+  display: block; border-radius: 8px; padding: .3rem .45rem; margin-top: .45rem;
+  font-size: .78rem; font-weight: 600; line-height: 1.35; white-space: normal;
+}
+[data-bs-theme="dark"] .tt td.free { color: var(--muted); }
+
+/* ---------- Explanatory callout with details list ---------- */
+.oraret-callout details summary { cursor: pointer; font-weight: 800; }
+.oraret-callout details ul { padding-left: 1.2rem; }
+.oraret-callout details li + li { margin-top: .4rem; }
+
+/* ---------- Filters ---------- */
+.oraret-filters { padding: 1.1rem; }
+@media (min-width: 768px) { .oraret-filters { padding: 1.4rem 1.5rem; } }
+
+/* ---------- Original document ---------- */
+.oraret-doc {
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  box-shadow: var(--shadow-sm); padding: .6rem;
+}
+.oraret-doc a { display: block; border-radius: calc(var(--radius) - 6px); cursor: zoom-in; }
+.oraret-doc img {
+  display: block; width: 100%; height: auto; background: var(--surface-2);
+  border-radius: calc(var(--radius) - 6px);
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .oraret-tabs, .no-print { display: none !important; }
+  .oraret-scroll { overflow: visible !important; contain: none !important; border: 1px solid #999 !important; }
+  .oraret-doc { border: 0; padding: 0; box-shadow: none; }
+  .tt { font-size: 9pt; }
+  .tt th, .tt td { min-width: 0 !important; }
+  .tt th[scope="row"], .tt thead th:first-child { position: static; }
+  .tt td { break-inside: avoid; }
+  .cell-conflict { color: #000; border-color: #000; }
+
+  /* "Printo orarin e ziles": only the bell schedule is printed (set by js/page-oraret.js). */
+  html[data-print="zilja"] .page-hero,
+  html[data-print="zilja"] .oraret-tabs,
+  html[data-print="zilja"] .oraret-panel:not(#zilja) { display: none !important; }
+  html[data-print="zilja"] .section-tight { padding-block: 0; }
+  html[data-print="zilja"] #zilja h2 { margin-top: 0; }
+}

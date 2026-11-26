@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lajme | SHFMU “Mitrush Kuteli”</title>
+  <meta name="description" content="Arkivi i lajmeve të SHFMU “Mitrush Kuteli”: përmbledhje të raportimeve publike me lidhje te burimet.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#17243b">
+  <link rel="icon" type="image/jpeg" href="favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/page-lajme.css">
+  <script>
+    try { var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-bs-theme', t); } catch (e) {}
+    document.documentElement.classList.add('js');
+  </script>
+</head>
+<body data-active="jeta">
+  <a class="visually-hidden-focusable" href="#main">Kalo te përmbajtja</a>
+  <div id="site-header"></div>
+  <main id="main" tabindex="-1">
+    <section class="page-hero" id="news-hero">
+      <div class="container">
+        <nav aria-label="Rruga e faqes"><ol class="breadcrumb mb-0"><li class="breadcrumb-item"><a href="index.html">Ballina</a></li><li class="breadcrumb-item active" aria-current="page">Lajme</li></ol></nav>
+        <span class="eyebrow">Lajme</span>
+        <h1>Lajme dhe njoftime</h1>
+        <p class="lead">Përmbledhje të raportimeve publike për shkollën. Secili lajm tregon burimin dhe datën e botimit.</p>
+      </div>
+    </section>
+
+    <!-- Arkivi i lajmeve (lista) -->
+    <div id="news-list-view">
+      <div class="filter-bar">
+        <div class="container">
+          <form id="news-filters" class="row g-2 g-md-3 align-items-end" role="search" aria-label="Kërko në lajme">
+            <div class="col-12 col-md-5">
+              <label for="n-q">Fjalë kyçe</label>
+              <div class="search-field">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <input id="n-q" class="form-control" type="search" autocomplete="off" placeholder="Titulli ose përmbajtja" data-search-focus>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="n-cat">Kategoria</label>
+              <select id="n-cat" class="form-select">
+                <option value="">Të gjitha</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-auto">
+              <button class="btn btn-brand w-100" type="submit">Kërko</button>
+            </div>
+            <div class="col-6 col-md-auto">
+              <button class="btn btn-ghost-soft w-100" type="reset" id="n-reset">Pastro</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <section class="section-tight">
+        <div class="container">
+          <p class="count-line" id="news-count" aria-live="polite"></p>
+          <h2 class="visually-hidden">Lista e lajmeve</h2>
+          <div class="news-grid" id="news-list"></div>
+          <div class="empty-state" id="news-empty" hidden>
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <h3>Asnjë lajm nuk përputhet</h3>
+            <p>Provoni një fjalë tjetër ose pastroni filtrat.</p>
+            <button class="btn btn-brand" type="button" id="news-empty-reset">Pastro filtrat</button>
+          </div>
+          <nav class="pager" id="news-pager" aria-label="Faqet e arkivit" hidden>
+            <button class="btn btn-outline-brand" type="button" id="news-prev">← Më të reja</button>
+            <span id="news-page" aria-live="polite"></span>
+            <button class="btn btn-outline-brand" type="button" id="news-next">Më të vjetra →</button>
+          </nav>
+        </div>
+      </section>
+    </div>
+
+    <!-- Një lajm i vetëm (lajme.html?slug=...) -->
+    <div id="news-article-view" hidden>
+      <section class="section">
+        <div class="container">
+          <div class="article" id="article" data-reading-progress></div>
+          <div class="empty-state" id="article-missing" hidden>
+            <i class="bi bi-newspaper" aria-hidden="true"></i>
+            <h3>Lajmi nuk u gjet</h3>
+            <a class="btn btn-brand" href="lajme.html">Shiko të gjitha lajmet</a>
+          </div>
+        </div>
+      </section>
+      <section class="section section-alt" id="related" aria-labelledby="rel-h" hidden>
+        <div class="container">
+          <h2 id="rel-h">Lajme të tjera</h2>
+          <div class="news-grid is-two" id="related-list"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/page-lajme.js" defer></script>
+</body>
+</html>

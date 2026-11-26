@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeria | SHFMU “Mitrush Kuteli”</title>
+  <meta name="description" content="Ambientet e SHFMU “Mitrush Kuteli”: salla e sportit, kabinetet, laboratori i TIK-ut, biblioteka, korridoret dhe punimet e nxënësve.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#17243b">
+  <link rel="icon" type="image/jpeg" href="favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/page-galeria.css">
+  <script>
+    try { var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-bs-theme', t); } catch (e) {}
+    document.documentElement.classList.add('js');
+  </script>
+</head>
+<body data-active="galeria">
+  <a class="visually-hidden-focusable" href="#main">Kalo te përmbajtja</a>
+  <div id="site-header"></div>
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <div class="container">
+        <nav aria-label="Rruga e faqes"><ol class="breadcrumb mb-0"><li class="breadcrumb-item"><a href="index.html">Ballina</a></li><li class="breadcrumb-item active" aria-current="page">Galeria</li></ol></nav>
+        <span class="eyebrow">Galeria</span>
+        <h1 id="gal-title">Ambientet e shkollës</h1>
+        <p class="lead">Njihuni me hapësirat ku mësojmë, krijojmë dhe zhvillojmë talentet tona.</p>
+      </div>
+    </section>
+
+    <!-- Ambientet e shkollës (sipas hapësirës) -->
+    <section class="section" aria-labelledby="amb-h">
+      <div class="container">
+        <h2 id="amb-h" class="visually-hidden">Ambientet sipas hapësirës</h2>
+        <div class="gal-filter">
+          <label class="mb-0" for="gal-cat">Shfaq hapësirën</label>
+          <select id="gal-cat" class="form-select"></select>
+        </div>
+        <div id="spaces-root"></div>
+      </div>
+    </section>
+
+    <!-- Jeta shkollore në foto (sipas albumit) -->
+    <section class="section" id="jeta-ne-foto" aria-labelledby="jeta-h">
+      <div class="container">
+        <h2 id="jeta-h">Jeta shkollore në foto</h2>
+        <div id="albums-root"></div>
+        <p class="small-note mt-4 mb-0">Nëse dëshironi që një fotografi të hiqet, shkruani te <a href="kontakti.html">kontakti</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pamja e zmadhuar (lightbox) -->
+  <div class="modal fade lightbox" id="lb" tabindex="-1" role="dialog" aria-label="Pamje e zmadhuar e fotografisë">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="lb-bar">
+            <span class="lb-count" id="lb-count" aria-live="polite"></span>
+            <button class="btn-lb lb-close" type="button" id="lb-close" data-bs-dismiss="modal" aria-label="Mbyll fotografinë"><i class="bi bi-x-lg" aria-hidden="true"></i><span>Mbyll</span></button>
+          </div>
+          <div class="lightbox-stage" id="lb-stage">
+            <button class="btn-lb lb-nav lb-prev" type="button" id="lb-prev" aria-label="Fotografia e mëparshme"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+            <img id="lb-img" alt="">
+            <button class="btn-lb lb-nav lb-next" type="button" id="lb-next" aria-label="Fotografia tjetër"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          </div>
+          <p class="lb-caption" id="lb-cap"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/page-galeria.js" defer></script>
+</body>
+</html>

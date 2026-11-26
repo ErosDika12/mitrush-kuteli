@@ -1,0 +1,70 @@
+/* =========================================================================
+   Lajme (lajme.html): rrjeti i lajmeve, lajmi i veçantë, pamja e një lajmi, faqosja.
+   Përdor klasat e përbashkëta nga styles.css; këtu vetëm ç'mungon.
+   ========================================================================= */
+
+/* Kartat: titulli mbulon gjithë kartën (shih .news-card h3 a::after), prandaj kërkohet relative. */
+.news-card { position: relative; }
+.news-card:has(h3 a:focus-visible) { outline: 3px solid var(--gold); outline-offset: 3px; }
+.news-card .card-body .meta-row time { font-variant-numeric: tabular-nums; }
+
+/* Lajmi pa foto: panel me ikonë, që të gjitha kartat të kenë të njëjtin ritëm vertikal. */
+/* The placeholder takes the same tint as the category tag above it. */
+.news-card .news-media.is-placeholder {
+  display: grid; place-items: center;
+  background: var(--cat-bg);
+  color: var(--cat-ink);
+}
+.news-card .news-media.is-placeholder i { font-size: 2.4rem; line-height: 1; }
+
+/* Rrjeti: 1 kolonë në telefon, deri në 3 në desktop, pa kolona boshe. */
+.news-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+}
+.news-grid.is-two { grid-template-columns: 1fr; }
+
+@media (min-width: 768px) {
+  .news-grid.is-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Lajmi i parë (me foto) i faqes 1 zë dy kolona; mbetet vend për një kartë tjetër në rresht. */
+  .news-featured { grid-column: span 2; }
+}
+.news-featured h3 { font-size: clamp(1.45rem, 1.2rem + .8vw, 1.9rem); }
+.news-featured .card-body { padding: clamp(1.3rem, 2.4vw, 2rem); }
+
+/* Shiriti i filtrave: butonat të njëjtë lartësi me fushat. */
+.filter-bar .btn { min-height: 46px; }
+
+/* Faqosja: në telefon, "Faqja X nga Y" del mbi butonat. */
+.pager { flex-wrap: wrap; }
+@media (max-width: 575.98px) {
+  .pager span { order: -1; flex-basis: 100%; text-align: center; }
+  .pager .btn { flex: 1 1 0; min-width: 0; min-height: 44px; }
+}
+
+/* Pamja e një lajmi */
+/* Rruga: një rresht; titulli i lajmit shkurtohet me "..." në vend që të thyhet. */
+.article .breadcrumb { font-size: .9rem; flex-wrap: nowrap; align-items: baseline; }
+.article .breadcrumb-item { white-space: nowrap; flex-shrink: 0; }
+.article .breadcrumb-item a { display: inline-block; padding-block: .45rem; margin-block: -.45rem; }
+.article .breadcrumb-item.active { flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.article h1 { margin-bottom: .75rem; }
+.article > .lead { margin-bottom: 2rem; }
+.article-body > :first-child { margin-top: 0; }
+.article-body ul,
+.article-body ol { padding-left: 1.25rem; }
+.article-body li + li { margin-top: .25rem; }
+.source-box h2 { font-family: var(--font); font-weight: 800; }
+.source-box ul { line-height: 1.55; }
+.source-box li + li { margin-top: .35rem; }
+
+/* Veprimet nën lajmin: butonat e vegjël + "Të gjitha lajmet" në fund. */
+.article-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.article-actions .back-link { margin-left: auto; }
+@media (max-width: 575.98px) {
+  .article .breadcrumb-item a { padding-block: .72rem; margin-block: -.72rem; }
+  .article-actions .btn-sm,
+  .article-actions .back-link { min-height: 44px; }
+  .article-actions .back-link { margin-left: 0; width: 100%; justify-content: center; }
+}
